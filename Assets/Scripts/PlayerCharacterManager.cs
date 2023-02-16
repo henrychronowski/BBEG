@@ -14,8 +14,8 @@ public class PlayerCharacterManager : MonoBehaviour
     // Takes input and sends it to the proper Character(s)
     // 
     [SerializeField] int maxCharacters = 4;
-    [SerializeField] List<Minion> minions;
-    [SerializeField] Leader leader;
+    [SerializeField] public List<Minion> minions;
+    [SerializeField] public Leader leader;
     [SerializeField] PartyState party;
     // Combined list of minions + leader
     [SerializeField] List<Character> characterList;
