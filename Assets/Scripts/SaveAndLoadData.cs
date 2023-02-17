@@ -1,38 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 //Game will be saved using a binary data file
-public static class SaveAndLoadData
+public class SaveAndLoadData : MonoBehaviour
 {
-    public static void SavePlayerData(PlayerCharacterManager player)
+    private PlayerData playerData;
+    private PlayerCharacterManager manager;
+
+    private string path = "";
+    private string persistentPath = "";
+
+    private void Start()
     {
-        BinaryFormatter format = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.squimb";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-        PlayerData data = new PlayerData(player);
-
-        format.Serialize(stream, data);
-        stream.Close();
+        manager = GameObject.Find("PlayerCharacterManager").GetComponent<PlayerCharacterManager>();
+        playerData = new PlayerData(manager);
+        SetDataPath();
     }
 
-    public static PlayerData LoadPlayerData()
+    private void SetDataPath()
     {
-        string path = Application.persistentDataPath + "/player.squimb";
-        if(File.Exists(path))
-        {
-            BinaryFormatter format = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+        path = Application.dataPath + Path.AltDirectorySeparatorChar + "Player.json";
+        persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "Player.json";
+    }
+    public void SavePlayerData()
+    {
+        string savePath = path;
+        Debug.Log("Saving to " + savePath);
+        string json = JsonUtility.ToJson(playerData);
+        Debug.Log(json);
 
-            PlayerData data = format.Deserialize(stream) as PlayerData;
-            stream.Close();
-            return data;
-        }
-        else
-        {
-            Debug.Log("Save data not found at " + path);
-            return null;
-        }
+        using StreamWriter writer = new StreamWriter(savePath);
+        writer.Write(json);
+    }
+
+    public void LoadPlayerData()
+    {
+        using StreamReader reader = new StreamReader(path);
+        string json = reader.ReadToEnd();
+
+        PlayerData data = JsonUtility.FromJson<PlayerData>(json);
+        Debug.Log(data.ToString());
     }
 }

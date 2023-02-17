@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-enum PartyState
+public enum PartyState
 {
     Follow, // Inputs only get sent to the Leader
     Mimic // Inputs get sent to whole party
@@ -16,9 +16,14 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] int maxCharacters = 4;
     [SerializeField] public List<Minion> minions;
     [SerializeField] public Leader leader;
-    [SerializeField] PartyState party;
+    [SerializeField] public PartyState party;
     // Combined list of minions + leader
-    [SerializeField] List<Character> characterList;
+    [SerializeField] public List<Character> characterList;
+
+    //Temporary currency (used only during runs) and
+    //Permanent currency (used throughout the game)
+    [SerializeField] public int tempCurr;
+    [SerializeField] public int permCurr;
 
     private void OnMove(InputValue val)
     {

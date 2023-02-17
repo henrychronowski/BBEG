@@ -13,6 +13,7 @@ public enum CharacterState
     Dodge
 }
 
+[System.Serializable]
 public class Character : MonoBehaviour
 {
     [SerializeField] public CharacterBaseState state;
