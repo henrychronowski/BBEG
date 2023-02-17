@@ -59,7 +59,7 @@ Overview of Branches
 
 ## General Workflow
 
-**Important note: You do not need to include <> in any of the following commands, they are just being used to differentiate the command from a file/folder name. eg "<folder name>" gets replaced with "Textures"**
+**Important note: You do not need to include <> in any of the following commands, they are just being used to differentiate the command from a file/folder name. eg "< folder name >" gets replaced with "Textures"**
 
 This is the workflow that everyone will follow while on their own branch.
 
