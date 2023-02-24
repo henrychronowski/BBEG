@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public enum PartyState
@@ -24,6 +25,9 @@ public class PlayerCharacterManager : MonoBehaviour
     //Permanent currency (used throughout the game)
     [SerializeField] public int tempCurr;
     [SerializeField] public int permCurr;
+
+    public Text txt1;
+    public Text txt2;
 
     private void OnMove(InputValue val)
     {
@@ -95,5 +99,23 @@ public class PlayerCharacterManager : MonoBehaviour
             //        break;
             //    }
         }
+
+        txt1.text = tempCurr.ToString();
+        txt2.text = permCurr.ToString();
+    }
+
+    public void LoadData(PlayerData data)
+    {
+        leader = data.leader;
+        party = data.party;
+
+        /*characterList = new List<Character>();
+        for (int i = 0; i < data.characterList.Count; i++)
+        {
+            characterList[i] = data.characterList[i];
+        }*/
+
+        tempCurr = data.tempCurr;
+        permCurr = data.permCurr;
     }
 }
