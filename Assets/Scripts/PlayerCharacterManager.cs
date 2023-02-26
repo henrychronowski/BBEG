@@ -109,10 +109,10 @@ public class PlayerCharacterManager : MonoBehaviour
         leader = data.leader;
         party = data.party;
 
-        /*characterList = new List<Character>();
-        for (int i = 0; i < data.characterList.Count; i++)
+        characterList = new List<Character>(data.characterList);
+        /*for (int i = 0; i < data.characterList.Count; i++)
         {
-            characterList[i] = data.characterList[i];
+            characterList[i].moveSpeed = data.characterList[i].moveSpeed;
         }*/
 
         tempCurr = data.tempCurr;

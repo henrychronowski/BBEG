@@ -16,10 +16,10 @@ public class PlayerData
         leader = player.leader;
         party = player.party;
 
-        /*characterList = new List<Character>();
-        for(int i = 0; i < player.characterList.Count; i++)
+        characterList = new List<Character>(player.characterList);
+        /*for(int i = 0; i < player.characterList.Count; i++)
         {
-            characterList[i] = player.characterList[i];
+            characterList[i].moveSpeed = player.characterList[i].moveSpeed;
         }*/
 
         tempCurr = player.tempCurr;
