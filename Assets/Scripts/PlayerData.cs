@@ -11,16 +11,19 @@ public class PlayerData
     public int tempCurr;
     public int permCurr;
 
+    public float[] moveSpeed;
+
     public PlayerData(PlayerCharacterManager player)
     {
         leader = player.leader;
         party = player.party;
 
-        characterList = new List<Character>(player.characterList);
-        /*for(int i = 0; i < player.characterList.Count; i++)
+        moveSpeed = new float[player.characterList.Count];
+        //characterList = new List<Character>(player.characterList);
+        for(int i = 0; i < player.characterList.Count; i++)
         {
-            characterList[i].moveSpeed = player.characterList[i].moveSpeed;
-        }*/
+            moveSpeed[i] = player.characterList[i].moveSpeed;
+        }
 
         tempCurr = player.tempCurr;
         permCurr = player.permCurr;
