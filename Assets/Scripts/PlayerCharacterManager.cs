@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
-enum PartyState
+public enum PartyState
 {
     Follow, // Inputs only get sent to the Leader
     Mimic // Inputs get sent to whole party
@@ -14,11 +15,19 @@ public class PlayerCharacterManager : MonoBehaviour
     // Takes input and sends it to the proper Character(s)
     // 
     [SerializeField] int maxCharacters = 4;
-    [SerializeField] List<Minion> minions;
-    [SerializeField] Leader leader;
-    [SerializeField] PartyState party;
+    [SerializeField] public List<Minion> minions;
+    [SerializeField] public Leader leader;
+    [SerializeField] public PartyState party;
     // Combined list of minions + leader
-    [SerializeField] List<Character> characterList;
+    [SerializeField] public List<Character> characterList;
+
+    //Temporary currency (used only during runs) and
+    //Permanent currency (used throughout the game)
+    [SerializeField] public int tempCurr;
+    [SerializeField] public int permCurr;
+
+    public Text txt1;
+    public Text txt2;
 
     private void OnMove(InputValue val)
     {
@@ -90,5 +99,23 @@ public class PlayerCharacterManager : MonoBehaviour
             //        break;
             //    }
         }
+
+        txt1.text = tempCurr.ToString();
+        txt2.text = permCurr.ToString();
+    }
+
+    public void LoadData(PlayerData data)
+    {
+        leader = data.leader;
+        party = data.party;
+
+        //characterList = new List<Character>(data.characterList);
+        for (int i = 0; i < characterList.Count; i++)
+        {
+            characterList[i].moveSpeed = data.moveSpeed[i];
+        }
+
+        tempCurr = data.tempCurr;
+        permCurr = data.permCurr;
     }
 }

@@ -1,4 +1,4 @@
-# Untitled Project
+# Project BBEG
 
 
 --Git Standards--
@@ -40,7 +40,7 @@ Overview of Branches
 
 ## Updating Your Branch
 
-**Before doing anything on any branch or when starting a new work session, make sure that your working tree is clear and your branch is up to date.**
+**Before doing anything on any branch or when starting a new work session, make sure that your working tree is clear and your branch is up to date.zzzz**
 
 	Follow these commmandline steps to update your current branch:
 
@@ -59,7 +59,7 @@ Overview of Branches
 
 ## General Workflow
 
-**Important note: You do not need to include <> in any of the following commands, they are just being used to differentiate the command from a file/folder name. eg "<folder name>" gets replaced with "Textures"**
+**Important note: You do not need to include <> in any of the following commands, they are just being used to differentiate the command from a file/folder name. eg "< folder name >" gets replaced with "Textures"**
 
 This is the workflow that everyone will follow while on their own branch.
 
