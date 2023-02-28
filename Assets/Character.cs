@@ -34,7 +34,7 @@ public class Character : MonoBehaviour
         if(state.stateType != CharacterState.Move)
             state = new MoveState(this);
 
-       
+        
     }
 
     
