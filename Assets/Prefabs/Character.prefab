@@ -3681,7 +3681,8 @@ MonoBehaviour:
   rgd: {fileID: 6080025853874627410}
   axis: {x: 0, y: 0}
   turnSmoothVelocity: 1
-  turnSmoothTime: 1
+  turnSmoothTime: 0
+  followPoint: {fileID: 2744601260002139008}
 --- !u!1 &6189456268790923021
 GameObject:
   m_ObjectHideFlags: 0
