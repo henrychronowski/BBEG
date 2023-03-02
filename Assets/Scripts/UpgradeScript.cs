@@ -10,6 +10,7 @@ public enum UpgradeTypes
 public class UpgradeScript : MonoBehaviour
 {
     public PlayerCharacterManager manager;
+    int subAmt;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +25,16 @@ public class UpgradeScript : MonoBehaviour
                 break;
 
             case (int)UpgradeTypes.SPEED:
-                for(int i = 0; i < manager.characterList.Count; i++)
+                subAmt = 5;
+                if(manager.tempCurr - subAmt >= 0)
                 {
-                    manager.characterList[i].moveSpeed += 5.0f;
+                    for (int i = 0; i < manager.characterList.Count; i++)
+                    {
+                        manager.characterList[i].moveSpeed += 5.0f;
+                    }
+                    manager.tempCurr -= subAmt;
                 }
-                manager.tempCurr -= 5;
+                
                 break;
         }
     }

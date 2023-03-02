@@ -106,13 +106,14 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public void LoadData(PlayerData data)
     {
-        leader = data.leader;
+        //leader = data.leader;
         party = data.party;
 
+        leader.moveSpeed = data.moveSpeed[0];
         //characterList = new List<Character>(data.characterList);
-        for (int i = 0; i < characterList.Count; i++)
+        for(int i = 0; i < minions.Count; i++)
         {
-            characterList[i].moveSpeed = data.moveSpeed[i];
+            minions[i].moveSpeed = data.moveSpeed[i + 1];
         }
 
         tempCurr = data.tempCurr;

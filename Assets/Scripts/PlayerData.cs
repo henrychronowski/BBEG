@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerData
 {
     public Leader leader;
-    public List<Character> characterList;
+    public List<Minion> minions;
     public PartyState party;
     public int tempCurr;
     public int permCurr;
@@ -15,14 +15,15 @@ public class PlayerData
 
     public PlayerData(PlayerCharacterManager player)
     {
-        leader = player.leader;
+        //leader = player.leader;
         party = player.party;
 
-        moveSpeed = new float[player.characterList.Count];
+        moveSpeed = new float[player.minions.Count + 1];
+        moveSpeed[0] = player.leader.moveSpeed;
         //characterList = new List<Character>(player.characterList);
-        for(int i = 0; i < player.characterList.Count; i++)
+        for(int i = 0; i < player.minions.Count; i++)
         {
-            moveSpeed[i] = player.characterList[i].moveSpeed;
+            moveSpeed[i + 1] = player.minions[i].moveSpeed;
         }
 
         tempCurr = player.tempCurr;
