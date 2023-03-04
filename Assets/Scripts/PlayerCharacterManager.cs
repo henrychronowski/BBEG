@@ -110,10 +110,12 @@ public class PlayerCharacterManager : MonoBehaviour
         party = data.party;
 
         leader.moveSpeed = data.moveSpeed[0];
+        leader.health = data.health[0];
         //characterList = new List<Character>(data.characterList);
         for(int i = 0; i < minions.Count; i++)
         {
             minions[i].moveSpeed = data.moveSpeed[i + 1];
+            minions[i].health = data.health[i + 1];
         }
 
         tempCurr = data.tempCurr;

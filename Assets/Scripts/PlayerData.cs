@@ -12,18 +12,21 @@ public class PlayerData
     public int permCurr;
 
     public float[] moveSpeed;
+    public int[] health;
 
     public PlayerData(PlayerCharacterManager player)
     {
-        //leader = player.leader;
         party = player.party;
 
         moveSpeed = new float[player.minions.Count + 1];
+        health = new int[player.minions.Count + 1];
+
         moveSpeed[0] = player.leader.moveSpeed;
-        //characterList = new List<Character>(player.characterList);
+        health[0] = player.leader.health;
         for(int i = 0; i < player.minions.Count; i++)
         {
             moveSpeed[i + 1] = player.minions[i].moveSpeed;
+            health[i + 1] = player.minions[i].health;
         }
 
         tempCurr = player.tempCurr;
