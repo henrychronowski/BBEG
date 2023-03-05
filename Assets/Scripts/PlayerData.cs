@@ -29,6 +29,9 @@ public class PlayerData
             health[i + 1] = player.minions[i].health;
         }
 
+        leader = player.leader;
+        minions = new List<Minion>(player.minions);
+
         tempCurr = player.tempCurr;
         permCurr = player.permCurr;
     }

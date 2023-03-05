@@ -118,6 +118,9 @@ public class PlayerCharacterManager : MonoBehaviour
             minions[i].health = data.health[i + 1];
         }
 
+        leader = data.leader;
+        minions = new List<Minion>(data.minions);
+
         tempCurr = data.tempCurr;
         permCurr = data.permCurr;
     }

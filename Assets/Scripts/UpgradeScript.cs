@@ -22,15 +22,26 @@ public class UpgradeScript : MonoBehaviour
         switch(upgrade)
         {
             case (int)UpgradeTypes.HEALTH:
+                subAmt = 10;
+                if (manager.tempCurr - subAmt >= 0)
+                {
+                    manager.leader.health += 10;
+                    for (int i = 0; i < manager.minions.Count; i++)
+                    {
+                        manager.minions[i].health += 10;
+                    }
+                    manager.tempCurr -= subAmt;
+                }
                 break;
 
             case (int)UpgradeTypes.SPEED:
                 subAmt = 5;
                 if(manager.tempCurr - subAmt >= 0)
                 {
-                    for (int i = 0; i < manager.characterList.Count; i++)
+                    manager.leader.moveSpeed += 5.0f;
+                    for (int i = 0; i < manager.minions.Count; i++)
                     {
-                        manager.characterList[i].moveSpeed += 5.0f;
+                        manager.minions[i].moveSpeed += 5.0f;
                     }
                     manager.tempCurr -= subAmt;
                 }
