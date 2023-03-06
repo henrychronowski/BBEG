@@ -16,6 +16,10 @@
 [Ll]ogs/
 UserSettings/
 
+# Things that should be user settings but arent
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
