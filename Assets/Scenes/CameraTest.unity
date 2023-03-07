@@ -1166,7 +1166,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27250
+  m_Name: pb_Mesh31898
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2169,9 +2169,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraController
       objectReference: {fileID: 0}
+    - target: {fileID: 4332273614794646310, guid: 281beb588f0e4e44d984f7a3109cbafc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332273614794646310, guid: 281beb588f0e4e44d984f7a3109cbafc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8865933518006038892, guid: 281beb588f0e4e44d984f7a3109cbafc, type: 3}
       propertyPath: lookAt
       value: 
       objectReference: {fileID: 1965192835}
+    - target: {fileID: 8865933518006038892, guid: 281beb588f0e4e44d984f7a3109cbafc, type: 3}
+      propertyPath: offset.y
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865933518006038892, guid: 281beb588f0e4e44d984f7a3109cbafc, type: 3}
+      propertyPath: smoothSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 281beb588f0e4e44d984f7a3109cbafc, type: 3}
