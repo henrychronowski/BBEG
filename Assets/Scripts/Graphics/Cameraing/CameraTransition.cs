@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "Camera Transition", menuName = "Custom Camera Stuff", order = 1)]
+[CreateAssetMenu(fileName = "Camera Transition", menuName = "Camera Transition", order = 1)]
 public class CameraTransition : ScriptableObject
 {
     public string TransitionName;

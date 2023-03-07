@@ -4,22 +4,36 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+    // testing
+    public bool tmp = false;
+
     // General variables
     private Camera activeCamera;    // Eventually maybe have an array of them and choose the active
+    [SerializeField] CameraSettings activeSettings;
+    public CameraFocus activeFocus;
     //Quaternion lastRot;
     //Quaternion targetRot;
     Vector3 lastPos;
     Vector3 targetPos;
 
-    [Header("Smoothing")]
-    [SerializeField] private float smoothSpeed = 10.0f;
+    //[Header("Smoothing")]
+    //[SerializeField] private float smoothSpeed = 10.0f;
 
     // Room-based variables (will be contained within a scriptable object for the room or something like that)
-    [SerializeField] private Transform lookAt;
-    [SerializeField] private Vector3 offset = new Vector3(0.0f, 13.0f, 5.0f);
-    //[SerializeField]private Transform targetPos;
+    private Transform lookAt;
+	//[SerializeField] private Vector3 offset = new Vector3(0.0f, 13.0f, 5.0f);
+	//[SerializeField]private Transform targetPos;
 
-    void FixedUpdate()
+	private void Update()
+	{
+		if(tmp == true)
+		{
+            lookAt = activeFocus.transform;
+            activeSettings = activeFocus.roomSettings;
+        }
+	}
+
+	void FixedUpdate()
     {
   //      if(lookAt != null)
   //      {
@@ -38,7 +52,7 @@ public class CameraControl : MonoBehaviour
 		{
             //Debug.DrawLine(lookAt.position - activeCamera.transform.position, activeCamera.transform.position, Color.gray);
 
-            targetPos = lookAt.position - offset;
+            targetPos = lookAt.position - activeSettings.offset;
 		}
     }
 
@@ -52,11 +66,17 @@ public class CameraControl : MonoBehaviour
         targetPos = lastPos;
     }
 
+	private void Start()
+	{
+        lookAt = activeFocus.transform;
+        activeSettings = activeFocus.roomSettings;
+    }
+
     void LateUpdate()
     {
         //lastRot = Quaternion.Slerp(lastRot, targetRot, smoothSpeed * Time.deltaTime);
         //activeCamera.transform.rotation = lastRot;
-        lastPos = Vector3.Lerp(lastPos, targetPos, smoothSpeed * Time.deltaTime);
+        lastPos = Vector3.Lerp(lastPos, targetPos, activeSettings.smoothSpeed * Time.deltaTime);
         activeCamera.transform.position = lastPos;
     }
 }
