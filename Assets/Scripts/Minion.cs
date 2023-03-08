@@ -24,13 +24,21 @@ public class Minion : Character
 
     [SerializeField] Leader leader;
     [SerializeField] float followDistance;
-    [SerializeField] float stoppingDistance;
+    [SerializeField] float brakingDrag; //How much the minion's speed is reduced when in braking range but 
+    [SerializeField] float catchupDistance;
+    [SerializeField] float catchupSpeedModifier;
+
+    [SerializeField] float mimicFollowDistance;
+    [SerializeField] float mimicBrakingDrag;
+    [SerializeField] float mimicCatchupDistance;
+    [SerializeField] float mimicCatchupSpeedModifier;
+
 
     // Start is called before the first frame update
     void Start()
     {
         state = new IdleState(this);
-
+        leader = FindObjectOfType<Leader>();
     }
 
     // Update is called once per frame
@@ -40,20 +48,94 @@ public class Minion : Character
     }
 
     // Forcibly set the minion state to move no matter what they're doing
-    public void Follow(Character character)
+    public void Follow(Transform point)
     {
-        if (Vector3.Distance(transform.position, character.transform.position) > followDistance)
+        if(Vector3.Distance(transform.position, point.position) > followDistance)
         {
             if (state.stateType != CharacterState.Move)
                 state = new MoveState(this);
-            Vector3 dir = (character.transform.position - transform.position).normalized;
+            Vector3 dir = (point.position - transform.position).normalized;
             Move(new Vector2(dir.x, dir.z));
         }
         else
         {
-            if (state.stateType != CharacterState.Idle)
+            if (state.stateType != CharacterState.Move)
+                state = new MoveState(this);
+            Vector3 dir = (point.position - transform.position).normalized;
+            Move(new Vector2(dir.x, dir.z));
+        }
+        //else if (Vector3.Distance(transform.position, point.position) > stoppingDistance)
+        //{
+        //    moveSpeedModifier *= brakingDrag;
+        //    if (state.stateType != CharacterState.Move)
+        //        state = new MoveState(this);
+        //    Vector3 dir = (point.position - transform.position).normalized;
+        //    Move(new Vector2(dir.x, dir.z));
+        //}
+        //else
+        //{
+        //    moveSpeedModifier = 1;
+        //    if (state.stateType != CharacterState.Idle)
+        //        state = new IdleState(this);
+        //    Move(Vector2.zero);
+        //}
+    }
+
+    // Called when Leader stops moving during Follow party state
+    public void Stop()
+    {
+        if (state.stateType != CharacterState.Idle)
                 state = new IdleState(this);
-            Move(Vector2.zero);
+        
+        Move(Vector2.zero);
+    }
+
+    public void Mimic(Transform point)
+    {
+        if (Vector3.Distance(transform.position, point.position) > mimicCatchupDistance)
+        {
+            moveSpeedModifier = mimicCatchupSpeedModifier;
+            if (state.stateType != CharacterState.Move)
+                state = new MoveState(this);
+            Vector3 dir = (point.position - transform.position).normalized;
+            Move(new Vector2(dir.x, dir.z), mimicCatchupSpeedModifier);
+            Debug.Log(name + " catching up");
+        }
+        else if (Vector3.Distance(transform.position, point.position) > mimicFollowDistance)
+        {
+            if (state.stateType != CharacterState.Move)
+                state = new MoveState(this);
+            Vector3 dir = (point.position - transform.position).normalized;
+            Move(new Vector2(dir.x, dir.z), 1.25f);
+            Debug.Log(name + " lagging");
+
+        }
+        else
+        {
+            moveSpeedModifier = 1f;
+            if (state.stateType != CharacterState.Move)
+                state = new MoveState(this);
+            transform.position = point.position;
+            Vector3 dir = leader.axis;
+            Move(new Vector2(dir.x, dir.z), 1.25f);
+            Debug.Log(name + " synced moving towards " + dir);
+        }
+    }
+
+    public void NewMimic(Transform point)
+    {
+        if (Vector3.Distance(transform.position, point.position) > mimicFollowDistance)
+        {
+            if (state.stateType != CharacterState.Move)
+                state = new MoveState(this);
+            Vector3 dir = (point.position - transform.position).normalized;
+            Move(new Vector2(dir.x, dir.z), mimicCatchupSpeedModifier);
+            Debug.Log(name + " lagging");
+
+        }
+        else
+        {
+            transform.position = point.position;
         }
     }
 }

@@ -24,6 +24,8 @@ public class Character : MonoBehaviour
     [SerializeField] public Vector2 axis;
     [SerializeField] public float turnSmoothVelocity;
     [SerializeField] public float turnSmoothTime;
+    [SerializeField] public Transform followPoint; // Experimental transform to have minions follow this character
+    [SerializeField] public float moveSpeedModifier = 1f;
 
 
 
@@ -31,13 +33,29 @@ public class Character : MonoBehaviour
     // Movement, attacking, dodging, health, stats etc
 
 
-    public void Move(Vector2 ax)
+    public void Move(Vector2 ax, float modifier = 1)
     {
         axis = ax;
         if(state.stateType != CharacterState.Move)
             state = new MoveState(this);
 
-       
+        moveSpeedModifier = modifier;
+    }
+
+    public void SetMoveSpeedModifier(float newMod)
+    {
+        moveSpeedModifier = newMod;
+    }
+
+    public float GetMoveSpeedModifier()
+    {
+        return moveSpeedModifier;
+    }
+
+    public void SetFacingDirection(Vector3 newDirection)
+    {
+        facing = newDirection;
+        //transform.rotation
     }
 
     
@@ -127,6 +145,8 @@ public class MoveState : CharacterBaseState
         Enter();
     }
 
+    
+
     public override void Enter()
     {
     }
@@ -151,7 +171,7 @@ public class MoveState : CharacterBaseState
         float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
 
         c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, angle, c.transform.eulerAngles.z);
-        c.rgd.velocity = moveDir * (c.moveSpeed); //?
+        c.rgd.velocity = moveDir * (c.moveSpeed * c.moveSpeedModifier); //?
     }
 
     public override void FixedUpdate()

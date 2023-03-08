@@ -10,6 +10,15 @@ public enum PartyState
     Follow, // Inputs only get sent to the Leader
     Mimic // Inputs get sent to whole party
 }
+
+public enum MimicFormations // Formations MUST be organized in this order in mimicPointParents or else the wrong formations will be used
+{ 
+    North,
+    East,
+    South,
+    West
+}
+
 public class PlayerCharacterManager : MonoBehaviour
 {
     // Takes input and sends it to the proper Character(s)
@@ -20,6 +29,10 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public PartyState party;
     // Combined list of minions + leader
     [SerializeField] public List<Character> characterList;
+
+    [SerializeField] Transform mimicPointsContainer;
+    [SerializeField] public Transform currentMimicPointsParent;
+    [SerializeField] public List<Transform> mimicPointParents;
 
     //Temporary currency (used only during runs) and
     //Permanent currency (used throughout the game)
@@ -55,13 +68,64 @@ public class PlayerCharacterManager : MonoBehaviour
                 }
             case PartyState.Mimic:
                 {
-                    foreach(Character character in characterList)
-                    {
-                        character.Move(axis);
-                    }
+                    leader.Move(axis);
+
+                    
                     break;
                 }
         }
+    }
+
+    private void OnMimicStart(InputValue val)
+    {
+        Vector2 axis = Vector2.zero;
+        if (val.Get() != null)
+            axis = (Vector2)val.Get();
+
+        if (axis == Vector2.zero)
+            return;
+
+        party = PartyState.Mimic;
+
+        // It's currently possible for diagonal inputs to register here, which would prioritize the X axis
+        // Will fix later
+
+        switch (axis.x)
+        {
+            case -1: // West
+                {
+                    currentMimicPointsParent = mimicPointParents[(int)MimicFormations.West];
+
+                    return;
+                }
+            case 1: // East
+                {
+                    currentMimicPointsParent = mimicPointParents[(int)MimicFormations.East];
+                    return;
+                }
+        }
+        switch (axis.y)
+        {
+            case -1: // South
+                {
+                    currentMimicPointsParent = mimicPointParents[(int)MimicFormations.South];
+
+                    return;
+                }
+            case 1: // North
+                {
+                    currentMimicPointsParent = mimicPointParents[(int)MimicFormations.North];
+
+                    return;
+                }
+        }
+
+
+    }
+
+    public void OnMimicEnd()
+    {
+        party = PartyState.Follow;
     }
 
     // Start is called before the first frame update
@@ -73,31 +137,45 @@ public class PlayerCharacterManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mimicPointsContainer.position = leader.transform.position;
+
+
         switch (party)
         {
             case PartyState.Follow:
                 {
+                    if (leader.axis == Vector2.zero)
+                    {
+                        for (int i = 0; i < minions.Count; i++)
+                        {
+                            minions[i].Stop();
+                        }
+                        break;
+                    }
 
                     for (int i = 0; i < minions.Count; i++)
                     {
                         // Minion 0 follows leader, minion 1 follows minion 0, etc
                         if (i == 0)
                         {
-                            minions[i].Follow(leader);
+                            minions[i].Follow(leader.followPoint);
                             continue;
                         }
-                        minions[i].Follow(minions[i - 1]);
+                        minions[i].Follow(minions[i - 1].followPoint);
                     }
                     break;
                 }
-            //case PartyState.Mimic:
-            //    {
-            //        foreach (Character character in characterList)
-            //        {
-            //            character.Move(axis);
-            //        }
-            //        break;
-            //    }
+            case PartyState.Mimic:
+                {
+                    // If a minion is too far away it will try to move back towards its point in Mimic
+                    for (int i = 0; i < minions.Count; i++)
+                    {
+                        minions[i].Move(leader.axis);
+                        minions[i].NewMimic(currentMimicPointsParent.GetChild(i));
+                    }
+
+                    break;
+                }
         }
 
         txt1.text = tempCurr.ToString();
