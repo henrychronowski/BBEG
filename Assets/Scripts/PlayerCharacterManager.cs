@@ -39,9 +39,6 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public int tempCurr;
     [SerializeField] public int permCurr;
 
-    public Text txt1;
-    public Text txt2;
-
     private void OnMove(InputValue val)
     {
         Vector2 axis = Vector2.zero;
@@ -178,8 +175,6 @@ public class PlayerCharacterManager : MonoBehaviour
                 }
         }
 
-        txt1.text = tempCurr.ToString();
-        txt2.text = permCurr.ToString();
     }
 
     public void LoadData(PlayerData data)
