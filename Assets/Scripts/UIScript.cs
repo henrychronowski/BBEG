@@ -45,6 +45,23 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateText();
+        UpdateHealth();
+    }
+
+    void UpdateText()
+    {
+        tempCurr.text = "Gold: " + manager.tempCurr.ToString();
+        permCurr.text = "Gems: " + manager.tempCurr.ToString();
+    }
+
+    void UpdateHealth()
+    {
+        //Temp values until we get current and max hp values
+        leaderHP.value = manager.leader.health;
+        for(int i = 0; i < minionHPContainer.Count; i++)
+        {
+            minionHPContainer[i].value = manager.minions[i].health;
+        }
     }
 }
