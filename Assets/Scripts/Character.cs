@@ -56,7 +56,10 @@ public class Character : MonoBehaviour
         //transform.rotation
     }
 
-    
+    public void Attack()
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -159,7 +162,7 @@ public class MoveState : CharacterBaseState
         
         if (c.axis == Vector2.zero)
         {
-            Debug.Log("Axis = 0 0");
+            //Debug.Log("Moving, Axis = 0 0");
             c.rgd.velocity = Vector2.zero;
             return;
         }
@@ -180,24 +183,46 @@ public class MoveState : CharacterBaseState
 
 public class AttackState : CharacterBaseState
 {
-    public AttackState(Character c)
+    bool canMove;
+    public AttackState(Character c, bool canMove = true)
     {
         base.c = c;
         stateType = CharacterState.Attack;
         Enter();
+        this.canMove = canMove;
     }
     public override void Enter()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void FixedUpdate()
     {
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        // Unused
+    }
+
+    public void Integrate()
+    {
+        if (!canMove)
+            return;
+
+        if (c.axis == Vector2.zero)
+        {
+            Debug.Log("Attacking, Axis = 0 0");
+            c.rgd.velocity = Vector2.zero;
+            return;
+        }
+        float targetAngle = Mathf.Atan2(c.axis.x, c.axis.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+        float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
+
+        c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, angle, c.transform.eulerAngles.z);
+        c.rgd.velocity = moveDir * (c.moveSpeed * c.moveSpeedModifier); //?
+    }
+
+    public override void FixedUpdate()
+    {
+        Integrate();
     }
 }
 

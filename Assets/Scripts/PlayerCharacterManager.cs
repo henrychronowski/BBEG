@@ -178,8 +178,8 @@ public class PlayerCharacterManager : MonoBehaviour
                 }
         }
 
-        txt1.text = tempCurr.ToString();
-        txt2.text = permCurr.ToString();
+        //txt1.text = tempCurr.ToString();
+        //txt2.text = permCurr.ToString();
     }
 
     public void LoadData(PlayerData data)

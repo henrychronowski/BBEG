@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[CreateAssetMenu(fileName ="NewRoom", menuName = "ScriptableObjects/Rooms", order = 1)]
+
+
+[CreateAssetMenu(fileName ="NewRoom", menuName = "ScriptableObjects/Create Room", order = 1)]
+[SerializeField]
 public class Room : ScriptableObject
 {
-    // Room requirements
-    // - A scene containing the room geometry and art, enemies items etc
-    // - Some way to access the exit locations so that we can line up exits with more rooms
-    public Scene room;
-    public RoomInfo roomInfo;
-
-    public void Load()
+    // Currently barebones but eventually will contain variables such as room rarity, making scriptable objects worthwhile for it
+    // Primarily used for dungeon generation, RoomInfo.cs will be attached to every roomObj containing info needed during gameplay
+    public GameObject roomObj;
+    public int rngWeight;
+    public GameObject Load(Vector3 loadPos)
     {
-        // Not using async loading for now for simplicity's sake, come back to it later if necessary
-        SceneManager.LoadScene(room.name, LoadSceneMode.Additive);
+        return Instantiate(roomObj, loadPos, Quaternion.identity);
     }
 
     public RoomInfo GetRoomInfo()
     {
-        return roomInfo;
+        return roomObj.GetComponent<RoomInfo>();
     }
 
     private void OnEnable()

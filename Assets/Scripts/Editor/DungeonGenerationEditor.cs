@@ -16,7 +16,6 @@ public class DungeonGenerationEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
 
         DungeonGeneration gen = (DungeonGeneration)target;
 
@@ -26,6 +25,7 @@ public class DungeonGenerationEditor : Editor
             gen.Generate();
         }
 
+        base.OnInspectorGUI();
     }
 
 }

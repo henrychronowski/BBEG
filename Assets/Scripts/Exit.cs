@@ -15,7 +15,8 @@ public class Exit : MonoBehaviour
 
     public ExitDirection direction;
     [SerializeField] float loadingTriggerRadius = 5f;
-    public Room connectedRoom;
+    public RoomInfo connectedRoom;
+
 
     public static ExitDirection GetOpposingDirection(ExitDirection dir)
     {
@@ -45,16 +46,20 @@ public class Exit : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public bool HasConnectingRoom()
     {
-        
+        return connectedRoom != null;
     }
 
     bool CheckForNearbyPlayer()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, loadingTriggerRadius, LayerMask.NameToLayer("Player"));
         return colliders.Length >= 1;
+    }
+
+    public void AddConnectingRoom(RoomInfo r)
+    {
+        connectedRoom = r;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,7 +77,7 @@ public class Exit : MonoBehaviour
         // Not really sure if this is necessary
         if(CheckForNearbyPlayer())
         {
-            Debug.Log("Player is close, enable room dependant characters/entities now");
+            //Debug.Log("Player is close, enable room dependant characters/entities now");
         }
     }
 

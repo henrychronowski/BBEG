@@ -7,19 +7,18 @@ using UnityEditor;
 [CanEditMultipleObjects]
 public class RoomEditor : Editor
 {
-    SerializedProperty m_RoomScene;
+    SerializedProperty m_RoomObj;
     private void OnEnable()
     {
-        m_RoomScene = serializedObject.FindProperty("room");
+        m_RoomObj = serializedObject.FindProperty("roomObj");
     }
 
     public override void OnInspectorGUI()
     {
 
-        Room thisRoom = (Room)target;
+        //Room thisRoom = (Room)target;
 
-        EditorGUILayout.PropertyField(m_RoomScene, new GUIContent("Scene"), GUILayout.Height(20));
-
+        EditorGUILayout.ObjectField(m_RoomObj, new GUIContent("Room Object"));
         serializedObject.ApplyModifiedProperties();
     }
 }
