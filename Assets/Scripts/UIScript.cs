@@ -52,7 +52,7 @@ public class UIScript : MonoBehaviour
     void UpdateText()
     {
         tempCurr.text = "Gold: " + manager.tempCurr.ToString();
-        permCurr.text = "Gems: " + manager.tempCurr.ToString();
+        permCurr.text = "Gems: " + manager.permCurr.ToString();
     }
 
     void UpdateHealth()
