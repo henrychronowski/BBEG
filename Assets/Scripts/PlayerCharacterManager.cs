@@ -235,27 +235,28 @@ public class PlayerCharacterManager : MonoBehaviour
     void Start()
     {
         
-    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        PartyStateUpdate();
-
-        //txt1.text = tempCurr.ToString();
-        //txt2.text = permCurr.ToString();
+        txt1.text = tempCurr.ToString();
+        txt2.text = permCurr.ToString();
     }
 
     public void LoadData(PlayerData data)
     {
-        leader = data.leader;
+        //leader = data.leader;
         party = data.party;
 
+        leader.moveSpeed = data.moveSpeed[0];
+        leader.health = data.health[0];
         //characterList = new List<Character>(data.characterList);
-        for (int i = 0; i < characterList.Count; i++)
+        for(int i = 0; i < minions.Count; i++)
         {
-            characterList[i].moveSpeed = data.moveSpeed[i];
+            minions[i].moveSpeed = data.moveSpeed[i + 1];
+            minions[i].health = data.health[i + 1];
         }
+
+        leader = data.leader;
+        minions = new List<Minion>(data.minions);
 
         tempCurr = data.tempCurr;
         permCurr = data.permCurr;
