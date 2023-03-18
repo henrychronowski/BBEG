@@ -661,6 +661,7 @@ MonoBehaviour:
   - {fileID: 1908922365}
   - {fileID: 1730887772}
   - {fileID: 453634877}
+  transitionStoppingDistance: 1.5
   tempCurr: 0
   permCurr: 0
   txt1: {fileID: 0}
@@ -818,8 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00afbc9facc04c4786df58bf378accd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingRoom: {fileID: 11400000, guid: 2ffa12a1c202b1b4682d92241acf3bb7, type: 2}
-  templateRoom: {fileID: 11400000, guid: 2ffa12a1c202b1b4682d92241acf3bb7, type: 2}
+  startingRoom: {fileID: 7030036086379042726, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
   roomSet: {fileID: 11400000, guid: 0d6fbd8d63f7eb54693d9c5d41c692ca, type: 2}
   roomGenChance: 25
   minRooms: 5

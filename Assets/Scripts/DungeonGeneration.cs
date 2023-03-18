@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 
 public class DungeonGeneration : MonoBehaviour
 {
-    [SerializeField] Room startingRoom;
-    [SerializeField] Room templateRoom; // separate from starting, temporary
+    [SerializeField] GameObject startingRoom;
 
     [SerializeField] RoomSet roomSet;
     [SerializeField] float roomGenChance;
@@ -32,7 +31,7 @@ public class DungeonGeneration : MonoBehaviour
         float startingTime = Time.deltaTime;
         int roomsAttempted = 0;
 
-        RoomInfo activeRoom = startingRoom.Load(Vector3.zero).GetComponent<RoomInfo>();
+        RoomInfo activeRoom = Room.LoadRoom(startingRoom, Vector3.zero).GetComponent<RoomInfo>();
         
         generatedRooms = new List<RoomInfo>();
         generatedRooms.Add(activeRoom);
@@ -55,11 +54,20 @@ public class DungeonGeneration : MonoBehaviour
                 {
                     // Pick a random room from a set
                     Room newRoom = roomSet.GetRandomRoom();
+
                     // Loads in the new room while also adding it to the generatedRooms list
-                    generatedRooms.Add(newRoom.Load(activeRoom.transform.position + GetTranslationVector(ex)).GetComponent<RoomInfo>());
-                    ex.AddConnectingRoom(newRoom.GetRoomInfo());
-                    newRoom.GetRoomInfo().GetExitsByDirection(Exit.GetOpposingDirection(ex.direction))[0].AddConnectingRoom(activeRoom);
-                    newRoom.GetRoomInfo().gameObject.name = "ID: " + generatedRooms.Count.ToString();
+                    GameObject instantiatedRoom = Room.LoadRoom(newRoom.roomObj, activeRoom.transform.position + GetTranslationVector(ex));
+                    generatedRooms.Add(instantiatedRoom.GetComponent<RoomInfo>());
+
+                    // Connect the exits
+                    Exit.ConnectExits(ex, Room.GetRoomInfo(instantiatedRoom).GetExitsByDirection(Exit.GetOpposingDirection(ex.direction))[0]);
+
+                    // Connect the rooms? Might be unnecessary but keeping it for now
+                    ex.AddConnectingRoom(Room.GetRoomInfo(instantiatedRoom));
+                    Room.GetRoomInfo(instantiatedRoom).GetExitsByDirection(Exit.GetOpposingDirection(ex.direction))[0].AddConnectingRoom(activeRoom);
+
+                    // ID = order in which it was generated
+                    instantiatedRoom.gameObject.name = "ID: " + generatedRooms.Count.ToString();
                 }
                 
                 roomsAttempted++;

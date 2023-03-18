@@ -16,6 +16,7 @@ public class Exit : MonoBehaviour
     public ExitDirection direction;
     [SerializeField] float loadingTriggerRadius = 5f;
     public RoomInfo connectedRoom;
+    public Exit connectedExit;
 
 
     public static ExitDirection GetOpposingDirection(ExitDirection dir)
@@ -46,6 +47,34 @@ public class Exit : MonoBehaviour
         }
     }
 
+    public static Vector2 DirectionToVector2(ExitDirection dir)
+    {
+        switch (dir)
+        {
+            case ExitDirection.North:
+                {
+                    return new Vector2(0, 1);
+                }
+            case ExitDirection.East:
+                {
+                    return new Vector2(1, 0);
+                }
+            case ExitDirection.South:
+                {
+                    return new Vector2(0, -1);
+                }
+            case ExitDirection.West:
+                {
+                    return new Vector2(-1, 0);
+                }
+
+            default:
+                {
+                    return new Vector2(0, 0);
+                }
+        }
+    }
+
     public bool HasConnectingRoom()
     {
         return connectedRoom != null;
@@ -62,11 +91,21 @@ public class Exit : MonoBehaviour
         connectedRoom = r;
     }
 
+    public static void ConnectExits(Exit a, Exit b)
+    {
+        a.connectedExit = b;
+        b.connectedExit = a;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Teleport to new room");
+            if(PlayerCharacterManager.instance.party != PartyState.Scripted)
+            {
+                PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position);
+            }
             // Change the active room to the new one
         }
     }

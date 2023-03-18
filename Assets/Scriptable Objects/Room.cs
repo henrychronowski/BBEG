@@ -3,7 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+public enum RoomType
+{
+    Starting,
+    Combat,
+    Dangerous,
+    Minion,
+    Safe,
+    Shop,
+    BossLobby,
+    Boss
+}
 
 [CreateAssetMenu(fileName ="NewRoom", menuName = "ScriptableObjects/Create Room", order = 1)]
 [SerializeField]
@@ -13,14 +23,14 @@ public class Room : ScriptableObject
     // Primarily used for dungeon generation, RoomInfo.cs will be attached to every roomObj containing info needed during gameplay
     public GameObject roomObj;
     public int rngWeight;
-    public GameObject Load(Vector3 loadPos)
+    public static GameObject LoadRoom(GameObject roomToLoad, Vector3 loadPos)
     {
-        return Instantiate(roomObj, loadPos, Quaternion.identity);
+        return Instantiate(roomToLoad, loadPos, Quaternion.identity);
     }
 
-    public RoomInfo GetRoomInfo()
+    public static RoomInfo GetRoomInfo(GameObject room)
     {
-        return roomObj.GetComponent<RoomInfo>();
+        return room.GetComponent<RoomInfo>();
     }
 
     private void OnEnable()
