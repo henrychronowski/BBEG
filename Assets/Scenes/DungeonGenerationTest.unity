@@ -662,6 +662,7 @@ MonoBehaviour:
   - {fileID: 1730887772}
   - {fileID: 453634877}
   transitionStoppingDistance: 1.5
+  input: {fileID: 671083247}
   tempCurr: 0
   permCurr: 0
   txt1: {fileID: 0}
@@ -825,6 +826,7 @@ MonoBehaviour:
   minRooms: 5
   maxRooms: 10
   roomSpawnAttempts: 50
+  generateOnPlay: 1
   useSeed: 1
   seed: 5
   spawn: {fileID: 0}

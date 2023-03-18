@@ -14,6 +14,7 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] int maxRooms;
     [SerializeField] int roomSpawnAttempts;
 
+    [SerializeField] bool generateOnPlay;
     [SerializeField] bool useSeed;
     [SerializeField] int seed;
     [SerializeField] Transform spawn;
@@ -96,6 +97,15 @@ public class DungeonGeneration : MonoBehaviour
             }
             
         }
+
+        Exit[] exits = FindObjectsOfType<Exit>();
+
+        foreach(Exit e in exits)
+        {
+            if (e.connectedExit == null)
+                e.gameObject.SetActive(false);
+        }
+
         Debug.Log("Generation complete, roomsAttempted = " + roomsAttempted);
 
     }
@@ -142,7 +152,8 @@ public class DungeonGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (generateOnPlay)
+            Generate();
     }
 
     // Update is called once per frame

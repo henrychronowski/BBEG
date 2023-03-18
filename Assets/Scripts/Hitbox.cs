@@ -9,7 +9,7 @@ public class Hitbox : MonoBehaviour
     {
         if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Character"))
         {
-
+            Debug.Log("Hit " + collision.gameObject.name);
         }
     }
 

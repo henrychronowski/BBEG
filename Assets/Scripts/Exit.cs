@@ -101,13 +101,31 @@ public class Exit : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Teleport to new room");
-            if(PlayerCharacterManager.instance.party != PartyState.Scripted)
-            {
-                PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position);
-            }
-            // Change the active room to the new one
+            if(PlayerCharacterManager.instance.party != PartyState.Scripted 
+                && IsPlayerMovingTowardsExit())
+                    PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position);
+
+            // Change the active room to the new one?
         }
+    }
+
+    bool IsPlayerMovingTowardsExit()
+    {
+        Vector2 playerAxis = PlayerCharacterManager.instance.leader.axis;
+
+        if(playerAxis.x > 0 && direction == ExitDirection.East)
+            return true;
+
+        if (playerAxis.x < 0 && direction == ExitDirection.West)
+            return true;
+
+        if (playerAxis.y > 0 && direction == ExitDirection.North)
+            return true;
+
+        if (playerAxis.y < 0 && direction == ExitDirection.South)
+            return true;
+
+        return false;
     }
 
     // Update is called once per frame
@@ -122,6 +140,6 @@ public class Exit : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, loadingTriggerRadius);
+        //Gizmos.DrawWireSphere(transform.position, loadingTriggerRadius);
     }
 }

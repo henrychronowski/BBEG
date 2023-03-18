@@ -39,6 +39,8 @@ public class PlayerCharacterManager : MonoBehaviour
 
     [SerializeField] float transitionStoppingDistance;
 
+    [SerializeField] PlayerInput input;
+
     //Temporary currency (used only during runs) and
     //Permanent currency (used throughout the game)
     [SerializeField] public int tempCurr;
@@ -59,8 +61,14 @@ public class PlayerCharacterManager : MonoBehaviour
 
         }
         leader.transform.position = new Vector3(newPos.x, leader.transform.position.y, newPos.z);
-        leader.axis = Vector2.zero;
+
+        // OnMove() only gets called when the movement input axis changes
+        // Without this line, if the player holds a direction during the scripted movement their axis never gets updated
+        // properly since it hasn't changed since the scripted movement ended
+        leader.axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
         party = PartyState.Follow;
+        
+        
     }
 
 

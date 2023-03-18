@@ -26,6 +26,7 @@ public class Character : MonoBehaviour
     [SerializeField] public float turnSmoothTime;
     [SerializeField] public Transform followPoint; // Experimental transform to have minions follow this character
     [SerializeField] public float moveSpeedModifier = 1f;
+    [SerializeField] public Attack attack;
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
@@ -56,9 +57,9 @@ public class Character : MonoBehaviour
         //transform.rotation
     }
 
-    public void Attack()
+    public void AttackStart()
     {
-
+        // Play the animation
     }
 
     // Start is called before the first frame update
@@ -184,20 +185,25 @@ public class MoveState : CharacterBaseState
 public class AttackState : CharacterBaseState
 {
     bool canMove;
-    public AttackState(Character c, bool canMove = true)
+    float timeElapsed;
+    public AttackState(Character c, bool canMove = false)
     {
         base.c = c;
         stateType = CharacterState.Attack;
         Enter();
         this.canMove = canMove;
+        timeElapsed = 0;
     }
     public override void Enter()
     {
+
     }
 
     public override void Update()
     {
-        // Unused
+        timeElapsed += Time.deltaTime;
+        //if(c.attack.startupInSeconds <)
+
     }
 
     public void Integrate()
