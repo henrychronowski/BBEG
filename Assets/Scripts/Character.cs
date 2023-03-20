@@ -17,7 +17,7 @@ public enum CharacterState
 public class Character : MonoBehaviour
 {
     [SerializeField] public CharacterBaseState state;
-    [SerializeField] protected int health = 5;
+    [SerializeField] public int health = 5;
     [SerializeField] public float moveSpeed = 1f;
     [SerializeField] public Vector3 facing;
     [SerializeField] public Rigidbody rgd;
@@ -26,6 +26,8 @@ public class Character : MonoBehaviour
     [SerializeField] public float turnSmoothTime;
     [SerializeField] public Transform followPoint; // Experimental transform to have minions follow this character
     [SerializeField] public float moveSpeedModifier = 1f;
+
+
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
