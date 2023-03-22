@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimationStatusTest : MonoBehaviour
 {
+    Animator animator;
     // Start is called before the first frame update
     public void ActivePhase()
     {
@@ -13,6 +14,18 @@ public class AnimationStatusTest : MonoBehaviour
     {
         Debug.Log("End Phase Start");
     }
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    void SetAnimations(AnimatorOverrideController overrideController)
+    {
+        animator.runtimeAnimatorController = overrideController;
+        return;
+    } 
+
     // Update is called once per frame
     void Update()
     {

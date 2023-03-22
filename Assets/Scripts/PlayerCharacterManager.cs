@@ -111,6 +111,10 @@ public class PlayerCharacterManager : MonoBehaviour
         }
     }
 
+    private void OnLightAttack()
+    {
+        leader.AttackStart();
+    }
     private void OnMimicStart(InputValue val)
     {
         Vector2 axis = Vector2.zero;
@@ -239,6 +243,11 @@ public class PlayerCharacterManager : MonoBehaviour
 
         txt1.text = tempCurr.ToString();
         txt2.text = permCurr.ToString();
+    }
+
+    private void Update()
+    {
+        PartyStateUpdate();
     }
 
     public void LoadData(PlayerData data)

@@ -15,5 +15,7 @@ MonoBehaviour:
   startupInSeconds: 0
   activeTimeInSeconds: 0
   cooldownTimeInSeconds: 0
-  hitboxPrefab: {fileID: 0}
+  totalTimeInSeconds: 0
+  hitboxPrefab: {fileID: 1789328453259137933, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
   activeHitbox: {fileID: 0}
+  anim: {fileID: 0}

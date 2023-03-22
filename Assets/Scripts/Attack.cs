@@ -21,6 +21,8 @@ public class Attack : ScriptableObject
 
     public float cooldownTimeInSeconds;
 
+    public float totalTimeInSeconds;
+
     public GameObject hitboxPrefab;
 
     public GameObject activeHitbox;
@@ -34,5 +36,12 @@ public class Attack : ScriptableObject
         activeHitbox = Instantiate(hitboxPrefab, activeLocation);
         //Animator animator = activeHitbox.GetComponent<Animator>().Play();
         //Rect hitbox = new Rect()
+    }
+
+    public Hitbox GenerateHitbox(Character owner)
+    {
+        Hitbox h = Instantiate(hitboxPrefab).GetComponent<Hitbox>();
+        h.Init(owner, this);
+        return h;
     }
 }

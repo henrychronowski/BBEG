@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     [SerializeField] public Transform followPoint; // Experimental transform to have minions follow this character
     [SerializeField] public float moveSpeedModifier = 1f;
     [SerializeField] public Attack attack;
+    [SerializeField] public Hitbox hitbox;
 
 
 
@@ -62,6 +63,10 @@ public class Character : MonoBehaviour
     public void AttackStart()
     {
         // Play the animation
+        if(state.stateType != CharacterState.Attack)
+        {
+            state = new AttackState(this);
+        }
     }
 
     // Start is called before the first frame update
@@ -74,11 +79,13 @@ public class Character : MonoBehaviour
     void Update()
     {
         state.Update();
+        facing = transform.forward;
     }
 
     // This is used for the sake of physics, if this becomes a problem later we can add FixedUpdate functions to State
     private void FixedUpdate()
     {
+        
         state.FixedUpdate();
     }
 
@@ -97,7 +104,9 @@ public class Character : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + rgd.velocity);
+        //Gizmos.DrawLine(transform.position, transform.position + rgd.velocity);
+        Gizmos.DrawLine(transform.position, transform.position + (facing * 5));
+
     }
 }
 
@@ -181,6 +190,7 @@ public class MoveState : CharacterBaseState
     public override void FixedUpdate()
     {
         Integrate();
+        
     }
 }
 
@@ -188,23 +198,43 @@ public class AttackState : CharacterBaseState
 {
     bool canMove;
     float timeElapsed;
+    AttackPhase phase;
     public AttackState(Character c, bool canMove = false)
     {
         base.c = c;
         stateType = CharacterState.Attack;
         Enter();
         this.canMove = canMove;
+        phase = AttackPhase.Startup;
         timeElapsed = 0;
     }
     public override void Enter()
     {
+        c.hitbox = c.attack.GenerateHitbox(c);
+        c.hitbox.StartupPhase();
 
     }
 
     public override void Update()
     {
         timeElapsed += Time.deltaTime;
-        //if(c.attack.startupInSeconds <)
+        if(timeElapsed > c.attack.totalTimeInSeconds)
+        {
+            c.state = new IdleState(c);
+            return;
+        }
+
+        if(timeElapsed > c.attack.activeTimeInSeconds && phase == AttackPhase.Active)
+        {
+            c.hitbox.CooldownPhase();
+            phase = AttackPhase.Cooldown;
+        }
+
+        if (timeElapsed > c.attack.startupInSeconds && phase == AttackPhase.Startup)
+        {
+            c.hitbox.ActivePhase();
+            phase = AttackPhase.Active;
+        }
 
     }
 
