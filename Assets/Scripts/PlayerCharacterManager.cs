@@ -113,6 +113,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     private void OnLightAttack()
     {
+        leader.Move(Vector2.zero);
         leader.AttackStart();
     }
     private void OnMimicStart(InputValue val)

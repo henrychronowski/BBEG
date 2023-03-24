@@ -29,7 +29,7 @@ public class Attack : ScriptableObject
 
     bool isProjectile;
 
-    public Animation anim;
+    public AnimationClip anim;
 
     void Activate(Transform activeLocation)
     {
@@ -43,5 +43,15 @@ public class Attack : ScriptableObject
         Hitbox h = Instantiate(hitboxPrefab).GetComponent<Hitbox>();
         h.Init(owner, this);
         return h;
+    }
+
+    private void OnEnable()
+    {
+        if(totalTimeInSeconds < startupInSeconds + activeTimeInSeconds)
+        {
+            Debug.LogError(name + " total time adjusted from " + totalTimeInSeconds
+                + " to " + (startupInSeconds + activeTimeInSeconds));
+            totalTimeInSeconds = startupInSeconds + activeTimeInSeconds;
+        }
     }
 }

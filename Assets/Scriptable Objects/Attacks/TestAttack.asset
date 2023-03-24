@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30aa08b7750eaa64d999e9d0be36bd5a, type: 3}
   m_Name: TestAttack
   m_EditorClassIdentifier: 
-  startupInSeconds: 0
-  activeTimeInSeconds: 0
+  startupInSeconds: 0.1
+  activeTimeInSeconds: 0.25
   cooldownTimeInSeconds: 0
-  totalTimeInSeconds: 0
+  totalTimeInSeconds: 0.4
   hitboxPrefab: {fileID: 1789328453259137933, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
   activeHitbox: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: -203655887218126122, guid: a16aeb277e9e90d4eb5fed87256c426a, type: 3}

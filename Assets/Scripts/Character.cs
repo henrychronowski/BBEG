@@ -28,7 +28,8 @@ public class Character : MonoBehaviour
     [SerializeField] public float moveSpeedModifier = 1f;
     [SerializeField] public Attack attack;
     [SerializeField] public Hitbox hitbox;
-
+    [SerializeField] private AnimationStatusTest a;
+    
 
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
@@ -37,10 +38,16 @@ public class Character : MonoBehaviour
 
     public void Move(Vector2 ax, float modifier = 1)
     {
-        axis = ax;
-        if(state.stateType != CharacterState.Move)
-            state = new MoveState(this);
+        
 
+        if(state.stateType != CharacterState.Move)
+        {
+            if (state.stateType == CharacterState.Attack)
+                return;
+            state = new MoveState(this);
+        }
+
+        axis = ax;
         moveSpeedModifier = modifier;
     }
 
@@ -212,6 +219,7 @@ public class AttackState : CharacterBaseState
     {
         c.hitbox = c.attack.GenerateHitbox(c);
         c.hitbox.StartupPhase();
+        c.rgd.velocity = Vector2.zero;
 
     }
 
