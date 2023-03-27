@@ -17,9 +17,9 @@ public class Hitbox : MonoBehaviour
     private Attack attack;
     public bool isActive;
     public AttackType type; // unused for now
-    public float activeFrames;
     public float projectileSpeed;
     public float playerSpawnOffset;
+    float timeElapsed;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -39,6 +39,7 @@ public class Hitbox : MonoBehaviour
 
     public void StartupPhase()
     {
+        
         // Melee
         if (type == AttackType.LightMelee || type == AttackType.HeavyMelee)
         {
@@ -70,10 +71,11 @@ public class Hitbox : MonoBehaviour
         if (type == AttackType.LightMelee || type == AttackType.HeavyMelee)
         {
             mesh.enabled = false;
-
+            Destroy(gameObject);
         }
         else // Ranged
         {
+
             //rgd.velocity = owner.facing * projectileSpeed;
         }
     }
@@ -83,6 +85,17 @@ public class Hitbox : MonoBehaviour
         owner = c;
         attack = atk;
         transform.position = c.transform.position + c.facing;
+    }
+
+    void CheckProjectileLifetime()
+    {
+        if (type == AttackType.LightRanged || type == AttackType.HeavyRanged)
+        {
+            if (attack.projectileLifetime <= timeElapsed)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -95,7 +108,8 @@ public class Hitbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        timeElapsed += Time.deltaTime;
+        CheckProjectileLifetime();
     }
 
 }

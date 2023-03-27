@@ -19,9 +19,10 @@ public class Attack : ScriptableObject
 
     public float activeTimeInSeconds;
 
-    public float cooldownTimeInSeconds;
-
     public float totalTimeInSeconds;
+
+    // How much to offset the hitbox spawn position from the player
+    public Vector3 spawnOffset;
 
     public GameObject hitboxPrefab;
 
@@ -30,6 +31,8 @@ public class Attack : ScriptableObject
     bool isProjectile;
 
     public AnimationClip anim;
+
+    public AnimatorOverrideController animController;
 
     void Activate(Transform activeLocation)
     {

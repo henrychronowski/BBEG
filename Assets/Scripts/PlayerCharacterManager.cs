@@ -20,6 +20,12 @@ public enum MimicFormations // Formations MUST be organized in this order in mim
     West
 }
 
+public enum CombatVersion
+{
+    FourSwords,
+    ChainAttack
+}
+
 public class PlayerCharacterManager : MonoBehaviour
 {
     // Takes input and sends it to the proper Character(s)
@@ -170,7 +176,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     void FollowUpdate()
     {
-        if (leader.axis == Vector2.zero)
+        if (leader.axis == Vector2.zero || leader.rgd.velocity == Vector3.zero)
         {
             for (int i = 0; i < minions.Count; i++)
             {

@@ -79,6 +79,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2744601260002139008, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
   m_PrefabInstance: {fileID: 870820690985044463}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &5559329649232365997 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4698224255747457090, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+  m_PrefabInstance: {fileID: 870820690985044463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6374090462111345284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6080025853874627435, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
@@ -105,6 +110,10 @@ MonoBehaviour:
   turnSmoothTime: 0
   followPoint: {fileID: 3027279317672202863}
   moveSpeedModifier: 1
+  attack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
+  hitbox: {fileID: 0}
+  overrider: {fileID: 6713584822893857554}
+  animator: {fileID: 5559329649232365997}
   leader: {fileID: 0}
   followDistance: 1
   brakingDrag: 0.25
@@ -119,3 +128,14 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6080025853874627410, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
   m_PrefabInstance: {fileID: 870820690985044463}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6713584822893857554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5854317907104989949, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+  m_PrefabInstance: {fileID: 870820690985044463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df3e0a6d61e1aa418ae03bcc7a72b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

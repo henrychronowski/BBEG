@@ -28,16 +28,39 @@ public class Character : MonoBehaviour
     [SerializeField] public float moveSpeedModifier = 1f;
     [SerializeField] public Attack attack;
     [SerializeField] public Hitbox hitbox;
-    [SerializeField] private AnimationStatusTest a;
-    
+    [SerializeField] private AnimationOverrider overrider;
+    [SerializeField] public Animator animator;
 
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
 
+    void UpdateOverrider(Attack atk)
+    {
+        overrider.SetAnimations(atk.animController);
+    }
+
+    void UpdateAnimatorParams()
+    {
+        if(rgd.velocity != Vector3.zero)
+        {
+            animator.SetFloat("Blend", 1);
+        }
+        else if(animator.GetFloat("Blend") > 0)
+        {
+            animator.SetFloat("Blend", animator.GetFloat("Blend") - 0.1f);
+            
+        }
+        if(animator.GetFloat("Blend") < 0)
+        {
+            animator.SetFloat("Blend", 0);
+
+        }
+    }
 
     public void Move(Vector2 ax, float modifier = 1)
     {
+        axis = ax;
         
 
         if(state.stateType != CharacterState.Move)
@@ -47,7 +70,6 @@ public class Character : MonoBehaviour
             state = new MoveState(this);
         }
 
-        axis = ax;
         moveSpeedModifier = modifier;
     }
 
@@ -72,10 +94,22 @@ public class Character : MonoBehaviour
         // Play the animation
         if(state.stateType != CharacterState.Attack)
         {
+            //UpdateOverrider();
+            animator.SetTrigger("Attack");
             state = new AttackState(this);
         }
     }
 
+    public void AttackStart(Attack atk)
+    {
+        // Play the animation
+        if (state.stateType != CharacterState.Attack)
+        {
+            //UpdateOverrider();
+            animator.SetTrigger("Attack");
+            state = new AttackState(this, atk);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +126,8 @@ public class Character : MonoBehaviour
     // This is used for the sake of physics, if this becomes a problem later we can add FixedUpdate functions to State
     private void FixedUpdate()
     {
-        
+        UpdateAnimatorParams();
+
         state.FixedUpdate();
     }
 
@@ -182,6 +217,7 @@ public class MoveState : CharacterBaseState
         if (c.axis == Vector2.zero)
         {
             //Debug.Log("Moving, Axis = 0 0");
+
             c.rgd.velocity = Vector2.zero;
             return;
         }
@@ -206,18 +242,32 @@ public class AttackState : CharacterBaseState
     bool canMove;
     float timeElapsed;
     AttackPhase phase;
+    Attack attack;
     public AttackState(Character c, bool canMove = false)
     {
         base.c = c;
         stateType = CharacterState.Attack;
-        Enter();
         this.canMove = canMove;
         phase = AttackPhase.Startup;
         timeElapsed = 0;
+        attack = c.attack;
+        Enter();
     }
+
+    public AttackState(Character c, Attack atk, bool canMove = false)
+    {
+        base.c = c;
+        stateType = CharacterState.Attack;
+        this.canMove = canMove;
+        phase = AttackPhase.Startup;
+        attack = atk;
+        timeElapsed = 0;
+        Enter();
+    }
+
     public override void Enter()
     {
-        c.hitbox = c.attack.GenerateHitbox(c);
+        c.hitbox = attack.GenerateHitbox(c);
         c.hitbox.StartupPhase();
         c.rgd.velocity = Vector2.zero;
 
@@ -226,19 +276,21 @@ public class AttackState : CharacterBaseState
     public override void Update()
     {
         timeElapsed += Time.deltaTime;
-        if(timeElapsed > c.attack.totalTimeInSeconds)
+        if(timeElapsed > attack.totalTimeInSeconds)
         {
             c.state = new IdleState(c);
+            
+            c.Move(c.axis);
             return;
         }
 
-        if(timeElapsed > c.attack.activeTimeInSeconds && phase == AttackPhase.Active)
+        if(timeElapsed > attack.activeTimeInSeconds && phase == AttackPhase.Active)
         {
             c.hitbox.CooldownPhase();
             phase = AttackPhase.Cooldown;
         }
 
-        if (timeElapsed > c.attack.startupInSeconds && phase == AttackPhase.Startup)
+        if (timeElapsed > attack.startupInSeconds && phase == AttackPhase.Startup)
         {
             c.hitbox.ActivePhase();
             phase = AttackPhase.Active;
