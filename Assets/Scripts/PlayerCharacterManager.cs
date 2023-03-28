@@ -39,7 +39,7 @@ public class PlayerCharacterManager : MonoBehaviour
     // Combined list of minions + leader
     [SerializeField] public List<Character> characterList;
 
-    [SerializeField] Transform mimicPointsContainer;
+    [SerializeField] protected Transform mimicPointsContainer;
     [SerializeField] public Transform currentMimicPointsParent;
     [SerializeField] public List<Transform> mimicPointParents;
 
@@ -174,7 +174,7 @@ public class PlayerCharacterManager : MonoBehaviour
         party = PartyState.Follow;
     }
 
-    void FollowUpdate()
+    protected void FollowUpdate()
     {
         if (leader.axis == Vector2.zero || leader.rgd.velocity == Vector3.zero)
         {
@@ -214,7 +214,7 @@ public class PlayerCharacterManager : MonoBehaviour
     void PartyStateUpdate()
     {
         mimicPointsContainer.position = leader.transform.position;
-
+        
 
         switch (party)
         {

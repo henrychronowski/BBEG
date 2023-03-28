@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30aa08b7750eaa64d999e9d0be36bd5a, type: 3}
   m_Name: BigPunch
   m_EditorClassIdentifier: 
-  startupInSeconds: 0
-  activeTimeInSeconds: 0
-  cooldownTimeInSeconds: 0
-  totalTimeInSeconds: 0
+  startupInSeconds: 0.5
+  activeTimeInSeconds: 0.5
+  totalTimeInSeconds: 1
   spawnOffset: {x: 0, y: 0, z: 0}
   hitboxPrefab: {fileID: 0}
   activeHitbox: {fileID: 0}

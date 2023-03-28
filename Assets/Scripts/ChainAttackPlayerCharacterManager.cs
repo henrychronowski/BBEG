@@ -119,7 +119,72 @@ public class ChainAttackPlayerCharacterManager : PlayerCharacterManager
         party = PartyState.Follow;
     }
 
+    CharacterState[] GetPartyCharacterStates()
+    {
+        CharacterState[] states = new CharacterState[minions.Count+1];
+        states[0] = leader.state.stateType;
 
+        for(int i = 0; i < minions.Count; i++)
+        {
+            states[i + 1] = minions[i].state.stateType;
+        }
+
+        return states;
+    }
 
     
+    bool IsCharacterInPartyInState(CharacterState desiredState)
+    {
+        CharacterState[] states = GetPartyCharacterStates();
+
+        foreach(CharacterState s in states)
+        {
+            if(s == desiredState)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void PartyStateUpdate()
+    {
+        mimicPointsContainer.position = leader.transform.position;
+
+        // Don't run this if anyone is in an attacking state
+        if(IsCharacterInPartyInState(CharacterState.Attack))
+        {
+            return;
+        }
+
+        switch (party)
+        {
+            case PartyState.Follow:
+                {
+                    FollowUpdate();
+                    break;
+                }
+            case PartyState.Mimic:
+                {
+                    // If a minion is too far away it will try to move back towards its point in Mimic
+                    for (int i = 0; i < minions.Count; i++)
+                    {
+                        minions[i].Move(leader.axis);
+                        minions[i].NewMimic(currentMimicPointsParent.GetChild(i));
+                    }
+
+                    break;
+                }
+            case PartyState.Scripted: // 
+                {
+                    FollowUpdate();
+                    break;
+                }
+        }
+    }
+    private void Update()
+    {
+        PartyStateUpdate();
+    }
+
 }

@@ -39,7 +39,10 @@ public class Character : MonoBehaviour
     {
         overrider.SetAnimations(atk.animController);
     }
-
+    void UpdateOverrider()
+    {
+        overrider.SetAnimations(attack.animController);
+    }
     void UpdateAnimatorParams()
     {
         if(rgd.velocity != Vector3.zero)
@@ -94,7 +97,7 @@ public class Character : MonoBehaviour
         // Play the animation
         if(state.stateType != CharacterState.Attack)
         {
-            //UpdateOverrider();
+            UpdateOverrider();
             animator.SetTrigger("Attack");
             state = new AttackState(this);
         }
@@ -105,7 +108,7 @@ public class Character : MonoBehaviour
         // Play the animation
         if (state.stateType != CharacterState.Attack)
         {
-            //UpdateOverrider();
+            UpdateOverrider(atk);
             animator.SetTrigger("Attack");
             state = new AttackState(this, atk);
         }

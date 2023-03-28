@@ -34,6 +34,9 @@ public class Attack : ScriptableObject
 
     public AnimatorOverrideController animController;
 
+    // (only applicable if ranged)
+    public float projectileLifetime;
+
     void Activate(Transform activeLocation)
     {
         activeHitbox = Instantiate(hitboxPrefab, activeLocation);
