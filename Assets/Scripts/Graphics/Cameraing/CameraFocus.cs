@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// An empty game object used as a focus point for the camera
+// An empty game object used as a focus point for the camera, it can be attached
+//  to a character or just left in the world
 public class CameraFocus : MonoBehaviour
 {
-    public CameraSettings roomSettings;
+	[SerializeField]
+    private CameraSettings roomSettings;
 
 	private void Awake()
 	{
 		if(roomSettings == null)
 		{
-			roomSettings = new CameraSettings();
+			roomSettings = CameraSettings.CreateInstance<CameraSettings>();
 		}
+	}
+
+	// Returns the camera settings for this focus
+	public CameraSettings GetFocusSettings()
+	{
+		return roomSettings;
 	}
 }

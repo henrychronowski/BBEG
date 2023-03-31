@@ -21,12 +21,19 @@ public class CameraControl : MonoBehaviour
     // Room-based variables (will be contained within a scriptable object for the room or something like that)
     private Transform lookAt;
 
+    public void ChangeFocus(CameraFocus newFocus)
+    {
+        activeFocus = newFocus;
+        lookAt = newFocus.transform;
+        activeSettings = newFocus.GetFocusSettings();
+    }
+
 	private void Update()
 	{
 		if(tmp == true)
 		{
             lookAt = activeFocus.transform;
-            activeSettings = activeFocus.roomSettings;
+            activeSettings = activeFocus.GetFocusSettings();
         }
 	}
 
@@ -58,7 +65,7 @@ public class CameraControl : MonoBehaviour
 	private void Start()
 	{
         lookAt = activeFocus.transform;
-        activeSettings = activeFocus.roomSettings;
+        activeSettings = activeFocus.GetFocusSettings();
     }
 
     void LateUpdate()

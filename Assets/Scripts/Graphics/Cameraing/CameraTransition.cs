@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-[CreateAssetMenu(fileName = "Camera Transition", menuName = "Camera Transition", order = 1)]
-public class CameraTransition : ScriptableObject
+public class CameraTransition : MonoBehaviour
 {
-    public string TransitionName;
+    [SerializeField]
+    private CameraFocus AreaFocus;
 
-    // Will fill out types of transition here at some point in the future
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            CameraControl.Instance.ChangeFocus(AreaFocus);
+        }
+    }
 }
