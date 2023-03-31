@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    // testing
+    #if UNITY_EDITOR
     public bool tmp = false;
+    #endif
+
+    // Singleton components
+    public static CameraControl Instance {get; private set;}
 
     // General variables
     private Camera activeCamera;    // Eventually maybe have an array of them and choose the active
@@ -56,8 +60,17 @@ public class CameraControl : MonoBehaviour
 		}
     }
 
-    void Awake()
+    private void Awake()
     {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         activeCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         //lastRot = activeCamera.transform.rotation;
         //targetRot = lastRot;
