@@ -52,7 +52,7 @@ public class CameraControl : MonoBehaviour
 		{
             //Debug.DrawLine(lookAt.position - activeCamera.transform.position, activeCamera.transform.position, Color.gray);
 
-            targetPos = lookAt.position - activeSettings.offset;
+            targetPos = lookAt.position - activeSettings.GetOffset();
 		}
     }
 
@@ -76,7 +76,7 @@ public class CameraControl : MonoBehaviour
     {
         //lastRot = Quaternion.Slerp(lastRot, targetRot, smoothSpeed * Time.deltaTime);
         //activeCamera.transform.rotation = lastRot;
-        lastPos = Vector3.Lerp(lastPos, targetPos, activeSettings.smoothSpeed * Time.deltaTime);
+        lastPos = Vector3.Lerp(lastPos, targetPos, activeSettings.GetSmoothSpeed() * Time.deltaTime);
         activeCamera.transform.position = lastPos;
     }
 }
