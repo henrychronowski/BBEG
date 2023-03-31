@@ -2,23 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* This is the overarching camera singleton. It interacts with camera focuses and transitions
+ * in order to manage all camera functions. Anything not within the camera system should only
+ * interact with it via this singleton or in-world camera transitions.
+ */
 public class CameraControl : MonoBehaviour
 {
     #if UNITY_EDITOR
     [Tooltip("This is a bool that triggers a manual refresh of camera settings")]
-    public bool tmp = false;
+    public bool RefreshValues = false;
     #endif
 
     // Singleton components
     public static CameraControl Instance {get; private set;}
 
     // General variables
-    private Camera activeCamera;    // Eventually maybe have an array of them and choose the active
-    [SerializeField] CameraSettings activeSettings;
-    public CameraFocus activeFocus;
-    Vector3 lastPos;
-    Vector3 targetPos;
+    private Camera activeCamera;    // The currently active camera; Eventually maybe have an array of them and choose the active
+    [SerializeField,Tooltip("The currently active camera settings, runtime set in code but exposed here for testing")] 
+    private CameraSettings activeSettings;
+    [SerializeField,Tooltip("The currently active camera focus, runtime set in code but exposed here for testing")] 
+    private CameraFocus activeFocus;
+    
+    private Vector3 lastPos; // Position of the active camera on the previous frame
+    private Vector3 targetPos; // WS position that the camera should be at
 
+    // This shifts the focus of the camera and refreshes the active camera settings
     public void ChangeFocus(CameraFocus newFocus)
     {
         activeFocus = newFocus;
@@ -28,9 +36,10 @@ public class CameraControl : MonoBehaviour
     #if UNITY_EDITOR
 	private void Update()
 	{
-		if(tmp == true)
+		if(RefreshValues == true)
 		{
             activeSettings = activeFocus.GetFocusSettings();
+            RefreshValues = false;
         }
 	}
     #endif

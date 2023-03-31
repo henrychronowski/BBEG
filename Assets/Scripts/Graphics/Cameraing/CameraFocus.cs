@@ -10,6 +10,7 @@ public class CameraFocus : MonoBehaviour
     private CameraSettings roomSettings;
 	[SerializeField,Tooltip("Check True if the focus moves, false if it's a stationary object")]
 	private bool isMobile = false;
+	
 	private Vector3 cameraPosOS; // The camera position relative to the focus transform
 	private Vector3 cameraPosWS; // The camera position in world space
 
