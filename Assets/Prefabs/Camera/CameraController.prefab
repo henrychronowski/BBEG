@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8865933518006038892}
   m_Layer: 0
   m_Name: CameraController
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecef57f2dd810a44dac54988fbf627e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 10
-  lookAt: {fileID: 0}
-  offset: {x: 0, y: -13, z: 5}
+  tmp: 0
+  activeSettings: {fileID: 0}
+  activeFocus: {fileID: 0}
 --- !u!1 &4332273614794646490
 GameObject:
   m_ObjectHideFlags: 0
