@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [SerializeField]
 public enum CharacterState
@@ -27,7 +28,7 @@ public class Character : MonoBehaviour
     [SerializeField] public Transform followPoint; // Experimental transform to have minions follow this character
     [SerializeField] public float moveSpeedModifier = 1f;
 
-
+    [SerializeField] public Image portrait;
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
