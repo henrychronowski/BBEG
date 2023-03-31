@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [SerializeField]
 public enum CharacterState
@@ -28,7 +29,7 @@ public class Character : MonoBehaviour
     [SerializeField] public float moveSpeedModifier = 1f;
     [SerializeField] public Attack attack;
 
-
+    [SerializeField] public Image portrait;
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
