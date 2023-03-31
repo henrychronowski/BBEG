@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     #if UNITY_EDITOR
+    [Tooltip("This is a bool that triggers a manual refresh of camera settings")]
     public bool tmp = false;
     #endif
 
@@ -18,32 +19,31 @@ public class CameraControl : MonoBehaviour
     Vector3 lastPos;
     Vector3 targetPos;
 
-    // Room-based variables (will be contained within a scriptable object for the room or something like that)
-    private Transform lookAt;
-
     public void ChangeFocus(CameraFocus newFocus)
     {
         activeFocus = newFocus;
-        lookAt = newFocus.transform;
         activeSettings = newFocus.GetFocusSettings();
     }
 
+    #if UNITY_EDITOR
 	private void Update()
 	{
 		if(tmp == true)
 		{
-            lookAt = activeFocus.transform;
             activeSettings = activeFocus.GetFocusSettings();
         }
 	}
+    #endif
 
-	void FixedUpdate()
-    {
-        if(lookAt != null)
-		{
-            targetPos = lookAt.position - activeSettings.GetOffset();
-		}
-    }
+    /* this would shift the burden of checking the position into the physics loop, I don't think it's necessary
+     * for now, cause might be more performance heavy than getting it in lateUpdate and we probably won't have
+     * many moving objects, but if we notice stuttering with moving objects replace the call to GetWS in Late
+     * Update with targetPos and uncomment this
+    */
+	// void FixedUpdate()
+    // {
+    //     targetPos = activeFocus.GetCameraPositionWS();
+    // }
 
     private void Awake()
     {
@@ -64,13 +64,12 @@ public class CameraControl : MonoBehaviour
 
 	private void Start()
 	{
-        lookAt = activeFocus.transform;
         activeSettings = activeFocus.GetFocusSettings();
     }
 
     void LateUpdate()
     {
-        lastPos = Vector3.Lerp(lastPos, targetPos, activeSettings.GetSmoothSpeed() * Time.deltaTime);
+        lastPos = Vector3.Lerp(lastPos, activeFocus.GetCameraPositionWS(), activeSettings.GetSmoothSpeed() * Time.deltaTime);
         activeCamera.transform.position = lastPos;
     }
 }
