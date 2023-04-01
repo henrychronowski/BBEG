@@ -27,7 +27,7 @@ public class ChainAttackPlayerCharacterManager : PlayerCharacterManager
 
         switch (party)
         {
-            case PartyState.Follow:
+            case PartyMovementState.Follow:
                 {
                     leader.Move(axis);
                     //for(int i = 0; i < minions.Count; i++)
@@ -42,7 +42,7 @@ public class ChainAttackPlayerCharacterManager : PlayerCharacterManager
                     //}
                     break;
                 }
-            case PartyState.Mimic:
+            case PartyMovementState.Mimic:
                 {
                     leader.Move(axis);
 
@@ -76,7 +76,7 @@ public class ChainAttackPlayerCharacterManager : PlayerCharacterManager
         if (axis == Vector2.zero)
             return;
 
-        party = PartyState.Mimic;
+        party = PartyMovementState.Mimic;
 
         // It's currently possible for diagonal inputs to register here, which would prioritize the X axis
         // Will fix later
@@ -116,7 +116,7 @@ public class ChainAttackPlayerCharacterManager : PlayerCharacterManager
 
     public void OnMimicEnd()
     {
-        party = PartyState.Follow;
+        party = PartyMovementState.Follow;
     }
 
     CharacterState[] GetPartyCharacterStates()
@@ -159,12 +159,12 @@ public class ChainAttackPlayerCharacterManager : PlayerCharacterManager
 
         switch (party)
         {
-            case PartyState.Follow:
+            case PartyMovementState.Follow:
                 {
                     FollowUpdate();
                     break;
                 }
-            case PartyState.Mimic:
+            case PartyMovementState.Mimic:
                 {
                     // If a minion is too far away it will try to move back towards its point in Mimic
                     for (int i = 0; i < minions.Count; i++)
@@ -175,7 +175,7 @@ public class ChainAttackPlayerCharacterManager : PlayerCharacterManager
 
                     break;
                 }
-            case PartyState.Scripted: // 
+            case PartyMovementState.Scripted: // 
                 {
                     FollowUpdate();
                     break;

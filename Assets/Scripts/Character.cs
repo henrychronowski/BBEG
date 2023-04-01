@@ -18,6 +18,7 @@ public enum CharacterState
 public class Character : MonoBehaviour
 {
     [SerializeField] public CharacterBaseState state;
+    [SerializeField] CharacterState currentState;
     [SerializeField] public int health = 5;
     [SerializeField] public float moveSpeed = 1f;
     [SerializeField] public Vector3 facing;
@@ -78,6 +79,22 @@ public class Character : MonoBehaviour
         moveSpeedModifier = modifier;
     }
 
+    // Useful for when we want to continue keeping track of the char's axis but don't want them to move
+    public void UpdateAxis(Vector2 ax)
+    {
+        axis = ax;
+
+    }
+
+    // Could set to idle state but that causes problems, consider scrapping idle state or adding a transition to 
+    public void Stop()
+    {
+        //if (state.stateType != CharacterState.Idle && state.stateType != CharacterState.Attack)
+        //    state = new IdleState(this);
+        //else
+            rgd.velocity = Vector3.zero;
+    }
+
     public void SetMoveSpeedModifier(float newMod)
     {
         moveSpeedModifier = newMod;
@@ -124,6 +141,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentState = state.stateType;
         state.Update();
         facing = transform.forward;
     }
@@ -165,7 +183,7 @@ public abstract class CharacterBaseState
     public abstract void Update();
 
     public abstract void FixedUpdate();
-
+    
     public abstract void Enter();
 
 
@@ -180,8 +198,10 @@ public class IdleState : CharacterBaseState
         Enter();
     }
 
+    // Entering idle state instantly kills any velocity the character may have had
     public override void Enter()
     {
+        c.rgd.velocity = Vector3.zero;
     }
 
     public override void FixedUpdate()
@@ -190,6 +210,7 @@ public class IdleState : CharacterBaseState
 
     public override void Update()
     {
+        
     }
 
     

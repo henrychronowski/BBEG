@@ -20,3 +20,4 @@ MonoBehaviour:
   activeHitbox: {fileID: 0}
   anim: {fileID: -203655887218126122, guid: a16aeb277e9e90d4eb5fed87256c426a, type: 3}
   animController: {fileID: 22100000, guid: c6df42a7aa7980242a684c1f4966a532, type: 2}
+  projectileLifetime: 0

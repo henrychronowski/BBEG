@@ -41,11 +41,6 @@ public class Minion : Character
         leader = FindObjectOfType<Leader>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        state.Update();
-    }
 
     // Forcibly set the minion state to move no matter what they're doing
     public void Follow(Transform point)
@@ -81,13 +76,13 @@ public class Minion : Character
         //}
     }
 
-    // Called when Leader stops moving during Follow party state
     public void Stop()
     {
-        if (state.stateType != CharacterState.Idle)
-                state = new IdleState(this);
-        
-        Move(Vector2.zero);
+        //if (state.stateType != CharacterState.Idle && state.stateType != CharacterState.Attack)
+        //    state = new IdleState(this);
+        //else
+        rgd.velocity = Vector3.zero;
+        axis = Vector2.zero;
     }
 
     public void Mimic(Transform point)

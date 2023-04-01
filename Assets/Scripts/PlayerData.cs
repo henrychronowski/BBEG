@@ -7,7 +7,7 @@ public class PlayerData
 {
     public Leader leader;
     public List<Minion> minions;
-    public PartyState party;
+    public PartyMovementState party;
     public int tempCurr;
     public int permCurr;
 
