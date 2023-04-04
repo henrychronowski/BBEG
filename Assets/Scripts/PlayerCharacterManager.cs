@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public enum PartyState
 {
     Follow, // Inputs only get sent to the Leader
-    Mimic // Inputs get sent to whole party
+    Mimic, // Inputs get sent to whole party
+    Scripted // Inputs are being handled by a script instead of the player, used in room transitions/cutscenes
 }
 
 public enum MimicFormations // Formations MUST be organized in this order in mimicPointParents or else the wrong formations will be used
@@ -23,6 +24,8 @@ public class PlayerCharacterManager : MonoBehaviour
 {
     // Takes input and sends it to the proper Character(s)
     // 
+
+    public static PlayerCharacterManager instance;
     [SerializeField] int maxCharacters = 4;
     [SerializeField] public List<Minion> minions;
     [SerializeField] public Leader leader;
@@ -34,10 +37,45 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public Transform currentMimicPointsParent;
     [SerializeField] public List<Transform> mimicPointParents;
 
+    [SerializeField] float transitionStoppingDistance;
+
+    [SerializeField] PlayerInput input;
+
     //Temporary currency (used only during runs) and
     //Permanent currency (used throughout the game)
     [SerializeField] public int tempCurr;
     [SerializeField] public int permCurr;
+
+    public Text txt1;
+    public Text txt2;
+
+    IEnumerator RoomTransition(Vector3 newPos)
+    {
+        party = PartyState.Scripted;
+        while(Vector3.Distance(newPos, leader.transform.position) > transitionStoppingDistance)
+        {
+            Vector3 dir = (newPos - leader.transform.position).normalized;
+            leader.Move(new Vector2(dir.x, dir.z));
+            Debug.Log(Vector3.Distance(newPos, leader.transform.position));
+            yield return null;
+
+        }
+        leader.transform.position = new Vector3(newPos.x, leader.transform.position.y, newPos.z);
+
+        // OnMove() only gets called when the movement input axis changes
+        // Without this line, if the player holds a direction during the scripted movement their axis never gets updated
+        // properly since it hasn't changed since the scripted movement ended
+        leader.axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
+        party = PartyState.Follow;
+        
+        
+    }
+
+
+    public void StartTransition(Vector3 newPos)
+    {
+        StartCoroutine(RoomTransition(newPos));
+    }
 
     private void OnMove(InputValue val)
     {
@@ -125,14 +163,44 @@ public class PlayerCharacterManager : MonoBehaviour
         party = PartyState.Follow;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void FollowUpdate()
     {
-        
+        if (leader.axis == Vector2.zero)
+        {
+            for (int i = 0; i < minions.Count; i++)
+            {
+                minions[i].Stop();
+            }
+            return;
+        }
+
+        for (int i = 0; i < minions.Count; i++)
+        {
+            // Minion 0 follows leader, minion 1 follows minion 0, etc
+            if (i == 0)
+            {
+                minions[i].Follow(leader.followPoint);
+                continue;
+            }
+            minions[i].Follow(minions[i - 1].followPoint);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void ScriptedUpdate()
+    {
+        for (int i = 0; i < minions.Count; i++)
+        {
+            // Minion 0 follows leader, minion 1 follows minion 0, etc
+            if (i == 0)
+            {
+                minions[i].Follow(leader.followPoint);
+                continue;
+            }
+            minions[i].Follow(minions[i - 1].followPoint);
+        }
+    }
+
+    void PartyStateUpdate()
     {
         mimicPointsContainer.position = leader.transform.position;
 
@@ -141,25 +209,7 @@ public class PlayerCharacterManager : MonoBehaviour
         {
             case PartyState.Follow:
                 {
-                    if (leader.axis == Vector2.zero)
-                    {
-                        for (int i = 0; i < minions.Count; i++)
-                        {
-                            minions[i].Stop();
-                        }
-                        break;
-                    }
-
-                    for (int i = 0; i < minions.Count; i++)
-                    {
-                        // Minion 0 follows leader, minion 1 follows minion 0, etc
-                        if (i == 0)
-                        {
-                            minions[i].Follow(leader.followPoint);
-                            continue;
-                        }
-                        minions[i].Follow(minions[i - 1].followPoint);
-                    }
+                    FollowUpdate();
                     break;
                 }
             case PartyState.Mimic:
@@ -173,8 +223,22 @@ public class PlayerCharacterManager : MonoBehaviour
 
                     break;
                 }
+            case PartyState.Scripted: // 
+                {
+                    FollowUpdate();
+                    break;
+                }
         }
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    
+
+        txt1.text = tempCurr.ToString();
+        txt2.text = permCurr.ToString();
     }
 
     public void LoadData(PlayerData data)
@@ -197,4 +261,12 @@ public class PlayerCharacterManager : MonoBehaviour
         tempCurr = data.tempCurr;
         permCurr = data.permCurr;
     }
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(instance);
+        else
+            instance = this;
+    }
+
 }

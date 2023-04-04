@@ -13,7 +13,14 @@ public class UIScript : MonoBehaviour
     public Slider minion2HP;
     public Slider minion3HP;
 
+    public Image leaderImage;
+    public Image minion1Image;
+    public Image minion2Image;
+    public Image minion3Image;
+
+
     List<Slider> minionHPContainer;
+    List<Image> minionPortraits;
 
     public PlayerCharacterManager manager;
     // Start is called before the first frame update
@@ -35,10 +42,22 @@ public class UIScript : MonoBehaviour
         minion2HP.gameObject.SetActive(false);
         minion3HP.gameObject.SetActive(false);
 
-        for(int i = 0; i < manager.minions.Count; i++)
+        minionPortraits = new List<Image>();
+        minionPortraits.Add(minion1Image);
+        minionPortraits.Add(minion2Image);
+        minionPortraits.Add(minion3Image);
+
+        minion1Image.gameObject.SetActive(false);
+        minion2Image.gameObject.SetActive(false);
+        minion3Image.gameObject.SetActive(false);
+
+        for (int i = 0; i < manager.minions.Count; i++)
         {
             minionHPContainer[i].gameObject.SetActive(true);
             minionHPContainer[i].maxValue = manager.minions[i].health;
+
+            minionPortraits[i].gameObject.SetActive(true);
+            minionPortraits[i] = manager.minions[i].portrait;
         }
     }
 
