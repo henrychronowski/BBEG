@@ -975,7 +975,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35340
+  m_Name: pb_Mesh27246
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2847,6 +2847,8 @@ MonoBehaviour:
   - {fileID: 1882053185}
   - {fileID: 282901010}
   - {fileID: 1253189771}
+  transitionStoppingDistance: 0
+  input: {fileID: 0}
   tempCurr: 75
   permCurr: 40
 --- !u!114 &1013383186
