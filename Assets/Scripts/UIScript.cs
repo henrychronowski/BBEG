@@ -32,6 +32,7 @@ public class UIScript : MonoBehaviour
         permCurr.text = "Gems: " + manager.tempCurr.ToString();
 
         leaderHP.maxValue = manager.leader.health;
+        leaderImage.sprite = manager.leader.portrait;
 
         minionHPContainer = new List<Slider>();
         minionHPContainer.Add(minion1HP);
@@ -57,7 +58,7 @@ public class UIScript : MonoBehaviour
             minionHPContainer[i].maxValue = manager.minions[i].health;
 
             minionPortraits[i].gameObject.SetActive(true);
-            minionPortraits[i] = manager.minions[i].portrait;
+            minionPortraits[i].sprite = manager.minions[i].portrait;
         }
     }
 
