@@ -32,7 +32,8 @@ public class Character : MonoBehaviour
     [SerializeField] private AnimationOverrider overrider;
     [SerializeField] public Animator animator;
 
-    [SerializeField] public Image portrait;
+    //[SerializeField] public Image portrait;
+    [SerializeField] public Sprite portrait;
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc

@@ -52,9 +52,6 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public int tempCurr;
     [SerializeField] public int permCurr;
 
-    public Text txt1;
-    public Text txt2;
-
     IEnumerator RoomTransition(Vector3 newPos)
     {
         party = PartyState.Scripted;
@@ -246,10 +243,6 @@ public class PlayerCharacterManager : MonoBehaviour
     void Start()
     {
         
-    
-
-        txt1.text = tempCurr.ToString();
-        txt2.text = permCurr.ToString();
     }
 
     private void Update()

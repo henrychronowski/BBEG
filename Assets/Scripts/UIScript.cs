@@ -32,6 +32,7 @@ public class UIScript : MonoBehaviour
         permCurr.text = "Gems: " + manager.tempCurr.ToString();
 
         leaderHP.maxValue = manager.leader.health;
+        leaderImage.sprite = manager.leader.portrait;
 
         minionHPContainer = new List<Slider>();
         minionHPContainer.Add(minion1HP);
@@ -53,11 +54,14 @@ public class UIScript : MonoBehaviour
 
         for (int i = 0; i < manager.minions.Count; i++)
         {
-            minionHPContainer[i].gameObject.SetActive(true);
-            minionHPContainer[i].maxValue = manager.minions[i].health;
+            if(manager.minions[i] != null)
+            {
+                minionHPContainer[i].gameObject.SetActive(true);
+                minionHPContainer[i].maxValue = manager.minions[i].health;
 
-            minionPortraits[i].gameObject.SetActive(true);
-            minionPortraits[i] = manager.minions[i].portrait;
+                minionPortraits[i].gameObject.SetActive(true);
+                minionPortraits[i].sprite = manager.minions[i].portrait;
+            }
         }
     }
 
@@ -80,7 +84,11 @@ public class UIScript : MonoBehaviour
         leaderHP.value = manager.leader.health;
         for(int i = 0; i < minionHPContainer.Count; i++)
         {
-            minionHPContainer[i].value = manager.minions[i].health;
+            if(minionHPContainer[i].gameObject.activeInHierarchy)
+            {
+                minionHPContainer[i].value = manager.minions[i].health;
+            }
+            
         }
     }
 }
