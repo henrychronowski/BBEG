@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -45,6 +46,7 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public List<Transform> mimicPointParents;
 
     [SerializeField] float transitionStoppingDistance;
+    [SerializeField] float minionAttackDisplacement;
     [SerializeField] int currentAttackIndex;
 
     [SerializeField] PlayerInput input;
@@ -56,6 +58,8 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public Text txt1;
     public Text txt2;
+
+    public TextMeshProUGUI stateView;
 
     private void OnMove(InputValue val)
     {
@@ -96,6 +100,9 @@ public class PlayerCharacterManager : MonoBehaviour
         if (attacking && currentAttackIndex < minions.Count)
         {
             //leader.AttackStart(minions[currentAttackIndex].attack);
+            minions[currentAttackIndex].SetFacingDirection(leader.facing);
+            minions[currentAttackIndex].transform.position = leader.transform.position + (leader.facing * minionAttackDisplacement) + ((leader.transform.right * currentAttackIndex) - leader.transform.right);
+            
             minions[currentAttackIndex].AttackStart();
             currentAttackIndex++;
         }
@@ -313,6 +320,16 @@ public class PlayerCharacterManager : MonoBehaviour
     {
         attacking = IsCharacterInPartyInState(CharacterState.Attack);
         PartyStateUpdate();
+        if(party == PartyMovementState.Follow)
+        {
+            stateView.text = "Party State: " + party.ToString() + "\nFormation: None";
+
+        }
+        else
+        {
+            stateView.text = "Party State: " + party.ToString() + "\nFormation: " + currentMimicPointsParent.name;
+
+        }
     }
 
     public void LoadData(PlayerData data)

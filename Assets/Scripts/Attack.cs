@@ -22,7 +22,7 @@ public class Attack : ScriptableObject
     public float totalTimeInSeconds;
 
     // How much to offset the hitbox spawn position from the player
-    public Vector3 spawnOffset;
+    public float spawnOffset;
 
     public GameObject hitboxPrefab;
 

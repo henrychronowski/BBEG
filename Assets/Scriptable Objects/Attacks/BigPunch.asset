@@ -15,8 +15,8 @@ MonoBehaviour:
   startupInSeconds: 0.5
   activeTimeInSeconds: 0.5
   totalTimeInSeconds: 1
-  spawnOffset: {x: 0, y: 0, z: 0}
-  hitboxPrefab: {fileID: 1789328453259137933, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
+  spawnOffset: 1
+  hitboxPrefab: {fileID: 5991274363449762214, guid: 380badcb5c7f1db4fbe1c1ad30093a9c, type: 3}
   activeHitbox: {fileID: 0}
   anim: {fileID: -203655887218126122, guid: ea25fbeda8e5e504d8e4fe4025826ef9, type: 3}
   animController: {fileID: 22100000, guid: 50e79587a0395214285996b0c7592073, type: 2}

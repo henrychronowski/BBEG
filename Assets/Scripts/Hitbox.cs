@@ -18,7 +18,6 @@ public class Hitbox : MonoBehaviour
     public bool isActive;
     public AttackType type; // unused for now
     public float projectileSpeed;
-    public float playerSpawnOffset;
     float timeElapsed;
 
     private void OnCollisionEnter(Collision collision)
@@ -84,7 +83,7 @@ public class Hitbox : MonoBehaviour
     {
         owner = c;
         attack = atk;
-        transform.position = c.transform.position + c.facing;
+        transform.position = c.transform.position + (c.facing * atk.spawnOffset);
     }
 
     void CheckProjectileLifetime()
