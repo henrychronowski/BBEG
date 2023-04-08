@@ -56,9 +56,6 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public int tempCurr;
     [SerializeField] public int permCurr;
 
-    public Text txt1;
-    public Text txt2;
-
     public TextMeshProUGUI stateView;
 
     private void OnMove(InputValue val)
@@ -312,8 +309,6 @@ public class PlayerCharacterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        txt1.text = tempCurr.ToString();
-        txt2.text = permCurr.ToString();
     }
 
     private void Update()
