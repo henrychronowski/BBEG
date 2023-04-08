@@ -1049,7 +1049,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3438904932146031928}
   - component: {fileID: 4698224255747457090}
-  - component: {fileID: 7716229292994868637}
+  - component: {fileID: 5854317907104989949}
   m_Layer: 6
   m_Name: Jammo_Player
   m_TagString: Untagged
@@ -1118,7 +1118,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &7716229292994868637
+--- !u!114 &5854317907104989949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865097211574083371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b03dc6e1d9f44a47a928e5e09f81980, type: 3}
+  m_Script: {fileID: 11500000, guid: 7df3e0a6d61e1aa418ae03bcc7a72b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2189330505677609539
@@ -3621,7 +3621,6 @@ GameObject:
   - component: {fileID: 6080025853874627410}
   - component: {fileID: 6080025853472760571}
   - component: {fileID: 6559286634383029894}
-  - component: {fileID: 7388778609586751792}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -3698,27 +3697,10 @@ MonoBehaviour:
   turnSmoothTime: 0
   followPoint: {fileID: 2744601260002139008}
   moveSpeedModifier: 1
-  attack: {fileID: 0}
---- !u!95 &7388778609586751792
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080025853874627435}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  attack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
+  hitbox: {fileID: 0}
+  overrider: {fileID: 5854317907104989949}
+  animator: {fileID: 4698224255747457090}
 --- !u!1 &6189456268790923021
 GameObject:
   m_ObjectHideFlags: 0

@@ -101,7 +101,7 @@ public class Exit : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            if(PlayerCharacterManager.instance.party != PartyState.Scripted 
+            if(PlayerCharacterManager.instance.party != PartyMovementState.Scripted 
                 && IsPlayerMovingTowardsExit())
                     PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position);
 
