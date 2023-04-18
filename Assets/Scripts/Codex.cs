@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Codex : MonoBehaviour
 {
+    //Note: This is for storing codex data
+    //"Codex Entry" is for showing codex entries in the codex
     public bool isUnlocked;
     public string entryTitle;
     public string entryDesc;

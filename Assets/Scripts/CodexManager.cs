@@ -21,7 +21,7 @@ public class CodexManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        codices.AddRange(GetComponents<Codex>());
     }
 
     // Update is called once per frame
