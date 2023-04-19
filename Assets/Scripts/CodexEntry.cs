@@ -13,10 +13,12 @@ public class CodexEntry : MonoBehaviour
     public TextMeshProUGUI loreText;
     public Image sprite;
 
+    public CodexManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager.gameObject.GetComponent<CodexManager>();
     }
 
     // Update is called once per frame
@@ -25,13 +27,13 @@ public class CodexEntry : MonoBehaviour
 
     }
 
-    public void Entry(Codex entry)
+    public void Entry(int entryNum)
     {
-        if(entry.isUnlocked)
+        if(manager.codices[entryNum].isUnlocked)
         {
-            titleText.text = entry.entryTitle;
-            loreText.text = entry.entryDesc;
-            sprite.sprite = entry.entrySprite;
+            titleText.text = manager.codices[entryNum].entryTitle;
+            loreText.text = manager.codices[entryNum].entryDesc;
+            sprite.sprite = manager.codices[entryNum].entrySprite;
         }
     }
 }
