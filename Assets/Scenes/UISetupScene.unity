@@ -2627,7 +2627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0fbabd58de128418c0cf784c8621e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUnlocked: 0
+  isUnlocked: 1
   entryTitle: Hellpup
   entryDesc: 'An adorable little hellpuppy. '
   entrySprite: {fileID: 21300000, guid: 4211d2c4091af8945bb6a41d22f6b00c, type: 3}
@@ -2643,7 +2643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0fbabd58de128418c0cf784c8621e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUnlocked: 0
+  isUnlocked: 1
   entryTitle: Firetosser
   entryDesc: Holding a ball of fire is seen as edgy by even most demons, not this
     one, because throwing fireballs is awesome.
@@ -2660,7 +2660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0fbabd58de128418c0cf784c8621e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUnlocked: 0
+  isUnlocked: 1
   entryTitle: Fiend
   entryDesc: A fiend who makes it's dues overseeing lesser demons, it's the infernal
     equivelent of middle management, but like ten times better than your manager.
@@ -2678,7 +2678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0fbabd58de128418c0cf784c8621e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUnlocked: 0
+  isUnlocked: 1
   entryTitle: Impling
   entryDesc: This imp cannot wait to get into the thick of things.
   entrySprite: {fileID: 21300000, guid: b5a195e5587f4944fbbb1ade928e5226, type: 3}
