@@ -305,6 +305,20 @@ public class PlayerCharacterManager : MonoBehaviour
         }
     }
 
+    public static bool HitboxAllegianceCheck(GameObject hitboxOwner, GameObject recipient)
+    {
+        if((hitboxOwner.tag == "Player" || hitboxOwner.tag == "Minion") && recipient.tag == "Enemy")
+        {
+            return true;
+        }
+
+        if (hitboxOwner.tag == "Enemy" && (recipient.tag == "Player" || recipient.tag == "Minion"))
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     // Start is called before the first frame update
     void Start()
