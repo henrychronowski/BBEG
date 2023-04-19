@@ -21,28 +21,19 @@ public class Attack : ScriptableObject
 
     public float totalTimeInSeconds;
 
+    public float damage;
+
     // How much to offset the hitbox spawn position from the player
     public float spawnOffset;
 
     public GameObject hitboxPrefab;
 
-    public GameObject activeHitbox;
-
     bool isProjectile;
-
-    public AnimationClip anim;
 
     public AnimatorOverrideController animController;
 
     // (only applicable if ranged)
     public float projectileLifetime;
-
-    void Activate(Transform activeLocation)
-    {
-        activeHitbox = Instantiate(hitboxPrefab, activeLocation);
-        //Animator animator = activeHitbox.GetComponent<Animator>().Play();
-        //Rect hitbox = new Rect()
-    }
 
     public Hitbox GenerateHitbox(Character owner)
     {

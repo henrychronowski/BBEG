@@ -65,6 +65,15 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void Hit(Attack atk)
+    {
+        health -= (int)atk.damage; // this will cause problems in damage calc, update playerdata.cs to use float for health
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Move(Vector2 ax, float modifier = 1)
     {
         axis = ax;
@@ -311,7 +320,7 @@ public class AttackState : CharacterBaseState
             return;
         }
 
-        if(timeElapsed > attack.activeTimeInSeconds && phase == AttackPhase.Active)
+        if(timeElapsed > attack.activeTimeInSeconds + attack.startupInSeconds && phase == AttackPhase.Active)
         {
             c.hitbox.CooldownPhase();
             phase = AttackPhase.Cooldown;
