@@ -18,7 +18,7 @@ public enum CharacterState
 public class Character : MonoBehaviour
 {
     [SerializeField] public CharacterBaseState state;
-    [SerializeField] CharacterState currentState;
+    [SerializeField] protected CharacterState currentState;
     [SerializeField] public int health = 5;
     [SerializeField] public float moveSpeed = 1f;
     [SerializeField] public Vector3 facing;
@@ -65,10 +65,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void Hit(Attack atk)
+    public void Hit(float damage)
     {
-        health -= (int)atk.damage; // this will cause problems in damage calc, update playerdata.cs to use float for health
-        if(health <= 0)
+        health -= (int)damage; // this will cause problems in damage calc, update playerdata.cs to use float for health
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
@@ -80,6 +80,20 @@ public class Character : MonoBehaviour
         
 
         if(state.stateType != CharacterState.Move)
+        {
+            if (state.stateType == CharacterState.Attack)
+                return;
+            state = new MoveState(this);
+        }
+
+        moveSpeedModifier = modifier;
+    }
+
+    public void Move(Vector3 ax, float modifier = 1)
+    {
+        axis = new Vector2(ax.x, ax.z);
+
+        if (state.stateType != CharacterState.Move)
         {
             if (state.stateType == CharacterState.Attack)
                 return;

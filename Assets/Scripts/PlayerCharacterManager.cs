@@ -320,9 +320,20 @@ public class PlayerCharacterManager : MonoBehaviour
         return false;
     }
 
+    static void HitCharacter(HitData data)
+    {
+        data.mRecipient.Hit(data.mDamage);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.instance.onAttackConnected += HitCharacter;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.onAttackConnected -= HitCharacter;
     }
 
     private void Update()

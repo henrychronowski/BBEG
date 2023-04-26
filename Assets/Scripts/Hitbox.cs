@@ -64,13 +64,16 @@ public class Hitbox : MonoBehaviour
             {
                 continue;
             }
-            
-            Debug.Log("Character " + owner.name + " Hit " + hit.gameObject.name);
-            hit.gameObject.GetComponent<Character>().Hit(attack);
-            charactersHit.Add(hit.gameObject.GetComponent<Character>());
 
+            Character recipient = hit.gameObject.GetComponent<Character>();
+            Debug.Log("Character " + owner.name + " Hit " + hit.gameObject.name);
+            charactersHit.Add(recipient);
+            HitData data = new HitData(owner, recipient, attack, attack.damage);
+            EventManager.instance.AttackConnected(data);
         }
     }
+
+
 
     public void StartupPhase()
     {
