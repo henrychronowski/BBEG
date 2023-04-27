@@ -31,7 +31,8 @@ public class UIScript : MonoBehaviour
         tempCurr.text = "Gold: " + manager.tempCurr.ToString();
         permCurr.text = "Gems: " + manager.tempCurr.ToString();
 
-        leaderHP.maxValue = manager.leader.health;
+        leaderHP.maxValue = manager.leader.maxHealth;
+        leaderHP.value = manager.leader.currHealth;
         leaderImage.sprite = manager.leader.portrait;
 
         minionHPContainer = new List<Slider>();
@@ -57,7 +58,8 @@ public class UIScript : MonoBehaviour
             if(manager.minions[i] != null)
             {
                 minionHPContainer[i].gameObject.SetActive(true);
-                minionHPContainer[i].maxValue = manager.minions[i].health;
+                minionHPContainer[i].maxValue = manager.minions[i].maxHealth;
+                minionHPContainer[i].value = manager.minions[i].currHealth;
 
                 minionPortraits[i].gameObject.SetActive(true);
                 minionPortraits[i].sprite = manager.minions[i].portrait;
@@ -81,12 +83,12 @@ public class UIScript : MonoBehaviour
     void UpdateHealth()
     {
         //Temp values until we get current and max hp values
-        leaderHP.value = manager.leader.health;
+        leaderHP.value = manager.leader.currHealth;
         for(int i = 0; i < minionHPContainer.Count; i++)
         {
             if(minionHPContainer[i].gameObject.activeInHierarchy)
             {
-                minionHPContainer[i].value = manager.minions[i].health;
+                minionHPContainer[i].value = manager.minions[i].currHealth;
             }
             
         }

@@ -19,7 +19,8 @@ public class Character : MonoBehaviour
 {
     [SerializeField] public CharacterBaseState state;
     [SerializeField] CharacterState currentState;
-    [SerializeField] public int health = 5;
+    [SerializeField] public int maxHealth = 5;
+    [SerializeField] public int currHealth = 5;
     [SerializeField] public float moveSpeed = 1f;
     [SerializeField] public Vector3 facing;
     [SerializeField] public Rigidbody rgd;
@@ -67,8 +68,8 @@ public class Character : MonoBehaviour
 
     public void Hit(Attack atk)
     {
-        health -= (int)atk.damage; // this will cause problems in damage calc, update playerdata.cs to use float for health
-        if(health <= 0)
+        currHealth -= (int)atk.damage; // this will cause problems in damage calc, update playerdata.cs to use float for health
+        if(currHealth <= 0)
         {
             Destroy(gameObject);
         }
