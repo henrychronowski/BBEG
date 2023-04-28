@@ -24,9 +24,39 @@ public class CodexManager : MonoBehaviour
         codices.AddRange(GetComponents<Codex>());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Unlock(string title)
     {
-        
+        Codex entry = FindEntryByTitle(title);
+
+        if(entry == null)
+        {
+            return;
+        }
+
+        if(!entry.isUnlocked)
+        {
+            entry.isUnlocked = true;
+        }
+        else
+        {
+            Debug.Log(title + " unlocked already");
+        }
+    }
+
+    public Codex FindEntryByTitle(string title)
+    {
+        for(int i = 0; i < codices.Count; i++)
+        {
+            if(codices[i].entryTitle == title)
+            {
+                return codices[i];
+            }
+        }
+        return null;
+    }
+
+    public bool IsUnlocked(string title)
+    {
+        return FindEntryByTitle(title).isUnlocked;
     }
 }
