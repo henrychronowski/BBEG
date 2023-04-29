@@ -3473,6 +3473,8 @@ MonoBehaviour:
   entryTitle: Select An Entry
   entryDesc: 
   entrySprite: {fileID: 0}
+  button: {fileID: 0}
+  buttonName: {fileID: 0}
 --- !u!114 &320318170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3517,6 +3519,8 @@ MonoBehaviour:
   entryTitle: Hellpup
   entryDesc: 'An adorable little hellpuppy. '
   entrySprite: {fileID: 21300000, guid: 4211d2c4091af8945bb6a41d22f6b00c, type: 3}
+  button: {fileID: 738067128}
+  buttonName: {fileID: 985739277}
 --- !u!114 &320318173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3534,6 +3538,8 @@ MonoBehaviour:
   entryDesc: Holding a ball of fire is seen as edgy by even most demons, not this
     one, because throwing fireballs is awesome.
   entrySprite: {fileID: 21300000, guid: 014394dc2e5800540af3719c900e22b1, type: 3}
+  button: {fileID: 1842227759}
+  buttonName: {fileID: 144970539}
 --- !u!114 &320318174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3552,6 +3558,8 @@ MonoBehaviour:
     equivelent of middle management, but like ten times better than your manager.
     Free pie every week!
   entrySprite: {fileID: 21300000, guid: 67d45b09d51eb574e9f23c5780d8c6e1, type: 3}
+  button: {fileID: 84692022}
+  buttonName: {fileID: 1580994297}
 --- !u!114 &320318175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3568,6 +3576,8 @@ MonoBehaviour:
   entryTitle: Impling
   entryDesc: This imp cannot wait to get into the thick of things.
   entrySprite: {fileID: 21300000, guid: b5a195e5587f4944fbbb1ade928e5226, type: 3}
+  button: {fileID: 832238125}
+  buttonName: {fileID: 756624105}
 --- !u!114 &320318176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3585,6 +3595,8 @@ MonoBehaviour:
   entryDesc: A squimbus with clipped on cardboard wings, the fire it breathes is
     VERY real though.
   entrySprite: {fileID: 0}
+  button: {fileID: 1628064667}
+  buttonName: {fileID: 1034880799}
 --- !u!114 &320318177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3602,6 +3614,8 @@ MonoBehaviour:
   entryDesc: Squimbis have a reputation as "Dubious little creatures" this one just
     decided to take up that mantle, it's even wearing a cat burgular mask how CUTE!
   entrySprite: {fileID: 0}
+  button: {fileID: 1837455428}
+  buttonName: {fileID: 2040987557}
 --- !u!114 &320318178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3619,6 +3633,8 @@ MonoBehaviour:
   entryDesc: A giant squimbus that has a craving for weapons and armor. They are
     very yummy to this squimbus. People on the otherhand are less appitizing to it.
   entrySprite: {fileID: 0}
+  button: {fileID: 464710914}
+  buttonName: {fileID: 685190402}
 --- !u!114 &320318179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3635,6 +3651,8 @@ MonoBehaviour:
   entryTitle: Lil' Squimbi
   entryDesc: A  basic Squimbus. It's great at finding food and stuff like that.
   entrySprite: {fileID: 0}
+  button: {fileID: 304564126}
+  buttonName: {fileID: 1428636212}
 --- !u!114 &320318180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3652,6 +3670,8 @@ MonoBehaviour:
   entryDesc: A bunch of skeletons fused together into a gaint, usually created when
     an entire family craves retribution on their behalf.
   entrySprite: {fileID: 0}
+  button: {fileID: 257941611}
+  buttonName: {fileID: 59365367}
 --- !u!114 &320318181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3670,6 +3690,8 @@ MonoBehaviour:
     only manifests in more accurate attacks, keep an eye out on this one, they will
     grow eventually.
   entrySprite: {fileID: 0}
+  button: {fileID: 1211479387}
+  buttonName: {fileID: 1611007332}
 --- !u!114 &320318182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3683,10 +3705,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUnlocked: 0
-  entryTitle: NotaZombie
+  entryTitle: Nota Zombie
   entryDesc: A reanimated corpse, we don't call them zombies becasue we are cool,
     quirky and unique like that.
   entrySprite: {fileID: 0}
+  button: {fileID: 1977745855}
+  buttonName: {fileID: 89060823}
 --- !u!114 &320318183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3705,6 +3729,8 @@ MonoBehaviour:
     enslaved by the fiendish necromancer'. In truth, he feels like he has more meaning
     in unlife than he ever did living.
   entrySprite: {fileID: 0}
+  button: {fileID: 1088803299}
+  buttonName: {fileID: 631187320}
 --- !u!114 &320318184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3722,6 +3748,8 @@ MonoBehaviour:
   entryDesc: A ghost of someone wronged by the church, they have become distressingly
     more and more common.
   entrySprite: {fileID: 0}
+  button: {fileID: 1467835505}
+  buttonName: {fileID: 846685303}
 --- !u!114 &320318185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3739,6 +3767,8 @@ MonoBehaviour:
   entryDesc: A skeleton with armor, skeletons do not fear falling apart, for they
     can just be put back together again.
   entrySprite: {fileID: 0}
+  button: {fileID: 1703014187}
+  buttonName: {fileID: 193285475}
 --- !u!114 &320318186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,6 +3785,8 @@ MonoBehaviour:
   entryTitle: Wretched Skeleton
   entryDesc: A freshly reanimated skeleton.
   entrySprite: {fileID: 0}
+  button: {fileID: 1346249946}
+  buttonName: {fileID: 1817996066}
 --- !u!114 &320318187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3772,6 +3804,8 @@ MonoBehaviour:
   entryDesc: 'Some call them succubusses, others call them incubuses, truth is they
     can change their gender at will. '
   entrySprite: {fileID: 0}
+  button: {fileID: 459523165}
+  buttonName: {fileID: 1903265277}
 --- !u!114 &320318188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3789,6 +3823,8 @@ MonoBehaviour:
   entryDesc: A regal, much more refined hellhound, hellpuppies watch hellhounds and
     try to emulate them.
   entrySprite: {fileID: 0}
+  button: {fileID: 894453727}
+  buttonName: {fileID: 350857598}
 --- !u!114 &320318189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3805,6 +3841,8 @@ MonoBehaviour:
   entryTitle: Lord Spider
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 296335893}
+  buttonName: {fileID: 1586963150}
 --- !u!114 &320318190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3821,6 +3859,8 @@ MonoBehaviour:
   entryTitle: Spider
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 1514790876}
+  buttonName: {fileID: 428881049}
 --- !u!114 &320318191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3837,6 +3877,8 @@ MonoBehaviour:
   entryTitle: Brute
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 559271897}
+  buttonName: {fileID: 422264330}
 --- !u!114 &320318192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3853,6 +3895,8 @@ MonoBehaviour:
   entryTitle: Archer
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 940643104}
+  buttonName: {fileID: 807094593}
 --- !u!114 &320318193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3869,6 +3913,8 @@ MonoBehaviour:
   entryTitle: Militia
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 1999561437}
+  buttonName: {fileID: 2022355308}
 --- !u!114 &320318194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3885,6 +3931,8 @@ MonoBehaviour:
   entryTitle: Cathedral Wing
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 1664846045}
+  buttonName: {fileID: 1114677852}
 --- !u!114 &320318195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3901,6 +3949,8 @@ MonoBehaviour:
   entryTitle: Castle Interior
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 1990130936}
+  buttonName: {fileID: 754570803}
 --- !u!114 &320318196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3917,6 +3967,8 @@ MonoBehaviour:
   entryTitle: Castle Town
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 251251123}
+  buttonName: {fileID: 834400783}
 --- !u!114 &320318197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3933,6 +3985,8 @@ MonoBehaviour:
   entryTitle: Forest
   entryDesc: Lore coming soon
   entrySprite: {fileID: 0}
+  button: {fileID: 1831597619}
+  buttonName: {fileID: 1817431555}
 --- !u!1 &347213559
 GameObject:
   m_ObjectHideFlags: 0
