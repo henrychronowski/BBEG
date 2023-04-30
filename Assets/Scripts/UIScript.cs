@@ -82,11 +82,15 @@ public class UIScript : MonoBehaviour
 
     void UpdateHealth()
     {
-        //Temp values until we get current and max hp values
         leaderHP.value = manager.leader.currHealth;
         for(int i = 0; i < minionHPContainer.Count; i++)
         {
-            if(minionHPContainer[i].gameObject.activeInHierarchy)
+            if(manager.minions[i] == null)
+            {
+                minionHPContainer[i].gameObject.SetActive(false);
+            }
+
+            else
             {
                 minionHPContainer[i].value = manager.minions[i].currHealth;
             }
