@@ -35,6 +35,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<Attack> onAttackStarted;
+
+    public void AttackStarted(Attack atk)
+    {
+        if (onAttackStarted != null)
+        {
+            onAttackStarted(atk);
+        }
+    }
+
     public event Action<Enemy, EnemyAIState> onAIStateChanged;
 
     public void AIStateChanged(Enemy e, EnemyAIState t)
@@ -42,6 +52,16 @@ public class EventManager : MonoBehaviour
         if(onAIStateChanged != null)
         {
             onAIStateChanged(e, t);
+        }
+    }
+
+    // Fires when new minion joins the party
+    public event Action<Minion> onNewMinionAdded;
+    public void NewMinionAdded(Minion m)
+    {
+        if(onNewMinionAdded != null)
+        {
+            onNewMinionAdded(m);
         }
     }
 

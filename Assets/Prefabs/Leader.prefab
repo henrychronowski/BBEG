@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4515492039891974552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3398958348265564173}
+  - component: {fileID: 1419181994888992692}
+  - component: {fileID: 337897836398374531}
+  m_Layer: 9
+  m_Name: InteractSphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3398958348265564173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515492039891974552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7190778639213566959}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1419181994888992692
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515492039891974552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &337897836398374531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515492039891974552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d407a33b45485874792773ada0f37565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4011106783013238971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,17 +146,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd14a131814224d4cb1d624878a7b846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   health: 5
   moveSpeed: 10
-  facing: {x: 0, y: 0, z: 0}
   rgd: {fileID: 7190778639213566953}
   axis: {x: 0, y: 0}
   turnSmoothVelocity: 1
   turnSmoothTime: 0
   followPoint: {fileID: 1278063605885805371}
   moveSpeedModifier: 1
+  attack: {fileID: 0}
+  hitbox: {fileID: 0}
+  overrider: {fileID: 0}
+  animator: {fileID: 0}
+  portrait: {fileID: 0}
 --- !u!54 &7190778639213566953 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6080025853874627410, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+  m_PrefabInstance: {fileID: 4011106783013238971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7190778639213566959 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6080025853874627412, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
   m_PrefabInstance: {fileID: 4011106783013238971}
   m_PrefabAsset: {fileID: 0}

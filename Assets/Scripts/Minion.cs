@@ -33,6 +33,7 @@ public class Minion : Character
     [SerializeField] float mimicCatchupDistance;
     [SerializeField] float mimicCatchupSpeedModifier;
 
+    [SerializeField] public bool isStray; // Hasn't joined party yet
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,11 @@ public class Minion : Character
         leader = FindObjectOfType<Leader>();
     }
 
+    private void Update()
+    {
+        currentState = state.stateType;
+        state.Update();
+    }
 
     // Forcibly set the minion state to move no matter what they're doing
     public void Follow(Transform point)
@@ -132,5 +138,11 @@ public class Minion : Character
         {
             transform.position = point.position;
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerCharacterManager.instance.minions.Remove(this);
+        Debug.Log(name + " has died");
     }
 }

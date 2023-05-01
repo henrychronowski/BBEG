@@ -21,6 +21,7 @@ public class Hitbox : MonoBehaviour
     public float projectileSpeed;
     float timeElapsed;
     public float radius;
+    public int piercingPower;
 
     List<Character> charactersHit;
 
@@ -70,6 +71,11 @@ public class Hitbox : MonoBehaviour
             charactersHit.Add(recipient);
             HitData data = new HitData(owner, recipient, attack, attack.damage);
             EventManager.instance.AttackConnected(data);
+            if (charactersHit.Count > piercingPower)
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 
@@ -85,7 +91,7 @@ public class Hitbox : MonoBehaviour
         }
         else // Ranged
         {
-            //rgd.velocity = owner.facing * projectileSpeed;
+            //rgd.velocity = owner.transform.forward * projectileSpeed;
         }
     }
 
@@ -101,7 +107,7 @@ public class Hitbox : MonoBehaviour
         }
         else // Ranged
         {
-            rgd.velocity = owner.facing * projectileSpeed;
+            rgd.velocity = owner.transform.forward * projectileSpeed;
         }
     }
     public void CooldownPhase()
@@ -125,7 +131,7 @@ public class Hitbox : MonoBehaviour
     {
         owner = c;
         attack = atk;
-        transform.position = c.transform.position + (c.facing * atk.spawnOffset);
+        transform.position = c.transform.position + (c.transform.forward * atk.spawnOffset);
     }
 
     void CheckProjectileLifetime()

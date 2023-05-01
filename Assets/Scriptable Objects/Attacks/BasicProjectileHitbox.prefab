@@ -1,51 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5472349589121102379
+--- !u!1001 &2024256013677354509
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -4389181725362007778, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4389181725362007778, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8f0773f992d179c4c9fb55f3db428004, type: 2}
     - target: {fileID: -1926426391796266252, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: radius
+      propertyPath: type
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -1847662532380683379, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: m_Radius
-      value: 2.5
+    - target: {fileID: -1926426391796266252, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
+      propertyPath: piercingPower
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -1847662532380683379, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: -1926426391796266252, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
+      propertyPath: projectileSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1789328453259137933, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
       propertyPath: m_Name
-      value: BigPunchHitbox
+      value: BasicProjectileHitbox
       objectReference: {fileID: 0}
     - target: {fileID: 6868020980155968363, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6868020980155968363, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6868020980155968363, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6868020980155968363, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6868020980155968363, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
       propertyPath: m_LocalPosition.x

@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f993770b797bc6f4ca8f27608af2b4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   health: 5
   moveSpeed: 10
-  facing: {x: 0, y: 0, z: 0}
   rgd: {fileID: 6374090462111345341}
   axis: {x: 0, y: 0}
   turnSmoothVelocity: 1
@@ -114,6 +114,7 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   overrider: {fileID: 6713584822893857554}
   animator: {fileID: 5559329649232365997}
+  portrait: {fileID: 0}
   leader: {fileID: 0}
   followDistance: 1
   brakingDrag: 0.25
@@ -123,6 +124,7 @@ MonoBehaviour:
   mimicBrakingDrag: 0.25
   mimicCatchupDistance: 3
   mimicCatchupSpeedModifier: 1.5
+  isStray: 1
 --- !u!54 &6374090462111345341 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6080025853874627410, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}

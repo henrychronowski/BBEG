@@ -21,7 +21,6 @@ public class Character : MonoBehaviour
     [SerializeField] protected CharacterState currentState;
     [SerializeField] public int health = 5;
     [SerializeField] public float moveSpeed = 1f;
-    [SerializeField] public Vector3 facing;
     [SerializeField] public Rigidbody rgd;
     [SerializeField] public Vector2 axis;
     [SerializeField] public float turnSmoothVelocity;
@@ -77,9 +76,9 @@ public class Character : MonoBehaviour
     public void Move(Vector2 ax, float modifier = 1)
     {
         axis = ax;
-        
 
-        if(state.stateType != CharacterState.Move)
+
+        if (state.stateType != CharacterState.Move)
         {
             if (state.stateType == CharacterState.Attack)
                 return;
@@ -131,7 +130,7 @@ public class Character : MonoBehaviour
 
     public void SetFacingDirection(Vector3 newDirection)
     {
-        facing = newDirection;
+        transform.forward = newDirection;
         //transform.rotation
     }
 
@@ -143,6 +142,7 @@ public class Character : MonoBehaviour
             UpdateOverrider();
             animator.SetTrigger("Attack");
             state = new AttackState(this);
+            EventManager.instance.AttackStarted(attack);
         }
     }
 
@@ -167,7 +167,6 @@ public class Character : MonoBehaviour
     {
         currentState = state.stateType;
         state.Update();
-        facing = transform.forward;
     }
 
     // This is used for the sake of physics, if this becomes a problem later we can add FixedUpdate functions to State
@@ -189,12 +188,25 @@ public class Character : MonoBehaviour
         else return false;
     }
 
+    // Should only be utilized in timelines, like in cutscenes
+    IEnumerator ScriptedMovement(Vector3 newPos)
+    {
+        float originalDistance = Vector3.Distance(newPos, transform.position);
+        while (Vector3.Distance(newPos, transform.position) > PlayerCharacterManager.instance.transitionStoppingDistance)
+        {
+            Vector3 dir = (newPos - transform.position).normalized;
+            float elapsedDistance = Vector3.Distance(newPos, transform.position) / originalDistance;
+            Move(new Vector2(dir.x, dir.z), elapsedDistance);
+            Debug.Log(Vector3.Distance(newPos, transform.position));
+            yield return null;
+        }
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         //Gizmos.DrawLine(transform.position, transform.position + rgd.velocity);
-        Gizmos.DrawLine(transform.position, transform.position + (facing * 5));
+        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * 5));
 
     }
 }
@@ -259,6 +271,7 @@ public class MoveState : CharacterBaseState
     public override void Update()
     {
         // Unused
+        Integrate();
     }
 
     public void Integrate()
@@ -282,7 +295,7 @@ public class MoveState : CharacterBaseState
 
     public override void FixedUpdate()
     {
-        Integrate();
+        //Integrate();
         
     }
 }

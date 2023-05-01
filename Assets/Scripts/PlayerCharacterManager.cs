@@ -21,31 +21,23 @@ public enum MimicFormations // Formations MUST be organized in this order in mim
     West
 }
 
-public enum CombatVersion
-{
-    FourSwords,
-    ChainAttack
-}
-
 public class PlayerCharacterManager : MonoBehaviour
 {
     // Takes input and sends it to the proper Character(s)
     // 
 
     public static PlayerCharacterManager instance;
-    [SerializeField] int maxCharacters = 4;
+    [SerializeField] int maxMinions = 3;
     [SerializeField] public List<Minion> minions;
     [SerializeField] public Leader leader;
     [SerializeField] public PartyMovementState party;
     [SerializeField] bool attacking;
-    // Combined list of minions + leader
-    [SerializeField] public List<Character> characterList;
 
     [SerializeField] protected Transform mimicPointsContainer;
     [SerializeField] public Transform currentMimicPointsParent;
     [SerializeField] public List<Transform> mimicPointParents;
 
-    [SerializeField] float transitionStoppingDistance;
+    [SerializeField] public float transitionStoppingDistance;
     [SerializeField] float minionAttackDisplacement;
     [SerializeField] int currentAttackIndex;
 
@@ -91,14 +83,26 @@ public class PlayerCharacterManager : MonoBehaviour
         }
     }
 
+    public bool AddMinion(Minion newMinion)
+    {
+        if(minions.Count == maxMinions)
+        {
+            return false;
+        }
+
+        minions.Add(newMinion);
+        EventManager.instance.NewMinionAdded(newMinion);
+        return true;
+    }
+
     private void OnLightAttack()
     {
         //leader.Move(Vector2.zero);
         if (attacking && currentAttackIndex < minions.Count)
         {
             //leader.AttackStart(minions[currentAttackIndex].attack);
-            minions[currentAttackIndex].SetFacingDirection(leader.facing);
-            minions[currentAttackIndex].transform.position = leader.transform.position + (leader.facing * minionAttackDisplacement) + ((leader.transform.right * currentAttackIndex) - leader.transform.right);
+            minions[currentAttackIndex].SetFacingDirection(leader.transform.forward);
+            minions[currentAttackIndex].transform.position = leader.transform.position + (leader.transform.forward * minionAttackDisplacement) + ((leader.transform.right * currentAttackIndex) - leader.transform.right);
             
             minions[currentAttackIndex].AttackStart();
             currentAttackIndex++;
@@ -219,6 +223,7 @@ public class PlayerCharacterManager : MonoBehaviour
                     {
                         minions[i].Move(leader.axis);
                         minions[i].NewMimic(currentMimicPointsParent.GetChild(i));
+                        minions[i].transform.forward = leader.transform.forward;
                     }
 
                     break;
@@ -243,21 +248,23 @@ public class PlayerCharacterManager : MonoBehaviour
     IEnumerator RoomTransition(Vector3 newPos)
     {
         party = PartyMovementState.Scripted;
-        while(Vector3.Distance(newPos, leader.transform.position) > transitionStoppingDistance)
+        float originalDistance = Vector3.Distance(newPos, leader.transform.position);
+        while (Vector3.Distance(newPos, leader.transform.position) > transitionStoppingDistance)
         {
             Vector3 dir = (newPos - leader.transform.position).normalized;
-            leader.Move(new Vector2(dir.x, dir.z));
+            float elapsedDistance = Vector3.Distance(newPos, leader.transform.position) / originalDistance;
+            leader.Move(new Vector2(dir.x, dir.z), elapsedDistance);
             Debug.Log(Vector3.Distance(newPos, leader.transform.position));
             yield return null;
 
         }
-        leader.transform.position = new Vector3(newPos.x, leader.transform.position.y, newPos.z);
+        //leader.transform.position = new Vector3(newPos.x, leader.transform.position.y, newPos.z);
 
         // OnMove() only gets called when the movement input axis changes
         // Without this line, if the player holds a direction during the scripted movement their axis never gets updated
         // properly since it hasn't changed since the scripted movement ended
         leader.axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
-        party = PartyMovementState.Follow;
+        party = PartyMovementState.Mimic;
         
         
     }
@@ -316,6 +323,8 @@ public class PlayerCharacterManager : MonoBehaviour
         {
             return true;
         }
+
+        
 
         return false;
     }

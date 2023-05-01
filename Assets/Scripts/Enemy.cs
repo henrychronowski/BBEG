@@ -27,7 +27,6 @@ public class Enemy : Character
 
     private void Update()
     {
-        facing = transform.forward;
         currentState = state.stateType;
         CheckForNearbyTargets();
         state.Update();
