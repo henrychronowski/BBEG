@@ -38,6 +38,8 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public List<Transform> mimicPointParents;
 
     [SerializeField] public float transitionStoppingDistance;
+    [SerializeField] public float transitionSpeedModifier;
+
     [SerializeField] float minionAttackDisplacement;
     [SerializeField] int currentAttackIndex;
 
@@ -97,7 +99,9 @@ public class PlayerCharacterManager : MonoBehaviour
 
     private void OnLightAttack()
     {
-        //leader.Move(Vector2.zero);
+        if (party == PartyMovementState.Scripted)
+            return;
+
         if (attacking && currentAttackIndex < minions.Count)
         {
             //leader.AttackStart(minions[currentAttackIndex].attack);
@@ -204,10 +208,7 @@ public class PlayerCharacterManager : MonoBehaviour
             leader.Move(leader.axis, 0);
             return;
         }
-        else // Bandaid fix
-        {
-            leader.SetMoveSpeedModifier(1);
-        }
+        
 
         switch (party)
         {
@@ -253,7 +254,7 @@ public class PlayerCharacterManager : MonoBehaviour
         {
             Vector3 dir = (newPos - leader.transform.position).normalized;
             float elapsedDistance = Vector3.Distance(newPos, leader.transform.position) / originalDistance;
-            leader.Move(new Vector2(dir.x, dir.z), elapsedDistance);
+            leader.Move(new Vector2(dir.x, dir.z));
             Debug.Log(Vector3.Distance(newPos, leader.transform.position));
             yield return null;
 
@@ -263,6 +264,7 @@ public class PlayerCharacterManager : MonoBehaviour
         // OnMove() only gets called when the movement input axis changes
         // Without this line, if the player holds a direction during the scripted movement their axis never gets updated
         // properly since it hasn't changed since the scripted movement ended
+        leader.SetMoveSpeedModifier(1);
         leader.axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
         party = PartyMovementState.Mimic;
         

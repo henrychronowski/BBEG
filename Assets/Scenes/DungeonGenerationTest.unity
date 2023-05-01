@@ -863,7 +863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6374090462111345284, guid: 867ff5d2a0d64b14b80e68ea25cc84ae, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6374090462111345339, guid: 867ff5d2a0d64b14b80e68ea25cc84ae, type: 3}
       propertyPath: m_RootOrder
@@ -1030,7 +1030,8 @@ MonoBehaviour:
   - {fileID: 1908922365}
   - {fileID: 1730887772}
   - {fileID: 453634877}
-  transitionStoppingDistance: 1.5
+  transitionStoppingDistance: 0.5
+  transitionSpeedModifier: 0.1
   minionAttackDisplacement: 1
   currentAttackIndex: 0
   input: {fileID: 671083247}
@@ -1290,7 +1291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00afbc9facc04c4786df58bf378accd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingRoom: {fileID: 7030036086379042726, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+  startingRoom: {fileID: 3389712818533600264, guid: bd1b1813175db904892631c2d6da04af, type: 3}
   roomSet: {fileID: 11400000, guid: 0d6fbd8d63f7eb54693d9c5d41c692ca, type: 2}
   roomGenChance: 25
   minRooms: 5
@@ -1301,7 +1302,7 @@ MonoBehaviour:
   seed: 5
   spawn: {fileID: 0}
   generatedRooms: []
-  roomGapTranslationDistance: 25
+  roomGapTranslationDistance: 50
 --- !u!4 &935348238
 Transform:
   m_ObjectHideFlags: 0
@@ -2553,7 +2554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6374090462111345284, guid: 867ff5d2a0d64b14b80e68ea25cc84ae, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6374090462111345339, guid: 867ff5d2a0d64b14b80e68ea25cc84ae, type: 3}
       propertyPath: m_RootOrder
@@ -3086,7 +3087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6374090462111345284, guid: 867ff5d2a0d64b14b80e68ea25cc84ae, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6374090462111345339, guid: 867ff5d2a0d64b14b80e68ea25cc84ae, type: 3}
       propertyPath: m_RootOrder
