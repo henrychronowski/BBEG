@@ -103,7 +103,10 @@ public class Exit : MonoBehaviour
         {
             if(PlayerCharacterManager.instance.party != PartyMovementState.Scripted 
                 && IsPlayerMovingTowardsExit())
-                    PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position);
+            {
+                PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position);
+                CameraControl.Instance.ChangeFocus(connectedRoom.focus);
+            }
 
             // Change the active room to the new one?
         }

@@ -8,7 +8,7 @@ public class RoomInfo : MonoBehaviour
     // Does not contain properties such as a room's rarity or type, that stays in Room.cs
     // Attached to each RoomObj, contains variables that need to be accessed during gameplay
     public List<Exit> exitLocations;
-
+    public CameraFocus focus;
 
     public List<Exit> GetExitsByDirection(ExitDirection dir)
     {

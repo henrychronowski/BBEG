@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     // Replace this with something more robust later
+    // 
     public AudioClip[] clips;
     public AudioSource source;
     void PlayAttackSound(HitData data)

@@ -40,10 +40,14 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public float transitionStoppingDistance;
     [SerializeField] public float transitionSpeedModifier;
 
+    // How far in front of the player the minions will be when attacking
     [SerializeField] float minionAttackDisplacement;
+
+    // The index of the character that will attack next in the combo
     [SerializeField] int currentAttackIndex;
 
     [SerializeField] PlayerInput input;
+    public RoomInfo activeRoom;
 
     //Temporary currency (used only during runs) and
     //Permanent currency (used throughout the game)
@@ -84,6 +88,8 @@ public class PlayerCharacterManager : MonoBehaviour
                 }
         }
     }
+
+    // Move
 
     public bool AddMinion(Minion newMinion)
     {

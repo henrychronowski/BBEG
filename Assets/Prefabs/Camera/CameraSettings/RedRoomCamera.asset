@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4452266d2e6982542922dc4fbf1159f3, type: 3}
-  m_Name: TestingCameraSettings
+  m_Name: RedRoomCamera
   m_EditorClassIdentifier: 
-  descriptor: Default
-  smoothSpeed: 1
+  descriptor: Red Test Room
+  smoothSpeed: 6
   offset: {x: 0, y: -13, z: 5}

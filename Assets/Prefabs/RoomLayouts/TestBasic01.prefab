@@ -111,11 +111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3389712818533600264, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_Name
-      value: 'ID: 5'
+      value: TestBasic01
       objectReference: {fileID: 0}
     - target: {fileID: 4211626580232844420, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4229026288906266036, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_RootOrder
@@ -165,6 +165,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5629018737613818289, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: roomSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: e772c09522e45804f9f8e4c0ab2cfb2d, type: 2}
     - target: {fileID: 8835243509858179726, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_Mesh
       value: 

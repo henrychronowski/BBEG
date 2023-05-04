@@ -39,6 +39,7 @@ public class CameraControl : MonoBehaviour
 		if(RefreshValues == true)
 		{
             activeSettings = activeFocus.GetFocusSettings();
+            activeFocus.UpdatePositionFromSettings();
             RefreshValues = false;
         }
 	}

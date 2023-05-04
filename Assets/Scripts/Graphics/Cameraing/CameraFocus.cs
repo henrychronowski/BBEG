@@ -22,7 +22,13 @@ public class CameraFocus : MonoBehaviour
 		}
 
 		cameraPosOS = roomSettings.GetOffset();
-		cameraPosWS = this.transform.position - cameraPosOS;
+		cameraPosWS = this.transform.position + cameraPosOS;
+	}
+
+	public void UpdatePositionFromSettings()
+    {
+		cameraPosOS = roomSettings.GetOffset();
+		cameraPosWS = this.transform.position + cameraPosOS;
 	}
 
 	// Returns the camera settings for this focus

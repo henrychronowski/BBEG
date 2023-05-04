@@ -33,7 +33,10 @@ public class DungeonGeneration : MonoBehaviour
         int roomsAttempted = 0;
 
         RoomInfo activeRoom = Room.LoadRoom(startingRoom, Vector3.zero).GetComponent<RoomInfo>();
-        
+        PlayerCharacterManager.instance.activeRoom = activeRoom;
+        CameraControl.Instance.ChangeFocus(activeRoom.focus);
+
+
         generatedRooms = new List<RoomInfo>();
         generatedRooms.Add(activeRoom);
         bool reran = false;
