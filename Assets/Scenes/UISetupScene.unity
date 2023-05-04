@@ -1556,7 +1556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.5, y: -124.5}
+  m_AnchoredPosition: {x: -189.49991, y: -125.33}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &264813962
@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1914330537}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5172438
+  m_Size: 0.5172439
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6356,7 +6356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 149.81, y: -77}
+  m_AnchoredPosition: {x: 139, y: -79.4}
   m_SizeDelta: {x: 215.597, y: 113.9292}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &926010878
@@ -7148,7 +7148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714fdb3c95d294941b6293ce7c3f7b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCharacters: 4
+  maxMinions: 3
   minions:
   - {fileID: 1059282291}
   - {fileID: 1768984015}
@@ -7156,9 +7156,6 @@ MonoBehaviour:
   leader: {fileID: 1976747129}
   party: 0
   attacking: 0
-  characterList:
-  - {fileID: 1976747129}
-  - {fileID: 1059282291}
   mimicPointsContainer: {fileID: 1624436872}
   currentMimicPointsParent: {fileID: 0}
   mimicPointParents:
@@ -7167,9 +7164,11 @@ MonoBehaviour:
   - {fileID: 282901010}
   - {fileID: 1253189771}
   transitionStoppingDistance: 0
+  transitionSpeedModifier: 0
   minionAttackDisplacement: 0
   currentAttackIndex: 0
   input: {fileID: 0}
+  activeRoom: {fileID: 0}
   tempCurr: 75
   permCurr: 40
   stateView: {fileID: 0}
@@ -7842,8 +7841,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7909,8 +7908,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 139, y: 66}
-  m_SizeDelta: {x: 249.6779, y: 44}
+  m_AnchoredPosition: {x: 139, y: 70.074234}
+  m_SizeDelta: {x: 223.9636, y: 36.1875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1093631483
 GameObject:
@@ -9994,7 +9993,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34532
+  m_Name: pb_Mesh25528
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13741,8 +13740,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 147.5, y: 23.6}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 139, y: 14.772}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1997263328
 MonoBehaviour:
@@ -14158,7 +14157,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 455646060}
   m_HandleRect: {fileID: 455646059}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
