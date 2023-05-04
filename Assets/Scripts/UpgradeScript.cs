@@ -25,10 +25,12 @@ public class UpgradeScript : MonoBehaviour
                 subAmt = 10;
                 if (manager.tempCurr - subAmt >= 0)
                 {
-                    manager.leader.health += 10;
+                    manager.leader.maxHealth += 10;
+                    manager.leader.currHealth += 10;
                     for (int i = 0; i < manager.minions.Count; i++)
                     {
-                        manager.minions[i].health += 10;
+                        manager.minions[i].maxHealth += 10;
+                        manager.minions[i].currHealth += 10;
                     }
                     manager.tempCurr -= subAmt;
                 }
