@@ -102,7 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  health: 5
+  maxHealth: 5
+  currHealth: 5
   moveSpeed: 10
   rgd: {fileID: 6374090462111345341}
   axis: {x: 0, y: 0}
@@ -110,7 +111,10 @@ MonoBehaviour:
   turnSmoothTime: 0
   followPoint: {fileID: 3027279317672202863}
   moveSpeedModifier: 1
-  attack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
+  meleeAttack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
+  rangedAttack: {fileID: 11400000, guid: 92482cadcf16eea4c94f95f159b49880, type: 2}
+  baseMeleeAffinity: 0
+  baseRangedAffinity: 0
   hitbox: {fileID: 0}
   overrider: {fileID: 6713584822893857554}
   animator: {fileID: 5559329649232365997}

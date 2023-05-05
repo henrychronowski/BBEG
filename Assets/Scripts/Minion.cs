@@ -21,7 +21,7 @@ public class Minion : Character
 
 
     // Contains a trait?
-
+    public Tribe tribe;
     [SerializeField] Leader leader;
     [SerializeField] float followDistance;
     [SerializeField] float brakingDrag; //How much the minion's speed is reduced when in braking range but 

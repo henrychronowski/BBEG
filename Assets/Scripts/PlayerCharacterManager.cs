@@ -375,13 +375,13 @@ public class PlayerCharacterManager : MonoBehaviour
         party = data.party;
 
         leader.moveSpeed = data.moveSpeed[0];
-        leader.maxHealth = data.maxHealth[0];
+        leader.baseHealth = data.maxHealth[0];
         leader.currHealth = data.currHealth[0];
         //characterList = new List<Character>(data.characterList);
         for (int i = 0; i < minions.Count; i++)
         {
             minions[i].moveSpeed = data.moveSpeed[i + 1];
-            minions[i].maxHealth = data.maxHealth[i + 1];
+            minions[i].baseHealth = data.maxHealth[i + 1];
             minions[i].currHealth = data.currHealth[i + 1];
         }
 

@@ -10,6 +10,10 @@ public class Leader : Character
 
     // Currently has same functionality as Character.cs but can use this to easily add leader-specific stuff
 
-   
-
+    // Passive ability, implement it like a unique artifact
+    // Active ability
+    public override ArtifactTarget GetCharacterType()
+    {
+        return ArtifactTarget.Leader;
+    }
 }

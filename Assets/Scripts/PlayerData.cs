@@ -24,12 +24,12 @@ public class PlayerData
         currHealth = new int[player.minions.Count + 1];
 
         moveSpeed[0] = player.leader.moveSpeed;
-        maxHealth[0] = player.leader.maxHealth;
+        maxHealth[0] = player.leader.baseHealth;
         currHealth[0] = player.leader.currHealth;
         for (int i = 0; i < player.minions.Count; i++)
         {
             moveSpeed[i + 1] = player.minions[i].moveSpeed;
-            maxHealth[i + 1] = player.minions[i].maxHealth;
+            maxHealth[i + 1] = player.minions[i].baseHealth;
             currHealth[i + 1] = player.minions[i].currHealth;
         }
 

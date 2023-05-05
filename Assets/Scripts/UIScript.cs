@@ -31,7 +31,7 @@ public class UIScript : MonoBehaviour
         tempCurr.text = "Gold: " + manager.tempCurr.ToString();
         permCurr.text = "Gems: " + manager.tempCurr.ToString();
 
-        leaderHP.maxValue = manager.leader.maxHealth;
+        leaderHP.maxValue = manager.leader.baseHealth;
         leaderHP.value = manager.leader.currHealth;
         leaderImage.sprite = manager.leader.portrait;
 
@@ -58,7 +58,7 @@ public class UIScript : MonoBehaviour
             if(manager.minions[i] != null)
             {
                 minionHPContainer[i].gameObject.SetActive(true);
-                minionHPContainer[i].maxValue = manager.minions[i].maxHealth;
+                minionHPContainer[i].maxValue = manager.minions[i].baseHealth;
                 minionHPContainer[i].value = manager.minions[i].currHealth;
 
                 minionPortraits[i].gameObject.SetActive(true);
