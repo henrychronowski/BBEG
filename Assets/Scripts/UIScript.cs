@@ -9,18 +9,7 @@ public class UIScript : MonoBehaviour
     public Text permCurr;
 
     public Slider leaderHP;
-    public Slider minion1HP;
-    public Slider minion2HP;
-    public Slider minion3HP;
-
     public Image leaderImage;
-    public Image minion1Image;
-    public Image minion2Image;
-    public Image minion3Image;
-
-
-    List<Slider> minionHPContainer;
-    List<Image> minionPortraits;
 
     public PlayerCharacterManager manager;
     // Start is called before the first frame update
@@ -34,37 +23,6 @@ public class UIScript : MonoBehaviour
         leaderHP.maxValue = manager.leader.baseHealth;
         leaderHP.value = manager.leader.currHealth;
         leaderImage.sprite = manager.leader.portrait;
-
-        minionHPContainer = new List<Slider>();
-        minionHPContainer.Add(minion1HP);
-        minionHPContainer.Add(minion2HP);
-        minionHPContainer.Add(minion3HP);
-
-        minion1HP.gameObject.SetActive(false);
-        minion2HP.gameObject.SetActive(false);
-        minion3HP.gameObject.SetActive(false);
-
-        minionPortraits = new List<Image>();
-        minionPortraits.Add(minion1Image);
-        minionPortraits.Add(minion2Image);
-        minionPortraits.Add(minion3Image);
-
-        minion1Image.gameObject.SetActive(false);
-        minion2Image.gameObject.SetActive(false);
-        minion3Image.gameObject.SetActive(false);
-
-        for (int i = 0; i < manager.minions.Count; i++)
-        {
-            if(manager.minions[i] != null)
-            {
-                minionHPContainer[i].gameObject.SetActive(true);
-                minionHPContainer[i].maxValue = manager.minions[i].baseHealth;
-                minionHPContainer[i].value = manager.minions[i].currHealth;
-
-                minionPortraits[i].gameObject.SetActive(true);
-                minionPortraits[i].sprite = manager.minions[i].portrait;
-            }
-        }
     }
 
     // Update is called once per frame
@@ -83,18 +41,5 @@ public class UIScript : MonoBehaviour
     void UpdateHealth()
     {
         leaderHP.value = manager.leader.currHealth;
-        for(int i = 0; i < minionHPContainer.Count; i++)
-        {
-            if(manager.minions[i] == null)
-            {
-                minionHPContainer[i].gameObject.SetActive(false);
-            }
-
-            else
-            {
-                minionHPContainer[i].value = manager.minions[i].currHealth;
-            }
-            
-        }
     }
 }
