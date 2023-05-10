@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1c82aabd903e546b1174b495bef9fa, type: 3}
   m_Name: OvalRoom
   m_EditorClassIdentifier: 
-  roomObj: {fileID: 0}
+  roomObj: {fileID: 9032978744937425128, guid: 88d6b386eb5b7d244b94a7bcf396cd67, type: 3}
   rngWeight: 0
   gridDimensions: {x: 1, y: 1}

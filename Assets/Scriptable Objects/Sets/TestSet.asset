@@ -15,7 +15,7 @@ MonoBehaviour:
   roomArray:
   - {fileID: 11400000, guid: 6e3d4f5dc7f2be34f8e1ea705d2541ca, type: 2}
   - {fileID: 11400000, guid: a4a5af5a7abbc0340a23fcf21f81acd6, type: 2}
-  - {fileID: 11400000, guid: b5c9ed8a5ff9e6e4d9242770bb3124e5, type: 2}
+  - {fileID: 11400000, guid: 37beb6cfdc47eb04b88c1d357986a6b3, type: 2}
   - {fileID: 11400000, guid: bf3ef9900565e144ca35ef49c2e733a2, type: 2}
   roomWeight: 0a000000140000001e00000028000000
   count: 4
