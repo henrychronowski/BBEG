@@ -37,7 +37,7 @@ public class RoomSet : ScriptableObject
             currentWeight += roomWeight[i];
             if(random <= currentWeight)
             {
-                Debug.Log("Generating Room " + roomArray[i].name + " of weight " + roomWeight[i].ToString() + ". Random = " + random.ToString());
+                //Debug.Log("Generating Room " + roomArray[i].name + " of weight " + roomWeight[i].ToString() + ". Random = " + random.ToString());
                 return roomArray[i];
             }
         }

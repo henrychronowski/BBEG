@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomObj: {fileID: 3037542067387827732, guid: 171f93a58b27fad4a8c20e6ea66d6d0e, type: 3}
   rngWeight: 0
+  gridDimensions: {x: 1, y: 1}

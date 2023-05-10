@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class DungeonGeneration : MonoBehaviour
 {
     [SerializeField] GameObject startingRoom;
+    [SerializeField] Vector2Int startingCoords;
 
     [SerializeField] RoomSet roomSet;
     [SerializeField] float roomGenChance;
@@ -14,12 +15,15 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] int maxRooms;
     [SerializeField] int roomSpawnAttempts;
 
+    // the max amount of times a room can be rerolled when there isn't enough space for it
+    [SerializeField] int maxRoomRerolls;
+
     [SerializeField] bool generateOnPlay;
     [SerializeField] bool useSeed;
     [SerializeField] int seed;
     [SerializeField] Transform spawn;
     [SerializeField] List<RoomInfo> generatedRooms;
-    
+
     // How far rooms are placed relative to each other 
     [SerializeField] float roomGapTranslationDistance;
     public void Generate()
@@ -35,7 +39,6 @@ public class DungeonGeneration : MonoBehaviour
         RoomInfo activeRoom = Room.LoadRoom(startingRoom, Vector3.zero).GetComponent<RoomInfo>();
         PlayerCharacterManager.instance.activeRoom = activeRoom;
         CameraControl.Instance.ChangeFocus(activeRoom.focus);
-
 
         generatedRooms = new List<RoomInfo>();
         generatedRooms.Add(activeRoom);
@@ -56,15 +59,54 @@ public class DungeonGeneration : MonoBehaviour
                 }
                 if(Random.Range(1, 100) < roomGenChance)
                 {
-                    // Pick a random room from a set
-                    Room newRoom = roomSet.GetRandomRoom();
+                    GameObject instantiatedRoom = null;
+                    Collider[] roomCheck;
+                    Exit oppositeExit;
+                    // Attempts to generate a room until it finds one that fits
+                    do
+                    {
+                        if (instantiatedRoom != null)
+                        {
+                            Destroy(instantiatedRoom.gameObject);
+                            instantiatedRoom = null;
+                        }
+                        // Pick a random room from a set
+                        Room newRoom = roomSet.GetRandomRoom();
 
-                    // Loads in the new room while also adding it to the generatedRooms list
-                    GameObject instantiatedRoom = Room.LoadRoom(newRoom.roomObj, activeRoom.transform.position + GetTranslationVector(ex));
+
+
+                        // Loads in the new room while also adding it to the generatedRooms list
+                        instantiatedRoom = Room.LoadRoom(newRoom.roomObj, ex.transform.position + GetTranslationVector(ex));
+                        oppositeExit = Room.GetRoomInfo(instantiatedRoom).GetExitsByDirection(Exit.GetOpposingDirection(ex.direction))[0];
+                        instantiatedRoom.transform.position -= oppositeExit.transform.localPosition;
+                        RoomInfo instantiatedRoomInfo = instantiatedRoom.GetComponent<RoomInfo>();
+                        // Check to see if it overlaps other rooms
+                        Physics.SyncTransforms();
+                        roomCheck = null;
+                        roomCheck = Physics.OverlapBox(instantiatedRoomInfo.roomCenter.position, instantiatedRoomInfo.roomExtents / 2, Quaternion.identity, LayerMask.GetMask("RoomExtents"));
+
+                        Debug.Log(roomCheck.Length);
+
+                        if (roomCheck.Length > maxRoomRerolls)
+                        {
+                            Destroy(instantiatedRoom);
+                            instantiatedRoom = null;
+                            break;
+                        }
+                    }
+                    while (roomCheck.Length > 1);
+
+                    // Continue condition for when we can't find a room that fits at that exit
+                    if (instantiatedRoom == null)
+                        continue;
+
+                    // Because the room is being moved after instantiation, we have to
+                    // update the camera focus settings to account for the new position
+                    instantiatedRoom.GetComponent<CameraFocus>().UpdatePositionFromSettings();
+
                     generatedRooms.Add(instantiatedRoom.GetComponent<RoomInfo>());
-
                     // Connect the exits
-                    Exit.ConnectExits(ex, Room.GetRoomInfo(instantiatedRoom).GetExitsByDirection(Exit.GetOpposingDirection(ex.direction))[0]);
+                    Exit.ConnectExits(ex, oppositeExit);
 
                     // Connect the rooms? Might be unnecessary but keeping it for now
                     ex.AddConnectingRoom(Room.GetRoomInfo(instantiatedRoom));
@@ -112,7 +154,6 @@ public class DungeonGeneration : MonoBehaviour
         Debug.Log("Generation complete, roomsAttempted = " + roomsAttempted);
 
     }
-
     
     public void Clear()
     {
@@ -121,6 +162,7 @@ public class DungeonGeneration : MonoBehaviour
             Destroy(generatedRooms[i].gameObject);
         }
             generatedRooms.Clear();
+
     }
 
     Vector3 GetTranslationVector(Exit ex)
@@ -151,6 +193,23 @@ public class DungeonGeneration : MonoBehaviour
         return Vector3.zero;
     }
 
+
+    private void OnDrawGizmos()
+    {
+        
+        //Gizmos.color = Color.cyan;
+        //for(int i = 0; i <= dungeonGridCellArraySize; i++)
+        //{
+        //    Gizmos.DrawLine(new Vector3(dungeonGridCellExtents * i, 0, 0),
+        //        new Vector3(dungeonGridCellExtents * i, 0, dungeonGridCellExtents * dungeonGridCellArraySize));
+        //}
+        //for (int j = 0; j <= dungeonGridCellArraySize; j++)
+        //{
+        //    Gizmos.DrawLine(new Vector3(0, 0, dungeonGridCellExtents * j),
+        //               new Vector3(dungeonGridCellExtents * dungeonGridCellArraySize, 0, dungeonGridCellExtents * j));
+        //}
+        //Gizmos.DrawSphere(GetCenterOfCellWS(14, 0), 5f);
+    }
 
     // Start is called before the first frame update
     void Start()

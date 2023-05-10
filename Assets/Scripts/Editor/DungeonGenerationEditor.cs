@@ -25,6 +25,11 @@ public class DungeonGenerationEditor : Editor
             gen.Generate();
         }
 
+        if (GUILayout.Button("Clear"))
+        {
+            gen.Clear();
+        }
+
         base.OnInspectorGUI();
     }
 

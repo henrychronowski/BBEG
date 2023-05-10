@@ -9,7 +9,8 @@ public class RoomInfo : MonoBehaviour
     // Attached to each RoomObj, contains variables that need to be accessed during gameplay
     public List<Exit> exitLocations;
     public CameraFocus focus;
-
+    public Vector3 roomExtents;
+    public Transform roomCenter;
     public List<Exit> GetExitsByDirection(ExitDirection dir)
     {
         List<Exit> exits = new List<Exit>();
@@ -38,10 +39,15 @@ public class RoomInfo : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        roomExtents = GetComponent<BoxCollider>().size;
     }
 
     // Update is called once per frame

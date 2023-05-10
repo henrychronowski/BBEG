@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8325154819985371780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.56, y: 4.76, z: 2.5}
+  m_LocalPosition: {x: 7.29, y: 2.59, z: 6.51}
   m_LocalScale: {x: 5.057, y: 5.057, z: 5.057}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -105,13 +105,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2603559838512616069, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603559838512616069, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603559838512616069, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2688604086022218158, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2688604086022218158, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4556
+      objectReference: {fileID: 0}
     - target: {fileID: 3389712818533600264, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_Name
       value: TestBasic01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934344703126633782, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: roomExtents.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934344703126633782, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: roomExtents.z
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4211626580232844420, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_RootOrder
@@ -168,7 +192,7 @@ PrefabInstance:
     - target: {fileID: 5629018737613818289, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: roomSettings
       value: 
-      objectReference: {fileID: 11400000, guid: e772c09522e45804f9f8e4c0ab2cfb2d, type: 2}
+      objectReference: {fileID: 11400000, guid: d293b86899b0d9647a968249fc852356, type: 2}
     - target: {fileID: 8835243509858179726, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_Mesh
       value: 

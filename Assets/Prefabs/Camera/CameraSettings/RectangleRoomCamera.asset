@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b1c82aabd903e546b1174b495bef9fa, type: 3}
-  m_Name: TestRoom
+  m_Script: {fileID: 11500000, guid: 4452266d2e6982542922dc4fbf1159f3, type: 3}
+  m_Name: RectangleRoomCamera
   m_EditorClassIdentifier: 
-  roomObj: {fileID: 7030036086379042726, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
-  rngWeight: 0
-  gridDimensions: {x: 1, y: 1}
+  descriptor: Default
+  smoothSpeed: 10
+  offset: {x: 0, y: 26.9, z: -8}

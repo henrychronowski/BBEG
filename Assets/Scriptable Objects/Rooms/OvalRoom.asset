@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b1c82aabd903e546b1174b495bef9fa, type: 3}
-  m_Name: TestRoom
+  m_Name: OvalRoom
   m_EditorClassIdentifier: 
-  roomObj: {fileID: 7030036086379042726, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+  roomObj: {fileID: 0}
   rngWeight: 0
   gridDimensions: {x: 1, y: 1}

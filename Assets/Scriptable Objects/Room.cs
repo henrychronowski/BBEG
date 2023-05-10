@@ -23,6 +23,9 @@ public class Room : ScriptableObject
     // Primarily used for dungeon generation, RoomInfo.cs will be attached to every roomObj containing info needed during gameplay
     public GameObject roomObj;
     public int rngWeight;
+
+    // How many spaces on the dungeon gen grid this room needs
+    public Vector2Int gridDimensions = Vector2Int.one;
     public static GameObject LoadRoom(GameObject roomToLoad, Vector3 loadPos)
     {
         return Instantiate(roomToLoad, loadPos, Quaternion.identity);
