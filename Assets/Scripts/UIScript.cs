@@ -20,7 +20,7 @@ public class UIScript : MonoBehaviour
         tempCurr.text = "Gold: " + manager.tempCurr.ToString();
         permCurr.text = "Gems: " + manager.tempCurr.ToString();
 
-        leaderHP.maxValue = manager.leader.baseHealth;
+        leaderHP.maxValue = manager.leader.GetMaxHealth();
         leaderHP.value = manager.leader.currHealth;
         leaderImage.sprite = manager.leader.portrait;
     }
@@ -41,5 +41,6 @@ public class UIScript : MonoBehaviour
     void UpdateHealth()
     {
         leaderHP.value = manager.leader.currHealth;
+        leaderHP.maxValue = manager.leader.GetMaxHealth();
     }
 }
