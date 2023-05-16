@@ -23,10 +23,22 @@ public struct HitData
         mDamage = damage;
     }
 
+    // Returns a processed damage value with the owner's attack and the recipient's defense taken into account
+    // Used in PlayerCharacterManager::HitCharacter()
+    // Does not directly modify mDamage
+    // Rounds to nearest integer
+    public int ProcessDamage()
+    {
+        if(mAttack.isProjectile)
+            return Mathf.RoundToInt((mDamage + mOwner.GetRangedAffinity()) - mRecipient.GetDefense());
+        else
+            return Mathf.RoundToInt((mDamage + mOwner.GetMeleeAffinity()) - mRecipient.GetDefense());
+    }
+
     public Character mOwner { get; private set; }
     public Character mRecipient { get; private set; }
     public Attack mAttack { get; private set; }
-    public float mDamage { get; private set; }
+    public float mDamage { get; set; }
 }
 
 [CreateAssetMenu(fileName = "NewAttack", menuName = "ScriptableObjects/Create Attack", order = 1)]
@@ -49,7 +61,7 @@ public class Attack : ScriptableObject
 
     public GameObject hitboxPrefab;
 
-    bool isProjectile;
+    public bool isProjectile;
 
     public AnimatorOverrideController animController;
 

@@ -81,7 +81,7 @@ public class MoveState : CharacterBaseState
         float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
 
         c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, angle, c.transform.eulerAngles.z);
-        c.rgd.velocity = moveDir * (c.moveSpeed * c.moveSpeedModifier); //?
+        c.rgd.velocity = moveDir * (c.GetMoveSpeed() * c.moveSpeedModifier); //?
     }
 
     public override void FixedUpdate()

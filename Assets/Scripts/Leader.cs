@@ -12,8 +12,5 @@ public class Leader : Character
 
     // Passive ability, implement it like a unique artifact
     // Active ability
-    public override ArtifactTarget GetCharacterType()
-    {
-        return ArtifactTarget.Leader;
-    }
+
 }

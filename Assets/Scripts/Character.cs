@@ -24,20 +24,20 @@ public class Character : MonoBehaviour
 
     [SerializeField] public int baseHealth = 5;
     [SerializeField] public int currHealth = 5;
+    [SerializeField] public int baseDefense = 0;
     [SerializeField] public float moveSpeed = 1f;
+    [SerializeField] public int baseMeleeAffinity;
+    [SerializeField] public int baseRangedAffinity;
     [SerializeField] public Rigidbody rgd;
     [SerializeField] public Vector2 axis;
     [SerializeField] public float turnSmoothVelocity;
     [SerializeField] public float turnSmoothTime;
     [SerializeField] public Transform followPoint; // Experimental transform to have minions follow this character
-    [SerializeField] public float moveSpeedModifier = 1f;
+    [SerializeField] public float moveSpeedModifier = 1f; // Applies a modifier to moveSpeed, useful for terrain that slows
 
     [SerializeField] public Attack meleeAttack;
     [SerializeField] public Attack rangedAttack;
-    [SerializeField] public int baseMeleeAffinity;
-    [SerializeField] public int baseRangedAffinity;
 
-    [SerializeField] public int baseDefense;
 
     [SerializeField] public Hitbox hitbox;
     [SerializeField] private AnimationOverrider overrider;
@@ -75,19 +75,78 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void Hit(float damage)
+    public void Hit(int damage)
     {
-        currHealth -= (int)meleeAttack.damage; // this will cause problems in damage calc, update playerdata.cs to use float for health
+        if(damage < 0)
+            damage = 0;
+        currHealth -= damage; 
+        
         if(currHealth <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    public virtual ArtifactTarget GetCharacterType()
+    public void Heal(int healValue)
     {
-        return 0;
+        currHealth += healValue;
+        if(currHealth > GetMaxHealth())
+        {
+            currHealth = GetMaxHealth();
+        }
     }
+
+    public float GetMoveSpeed()
+    {
+        float moveSpeedBuffTotal = 0;
+        foreach (Buff b in activeBuffs)
+        {
+            moveSpeedBuffTotal += b.movementSpeedBuff;
+        }
+        return moveSpeedBuffTotal + moveSpeed;
+    }
+
+    public int GetMaxHealth()
+    {
+        int maxHealthBuffTotal = 0;
+        foreach(Buff b in activeBuffs)
+        {
+            maxHealthBuffTotal += b.maxHealthBuff;
+        }
+        return maxHealthBuffTotal + baseHealth;
+    }
+
+    public int GetDefense()
+    {
+        int defenseBuffTotal = 0;
+        foreach (Buff b in activeBuffs)
+        {
+            defenseBuffTotal += b.defenseBuff;
+        }
+        return defenseBuffTotal;
+    }
+
+    public int GetMeleeAffinity()
+    {
+        int meleeAffinityBuffTotal = 0;
+        foreach (Buff b in activeBuffs)
+        {
+            meleeAffinityBuffTotal += b.meleeAttackBuff;
+        }
+        return meleeAffinityBuffTotal + baseMeleeAffinity;
+    }
+
+    public int GetRangedAffinity()
+    {
+        int rangedAffinityBuffTotal = 0;
+        foreach (Buff b in activeBuffs)
+        {
+            rangedAffinityBuffTotal += b.rangedAttackBuff;
+        }
+        return rangedAffinityBuffTotal + baseRangedAffinity;
+    }
+
+
 
     public void Move(Vector2 ax, float modifier = 1)
     {

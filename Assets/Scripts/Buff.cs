@@ -15,7 +15,7 @@ public class Buff : ScriptableObject
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("New buff");
     }
 
     // Update is called once per frame

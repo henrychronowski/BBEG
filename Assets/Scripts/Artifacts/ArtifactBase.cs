@@ -23,7 +23,7 @@ public enum ArtifactTarget
 public class ArtifactBase : ScriptableObject
 {
     // ArtifactBase contains funcionality for simple stat boosts
-
+    public bool canStack = true;
     public Buff buff;
 
     // What characters does it apply to? Leader only? Leader + all minions? Leader + demon minions?
@@ -31,7 +31,11 @@ public class ArtifactBase : ScriptableObject
 
     // Set to neutral if tribe is irrelevant
     public Tribe targetTribe = Tribe.Neutral;
+    public ArtifactBehaviorType behavior;
 
+    // Reference to the component that runs the artifact behavior.
+    // If we want to remove artifacts without removing everything this will be useful
+    public Component behaviorComponent;
     public bool ApplyBuff()
     {
         if(buff == null)
@@ -52,6 +56,23 @@ public class ArtifactBase : ScriptableObject
                     m.activeBuffs.Add(buff);
                 }
             }
+        }
+
+        return true;
+    }
+
+    public bool RemoveBuff()
+    {
+        if (buff == null)
+            return false;
+
+        PlayerCharacterManager pcm = PlayerCharacterManager.instance;
+
+        pcm.leader.activeBuffs.Remove(buff);
+
+        foreach (Minion m in pcm.minions)
+        {
+            m.activeBuffs.Remove(buff);
         }
 
         return true;

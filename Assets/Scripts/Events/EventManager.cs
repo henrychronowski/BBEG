@@ -32,6 +32,20 @@ public class EventManager : MonoBehaviour
         if(onAttackConnected != null)
         {
             onAttackConnected(data);
+            HitProcessed(data);
+        }
+    }
+
+    // Meant to run immediately after AttackConnected is completed
+    // Should only ever contain HitCharacter so that onAttackConnected can modify HitData
+    // before the damage gets applied
+    public event Action<HitData> onHitProcessed;
+
+    public void HitProcessed(HitData data)
+    {
+        if (onHitProcessed != null)
+        {
+            onHitProcessed(data);
         }
     }
 
