@@ -50,9 +50,4 @@ public class RoomInfo : MonoBehaviour
         roomExtents = GetComponent<BoxCollider>().size;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
