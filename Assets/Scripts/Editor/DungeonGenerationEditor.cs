@@ -21,8 +21,7 @@ public class DungeonGenerationEditor : Editor
 
         if(GUILayout.Button("Generate"))
         {
-            gen.Clear();
-            gen.Generate();
+            gen.StartGeneration();
         }
 
         if (GUILayout.Button("Clear"))

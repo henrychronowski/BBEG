@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class DungeonGeneration : MonoBehaviour
 {
     [SerializeField] GameObject startingRoom;
-    [SerializeField] Vector2Int startingCoords;
 
     [SerializeField] RoomSet roomSet;
     [SerializeField] float roomGenChance;
@@ -15,7 +14,8 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] int maxRooms;
     [SerializeField] int roomSpawnAttempts;
 
-    // the max amount of times a room can be rerolled when there isn't enough space for it
+    // the max amount of times the room type can be rerolled when there isn't enough space for it
+    // at the given exit
     [SerializeField] int maxRoomRerolls;
 
     [SerializeField] bool generateOnPlay;
@@ -26,11 +26,25 @@ public class DungeonGeneration : MonoBehaviour
 
     // How far rooms are placed relative to each other 
     [SerializeField] float roomGapTranslationDistance;
+    [SerializeField] bool clearedThisFrame;
+    [SerializeField] bool clearedLastFrame;
+
+
+    public void StartGeneration()
+    {
+        Clear();
+        // Clear and Generate need to run on separate frames so that the transforms can properly be updated
+        // Without doing this, the OverlapBox call incorrectly detects box colliders that already have been destroyed
+        // This solution separates Clear and Generate into two frames by having Update run Generate on the next frame
+        clearedThisFrame = true;
+    }    
+
     public void Generate()
     {
         Clear();
+        Physics.SyncTransforms();
 
-        if(useSeed)
+        if (useSeed)
             Random.InitState(seed);
 
         float startingTime = Time.deltaTime;
@@ -42,7 +56,6 @@ public class DungeonGeneration : MonoBehaviour
 
         generatedRooms = new List<RoomInfo>();
         generatedRooms.Add(activeRoom);
-        bool reran = false;
         activeRoom.ClearExitConnections();
         
         for(int i = 0; i < generatedRooms.Count; i++)
@@ -61,13 +74,18 @@ public class DungeonGeneration : MonoBehaviour
                     GameObject instantiatedRoom = null;
                     Collider[] roomCheck;
                     Exit oppositeExit;
+                    int rerollCount = 0;
                     // Attempts to generate a room until it finds one that fits
                     do
                     {
                         if (instantiatedRoom != null)
                         {
+                            instantiatedRoom.gameObject.name = "DestroyedRoom";
+                            instantiatedRoom.layer = 0;
+
                             Destroy(instantiatedRoom.gameObject);
                             instantiatedRoom = null;
+                            rerollCount++;
                         }
                         // Pick a random room from a set
                         Room newRoom = roomSet.GetRandomRoom();
@@ -84,7 +102,7 @@ public class DungeonGeneration : MonoBehaviour
 
                         Debug.Log(roomCheck.Length);
 
-                        if (roomCheck.Length > maxRoomRerolls)
+                        if (rerollCount >= maxRoomRerolls)
                         {
                             Destroy(instantiatedRoom);
                             instantiatedRoom = null;
@@ -123,35 +141,44 @@ public class DungeonGeneration : MonoBehaviour
                 
             }
 
-            // Exit condition
+            // Restarts loop if min rooms isn't met
+            if (generatedRooms.Count < minRooms && roomsAttempted < roomSpawnAttempts)
+            {
+                i = -1;
+                continue;
+            }
+
+            // Exit condition, notably ignores 
             if (roomsAttempted > roomSpawnAttempts || generatedRooms.Count >= maxRooms)
             {
                 break;
             }
 
-            // Sets i to -1 and calls continue, effectively restarting the for loop
-            // I don't like it but it's 1:52am
-            if(i+1 == generatedRooms.Count && generatedRooms.Count < minRooms && !reran)
-            {
-                i = -1;
-                //reran = true;
-                continue;
-            }
             
         }
 
-        Exit[] exits = FindObjectsOfType<Exit>();
+        //Stairs are always spawned in the final room generated, any room type can have an exit
+        generatedRooms[generatedRooms.Count - 1].ActivateStairs();
 
-        foreach(Exit e in exits)
-        {
-            if (e.connectedExit == null)
-                e.gameObject.SetActive(false);
-        }
+        DisableUnusedExits();
+
+        
 
         Debug.Log("Generation complete, roomsAttempted = " + roomsAttempted);
 
     }
-    
+   
+    void DisableUnusedExits()
+    {
+        Exit[] exits = FindObjectsOfType<Exit>();
+
+        foreach (Exit e in exits)
+        {
+            if (e.connectedExit == null)
+                e.gameObject.SetActive(false);
+        }
+    }
+
     public void Clear()
     {
         for(int i = 0; i < generatedRooms.Count; i++)
@@ -190,6 +217,23 @@ public class DungeonGeneration : MonoBehaviour
         return Vector3.zero;
     }
 
+    // Runs every frame
+    // Ensures that there is at least one frame in between Clear() and Generate()
+    // Two bools are used because using just one bool means there is a chance that Generate() can get called before Update() on a given frame
+    void DelayGeneration()
+    {
+        if (clearedLastFrame)
+        {
+            clearedLastFrame = false;
+            clearedThisFrame = false;
+            Generate();
+        }
+        if (clearedThisFrame)
+        {
+            clearedLastFrame = true;
+            return;
+        }
+    }
 
     private void OnDrawGizmos()
     {
@@ -218,6 +262,6 @@ public class DungeonGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DelayGeneration();
     }
 }

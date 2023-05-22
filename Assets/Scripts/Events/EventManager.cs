@@ -79,6 +79,24 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<Transform> onGenerationComplete;
+    public void GenerationComplete(Transform spawn)
+    {
+        if (onGenerationComplete != null)
+        {
+            onGenerationComplete(spawn);
+        }
+    }
+
+    public event Action onStairsReached;
+    public void StairsReached()
+    {
+        if (onStairsReached != null)
+        {
+            onStairsReached();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

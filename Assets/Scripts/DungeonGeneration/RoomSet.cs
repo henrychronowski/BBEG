@@ -12,7 +12,7 @@ public class RoomSet : ScriptableObject
     public Room[] roomArray;
     public int[] roomWeight;
     public int count;
-    
+    public Room exitRoom;
 
     public void Resize(int newSize)
     {

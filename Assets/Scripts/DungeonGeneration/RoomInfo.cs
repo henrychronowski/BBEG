@@ -11,6 +11,8 @@ public class RoomInfo : MonoBehaviour
     public CameraFocus focus;
     public Vector3 roomExtents;
     public Transform roomCenter;
+    [SerializeField] GameObject stairs;
+    public bool isStaircaseRoom = false;
     public List<Exit> GetExitsByDirection(ExitDirection dir)
     {
         List<Exit> exits = new List<Exit>();
@@ -37,6 +39,12 @@ public class RoomInfo : MonoBehaviour
         {
             e.connectedRoom = null;
         }
+    }
+
+    public void ActivateStairs()
+    {
+        stairs.SetActive(true);
+        isStaircaseRoom = true;
     }
 
     private void OnDrawGizmos()

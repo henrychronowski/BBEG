@@ -342,17 +342,26 @@ public class PlayerCharacterManager : MonoBehaviour
         data.mRecipient.Hit(data.ProcessDamage());
     }
 
-    
+    void TeleportParty(Transform newPos)
+    {
+        leader.transform.position = newPos.transform.position;
+        for(int i = 0; i < minions.Count; i++)
+        {
+            minions[i].transform.position = currentMimicPointsParent.GetChild(i).transform.position;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         EventManager.instance.onHitProcessed += HitCharacter;
+        EventManager.instance.onGenerationComplete += TeleportParty;
     }
 
     private void OnDestroy()
     {
         EventManager.instance.onHitProcessed -= HitCharacter;
+        EventManager.instance.onGenerationComplete -= TeleportParty;
     }
 
     private void Update()
