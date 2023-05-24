@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseScript : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class PauseScript : MonoBehaviour
 
     public void CheckInput()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        
+        if(true)
         {
             if (!pauseScreen.activeSelf)
             {
