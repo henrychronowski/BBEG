@@ -351,17 +351,35 @@ public class PlayerCharacterManager : MonoBehaviour
         }
     }
 
+    void EndScriptedState()
+    {
+        party = PartyMovementState.Mimic;
+        leader.SetMoveSpeedModifier(1);
+
+    }
+
+    void StartScriptedState()
+    {
+        party = PartyMovementState.Scripted;
+        leader.SetMoveSpeedModifier(0);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         EventManager.instance.onHitProcessed += HitCharacter;
         EventManager.instance.onGenerationComplete += TeleportParty;
+        EventManager.instance.onStairsReached += StartScriptedState;
+        EventManager.instance.onTransitionComplete += EndScriptedState;
+
     }
 
     private void OnDestroy()
     {
         EventManager.instance.onHitProcessed -= HitCharacter;
         EventManager.instance.onGenerationComplete -= TeleportParty;
+        EventManager.instance.onStairsReached -= StartScriptedState;
+        EventManager.instance.onTransitionComplete -= EndScriptedState;
     }
 
     private void Update()

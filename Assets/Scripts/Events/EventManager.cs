@@ -97,6 +97,35 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action onLoadNewFloor;
+    public void LoadNewFloor()
+    {
+        if (onLoadNewFloor != null)
+        {
+            onLoadNewFloor();
+        }
+    }
+
+    // Fires when the screen goes black during the floor transition
+    public event Action onTransitionInProgress;
+    public void TransitionInProgress()
+    {
+        if (onTransitionInProgress != null)
+        {
+            onTransitionInProgress();
+        }
+    }
+
+    // Fires when the transition finishes
+    public event Action onTransitionComplete;
+    public void TransitionComplete()
+    {
+        if (onTransitionComplete != null)
+        {
+            onTransitionComplete();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

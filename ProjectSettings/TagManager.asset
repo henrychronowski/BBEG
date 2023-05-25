@@ -9,6 +9,7 @@ TagManager:
   - Melee
   - Minion
   - Enemy
+  - Stairs
   layers:
   - Default
   - TransparentFX

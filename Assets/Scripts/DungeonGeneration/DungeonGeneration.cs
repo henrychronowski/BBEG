@@ -33,6 +33,7 @@ public class DungeonGeneration : MonoBehaviour
     public void StartGeneration()
     {
         Clear();
+
         // Clear and Generate need to run on separate frames so that the transforms can properly be updated
         // Without doing this, the OverlapBox call incorrectly detects box colliders that already have been destroyed
         // This solution separates Clear and Generate into two frames by having Update run Generate on the next frame
@@ -162,7 +163,7 @@ public class DungeonGeneration : MonoBehaviour
 
         DisableUnusedExits();
 
-        
+        EventManager.instance.GenerationComplete(spawn);
 
         Debug.Log("Generation complete, roomsAttempted = " + roomsAttempted);
 
@@ -255,8 +256,16 @@ public class DungeonGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.instance.onTransitionInProgress += StartGeneration;
+
         if (generateOnPlay)
             Generate();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.onTransitionInProgress -= StartGeneration;
+
     }
 
     // Update is called once per frame
