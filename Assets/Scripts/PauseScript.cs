@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseScript : MonoBehaviour
 {
@@ -9,23 +10,20 @@ public class PauseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckInput();
+        //CheckInput();
     }
 
-    public void CheckInput()
+    private void OnPause()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (!pauseScreen.activeSelf)
         {
-            if (!pauseScreen.activeSelf)
-            {
-                pauseScreen.gameObject.SetActive(true);
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                pauseScreen.gameObject.SetActive(false);
-                Time.timeScale = 1f;
-            }
+            pauseScreen.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            pauseScreen.gameObject.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 
