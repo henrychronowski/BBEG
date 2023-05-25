@@ -2866,8 +2866,8 @@ MonoBehaviour:
   portrait: {fileID: 0}
   minWanderTime: 1
   maxWanderTime: 3
-  viewRange: 2
-  attackingRange: 1
+  viewRange: 3
+  attackingRange: 2
 --- !u!114 &402895872
 MonoBehaviour:
   m_ObjectHideFlags: 0

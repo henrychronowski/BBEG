@@ -44,7 +44,6 @@ public class DungeonGeneration : MonoBehaviour
         generatedRooms.Add(activeRoom);
         bool reran = false;
         activeRoom.ClearExitConnections();
-        //while(currentRooms < maxRooms)
         
         for(int i = 0; i < generatedRooms.Count; i++)
         {
@@ -52,12 +51,12 @@ public class DungeonGeneration : MonoBehaviour
 
             foreach(Exit ex in activeRoom.exitLocations)
             {
-                if(ex.HasConnectingRoom()) // Prevents duplicates
+                if(ex.HasConnectingRoom()) // Prevents rooms from being spawned twice
                 {
                     roomsAttempted++;
                     continue;
                 }
-                if(Random.Range(1, 100) < roomGenChance)
+                if(Random.Range(0, 100) < roomGenChance)
                 {
                     GameObject instantiatedRoom = null;
                     Collider[] roomCheck;
@@ -72,8 +71,6 @@ public class DungeonGeneration : MonoBehaviour
                         }
                         // Pick a random room from a set
                         Room newRoom = roomSet.GetRandomRoom();
-
-
 
                         // Loads in the new room while also adding it to the generatedRooms list
                         instantiatedRoom = Room.LoadRoom(newRoom.roomObj, ex.transform.position + GetTranslationVector(ex));

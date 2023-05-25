@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63d738c9a98124844921e89768e442a8, type: 3}
-  m_Name: TestBuff
+  m_Name: HPBuff
   m_EditorClassIdentifier: 
   maxHealthBuff: 10
-  movementSpeedBuff: 1
-  meleeAttackBuff: 1
-  rangedAttackBuff: 1
-  defenseBuff: 1
+  movementSpeedBuff: 0
+  meleeAttackBuff: 0
+  rangedAttackBuff: 0
+  defenseBuff: 0
