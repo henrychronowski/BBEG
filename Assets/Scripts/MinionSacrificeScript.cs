@@ -56,4 +56,21 @@ public class MinionSacrificeScript : MonoBehaviour
         sacrificeMenu.gameObject.SetActive(false);
         Time.timeScale = 1f;
     }
+
+    public void Sacrifice(Image minionImage)
+    {
+        for(int i = 0; i < manager.minions.Count; i++)
+        {
+            if(manager.minions[i].portrait == minionImage.sprite)
+            {
+                Destroy(manager.minions[i]);
+                manager.minions[i] = null;
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
+    }
 }
