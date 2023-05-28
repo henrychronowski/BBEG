@@ -9,19 +9,19 @@ public class RoomSet : ScriptableObject
     // RoomSets are given to DungeonGeneration upon loading into a new level (forest, castle etc)
     // Each room can be given its own rarity via the RoomSet editor
 
-    public Room[] roomArray;
+    public GameObject[] roomArray;
     public int[] roomWeight;
     public int count;
-    public Room exitRoom;
+    public GameObject exitRoom;
 
     public void Resize(int newSize)
     {
         count = newSize;
-        roomArray = new Room[count];
-        roomWeight = new int[count];
+        System.Array.Resize(ref roomArray, newSize);
+        System.Array.Resize(ref roomWeight, newSize);
     }
 
-    public Room GetRandomRoom()
+    public GameObject GetRandomRoom()
     {
         int totalWeight = 0;
 

@@ -6867,7 +6867,7 @@ GameObject:
   - component: {fileID: 935348238}
   - component: {fileID: 935348237}
   m_Layer: 0
-  m_Name: DungeonGen
+  m_Name: DungeonGeneration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

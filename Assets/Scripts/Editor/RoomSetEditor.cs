@@ -17,6 +17,7 @@ public class RoomSetEditor : Editor
 
     void Init()
     {
+        m_RoomsList = null;
         m_RoomsList = serializedObject.FindProperty("roomArray");
         m_RoomWeights = serializedObject.FindProperty("roomWeight");
         m_RoomCount = serializedObject.FindProperty("count");
@@ -27,25 +28,47 @@ public class RoomSetEditor : Editor
     {
         m_RoomCount.intValue = EditorGUILayout.IntField("Count", m_RoomCount.intValue);
 
-        if(m_RoomCount.intValue != m_RoomsList.arraySize)
+        if (m_RoomCount.intValue != m_RoomsList.arraySize)
         {
-            m_RoomsList.ClearArray();
+            //m_RoomsList.ClearArray();
+            //m_RoomWeights.ClearArray();
             RoomSet a = (RoomSet)target;
             a.Resize(m_RoomCount.intValue);
+            serializedObject.ApplyModifiedProperties();
+            Init();
         }
+        EditorGUILayout.BeginHorizontal();
 
+        if(GUILayout.Button("Add Room"))
+        {
+            m_RoomCount.intValue++;
+            RoomSet a = (RoomSet)target;
+            a.Resize(m_RoomCount.intValue);
+            serializedObject.Update();
+        }
+        if (GUILayout.Button("Remove Room"))
+        {
+            m_RoomCount.intValue--;
+            RoomSet a = (RoomSet)target;
+            a.Resize(m_RoomCount.intValue);
+            serializedObject.Update();
+        }
+        
+        EditorGUILayout.EndHorizontal();
+        EditorGUIUtility.labelWidth = 50f;
         //Room thisRoom = (Room)target;
-        for (int i = 0; i < m_RoomsList.arraySize; i++)
+        for (int i = 0; i < m_RoomCount.intValue; i++)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.ObjectField(m_RoomsList.GetArrayElementAtIndex(i), new GUIContent("Room " + i.ToString()));
-
+            EditorGUILayout.ObjectField(m_RoomsList.GetArrayElementAtIndex(i), new GUIContent("Room " + i.ToString()), GUILayout.Width(250f), GUILayout.ExpandWidth(false));
+            
             m_RoomWeights.GetArrayElementAtIndex(i).intValue = 
-                EditorGUILayout.IntField("Weight",m_RoomWeights.GetArrayElementAtIndex(i).intValue);
+                EditorGUILayout.IntField("Weight",m_RoomWeights.GetArrayElementAtIndex(i).intValue, GUILayout.Width(100f), GUILayout.ExpandWidth(false));
 
             EditorGUILayout.EndHorizontal();
 
         }
-        serializedObject.ApplyModifiedProperties();
+        Debug.Log(" Final " + serializedObject.ApplyModifiedProperties());
+        
     }
 }

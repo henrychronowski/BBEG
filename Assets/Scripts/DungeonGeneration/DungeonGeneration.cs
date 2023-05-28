@@ -89,10 +89,10 @@ public class DungeonGeneration : MonoBehaviour
                             rerollCount++;
                         }
                         // Pick a random room from a set
-                        Room newRoom = roomSet.GetRandomRoom();
+                        GameObject newRoom = roomSet.GetRandomRoom();
 
                         // Loads in the new room while also adding it to the generatedRooms list
-                        instantiatedRoom = Room.LoadRoom(newRoom.roomObj, ex.transform.position + GetTranslationVector(ex));
+                        instantiatedRoom = Room.LoadRoom(newRoom, ex.transform.position + GetTranslationVector(ex));
                         oppositeExit = Room.GetRoomInfo(instantiatedRoom).GetExitsByDirection(Exit.GetOpposingDirection(ex.direction))[0];
                         instantiatedRoom.transform.position -= oppositeExit.transform.localPosition;
                         RoomInfo instantiatedRoomInfo = instantiatedRoom.GetComponent<RoomInfo>();
