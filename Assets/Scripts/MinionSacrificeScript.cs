@@ -63,7 +63,7 @@ public class MinionSacrificeScript : MonoBehaviour
         {
             if(manager.minions[i] != null && manager.minions[i].portrait == minionImage.sprite)
             {
-                Destroy(manager.minions[i]);
+                Destroy(manager.minions[i].gameObject);
                 manager.minions[i] = null;
                 break;
             }
