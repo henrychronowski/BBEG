@@ -61,7 +61,7 @@ public class MinionSacrificeScript : MonoBehaviour
     {
         for(int i = 0; i < manager.minions.Count; i++)
         {
-            if(manager.minions[i].portrait == minionImage.sprite)
+            if(manager.minions[i] != null && manager.minions[i].portrait == minionImage.sprite)
             {
                 Destroy(manager.minions[i]);
                 manager.minions[i] = null;
