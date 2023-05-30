@@ -142,9 +142,9 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         rgd = GetComponent<Rigidbody>();
-        mesh = GetComponent<MeshRenderer>();
         collider = GetComponent<SphereCollider>();
         charactersHit = new List<Character>();
+        mesh.transform.localScale = Vector3.one * (radius * 2);
     }
 
     // Update is called once per frame
