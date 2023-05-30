@@ -17,7 +17,12 @@ public class Exit : MonoBehaviour
     [SerializeField] float loadingTriggerRadius = 5f;
     public RoomInfo connectedRoom;
     public Exit connectedExit;
+    [SerializeField] BoxCollider nonTriggerCollider;
+    [SerializeField] Material closedMat;
+    [SerializeField] Material openMat;
+    [SerializeField] MeshRenderer meshRenderer;
 
+    bool isOpen = true;
 
     public static ExitDirection GetOpposingDirection(ExitDirection dir)
     {
@@ -75,6 +80,27 @@ public class Exit : MonoBehaviour
         }
     }
 
+    public void Close()
+    {
+        if (!isOpen)
+            return;
+
+        isOpen = false;
+        meshRenderer.material = closedMat;
+        nonTriggerCollider.enabled = true;
+        // Put door close animation logic here
+    }
+
+    public void Open()
+    {
+        if (isOpen)
+            return;
+
+        isOpen = true;
+        meshRenderer.material = openMat;
+        nonTriggerCollider.enabled = false;
+    }
+
     public bool HasConnectingRoom()
     {
         return connectedRoom != null;
@@ -99,12 +125,12 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") && isOpen)
         {
             if(PlayerCharacterManager.instance.party != PartyMovementState.Scripted 
                 && IsPlayerMovingTowardsExit())
             {
-                PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position);
+                PlayerCharacterManager.instance.StartTransition(connectedExit.transform.position, connectedRoom);
                 CameraControl.Instance.ChangeFocus(connectedRoom.focus);
             }
 

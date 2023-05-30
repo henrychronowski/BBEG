@@ -229,6 +229,8 @@ public class Character : MonoBehaviour
             UpdateOverrider(atk);
             animator.SetTrigger("Attack");
             state = new AttackState(this, atk);
+            EventManager.instance.AttackStarted(atk);
+
         }
     }
     // Start is called before the first frame update

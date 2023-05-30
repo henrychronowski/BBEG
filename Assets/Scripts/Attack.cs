@@ -4,10 +4,8 @@ using UnityEngine;
 
 public enum AttackType
 {
-    LightMelee,
-    LightRanged,
-    HeavyMelee,
-    HeavyRanged
+    Melee,
+    Ranged
 }
 
 public struct HitData

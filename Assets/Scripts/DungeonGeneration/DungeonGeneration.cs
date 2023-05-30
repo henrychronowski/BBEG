@@ -159,7 +159,7 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         //Stairs are always spawned in the final room generated, any room type can have an exit
-        generatedRooms[generatedRooms.Count - 1].ActivateStairs();
+        generatedRooms[generatedRooms.Count - 1].MarkAsStairsRoom();
 
         DisableUnusedExits();
 

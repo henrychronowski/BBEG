@@ -12,7 +12,9 @@ public class RoomInfo : MonoBehaviour
     public Vector3 roomExtents;
     public Transform roomCenter;
     [SerializeField] GameObject stairs;
+    [SerializeField] Transform enemies;
     public bool isStaircaseRoom = false;
+    public bool isRoomCleared = false;
     public List<Exit> GetExitsByDirection(ExitDirection dir)
     {
         List<Exit> exits = new List<Exit>();
@@ -41,10 +43,65 @@ public class RoomInfo : MonoBehaviour
         }
     }
 
+    public void SetExitOpenStatus(bool open)
+    {
+        foreach(Exit ex in exitLocations)
+        {
+            if(open)
+                ex.Open();
+            else
+                ex.Close();
+        }
+    }
+
+    public void MarkAsStairsRoom()
+    {
+        isStaircaseRoom = true;
+    }
+
     public void ActivateStairs()
     {
-        stairs.SetActive(true);
-        isStaircaseRoom = true;
+        if(isStaircaseRoom)
+        {
+            stairs.SetActive(true);
+        }
+    }
+
+    bool AreEnemiesAlive()
+    {
+        return enemies.childCount > 0;
+    }
+
+    void PlayerEnteredRoom(RoomInfo room)
+    {
+        if (room != this)
+            return;
+
+        if(AreEnemiesAlive())
+        {
+            SetExitOpenStatus(false);
+        }
+    }
+
+    void ClearRoom(RoomInfo r)
+    {
+        if (r != this)
+            return;
+
+        isRoomCleared = true;
+        SetExitOpenStatus(true);
+        ActivateStairs();
+    }
+
+    void CheckForRoomClear()
+    {
+        if (!isRoomCleared)
+        {
+            if (!AreEnemiesAlive())
+            {
+                EventManager.instance.RoomCleared(this);
+            }
+        }
     }
 
     private void OnDrawGizmos()
@@ -56,6 +113,20 @@ public class RoomInfo : MonoBehaviour
     void Start()
     {
         roomExtents = GetComponent<BoxCollider>().size;
+        EventManager.instance.roomEntered += PlayerEnteredRoom;
+        EventManager.instance.roomCleared += ClearRoom;
+
     }
 
+    private void OnDestroy()
+    {
+        EventManager.instance.roomEntered -= PlayerEnteredRoom;
+        EventManager.instance.roomCleared -= ClearRoom;
+    }
+
+
+    private void Update()
+    {
+        CheckForRoomClear();
+    }
 }

@@ -126,6 +126,35 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<RoomInfo> roomEntered;
+
+    public void RoomEntered(RoomInfo r)
+    {
+        if (roomEntered != null)
+        {
+            roomEntered(r);
+        }
+    }
+
+    public event Action<RoomInfo> roomCleared;
+
+    public void RoomCleared(RoomInfo r)
+    {
+        if (roomCleared != null)
+        {
+            roomCleared(r);
+        }
+    }
+
+    // Useful for events that do not pass variables, prevents needing to make unique functions for those
+    public void FireTypelessEvent(Action typelessAction)
+    {
+        if(typelessAction != null)
+        {
+            typelessAction();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

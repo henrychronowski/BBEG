@@ -39,6 +39,8 @@ public class PlayerCharacterManager : MonoBehaviour
 
     [SerializeField] public float transitionStoppingDistance;
     [SerializeField] public float transitionSpeedModifier;
+    // Changes the target destination to be slightly in front of the exit instead of inside it
+    [SerializeField] public float transitionArrivalOffset;
 
     // How far in front of the player the minions will be when attacking
     [SerializeField] float minionAttackDisplacement;
@@ -103,27 +105,52 @@ public class PlayerCharacterManager : MonoBehaviour
         return true;
     }
 
-    private void OnLightAttack()
+    private void OnMeleeAttack()
+    {
+        RequestAttack(AttackType.Melee);
+    }
+
+    private void OnRangedAttack()
+    {
+        RequestAttack(AttackType.Ranged);
+    }
+
+    void RequestAttack(AttackType type)
     {
         if (party == PartyMovementState.Scripted)
             return;
 
         if (attacking && currentAttackIndex < minions.Count)
         {
-            //leader.AttackStart(minions[currentAttackIndex].attack);
             minions[currentAttackIndex].SetFacingDirection(leader.transform.forward);
             minions[currentAttackIndex].transform.position = leader.transform.position + (leader.transform.forward * minionAttackDisplacement) + ((leader.transform.right * currentAttackIndex) - leader.transform.right);
-            
-            minions[currentAttackIndex].AttackStart();
+
+            if (type == AttackType.Melee)
+            {
+                minions[currentAttackIndex].AttackStart(minions[currentAttackIndex].meleeAttack);
+            }
+            else
+            {
+                minions[currentAttackIndex].AttackStart(minions[currentAttackIndex].rangedAttack);
+            }
             currentAttackIndex++;
         }
-        else
+        else // It's the leader's turn
         {
-            leader.AttackStart();
+            
+            if (type == AttackType.Melee)
+            {
+                leader.AttackStart(leader.meleeAttack);
+            }
+            else
+            {
+                leader.AttackStart(leader.rangedAttack);
+            }
             StopMinions();
             currentAttackIndex = 0;
         }
     }
+
     private void OnMimicStart(InputValue val)
     {
         Vector2 axis = Vector2.zero;
@@ -237,7 +264,12 @@ public class PlayerCharacterManager : MonoBehaviour
                 }
             case PartyMovementState.Scripted: // 
                 {
-                    FollowUpdate();
+                    for (int i = 0; i < minions.Count; i++)
+                    {
+                        minions[i].Move(leader.axis);
+                        minions[i].NewMimic(currentMimicPointsParent.GetChild(i));
+                        minions[i].transform.forward = leader.transform.forward;
+                    }
                     break;
                 }
         }
@@ -254,8 +286,11 @@ public class PlayerCharacterManager : MonoBehaviour
 
     IEnumerator RoomTransition(Vector3 newPos)
     {
+        
         party = PartyMovementState.Scripted;
         float originalDistance = Vector3.Distance(newPos, leader.transform.position);
+        Vector3 originalDir = (newPos - leader.transform.position).normalized;
+        newPos += originalDir * transitionArrivalOffset;
         while (Vector3.Distance(newPos, leader.transform.position) > transitionStoppingDistance)
         {
             Vector3 dir = (newPos - leader.transform.position).normalized;
@@ -273,14 +308,15 @@ public class PlayerCharacterManager : MonoBehaviour
         leader.SetMoveSpeedModifier(1);
         leader.axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
         party = PartyMovementState.Mimic;
-        
+        EventManager.instance.RoomEntered(activeRoom);
         
     }
 
 
-    public void StartTransition(Vector3 newPos)
+    public void StartTransition(Vector3 newPos, RoomInfo targetRoom)
     {
         StartCoroutine(RoomTransition(newPos));
+        activeRoom = targetRoom;
     }
 
     protected void FollowUpdate()
