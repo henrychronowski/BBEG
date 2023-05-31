@@ -54,6 +54,7 @@ public class UIScript : MonoBehaviour
     {
         UpdateText();
         UpdateHealth();
+        UpdatePortraits();
     }
 
     void UpdateText()
@@ -66,5 +67,21 @@ public class UIScript : MonoBehaviour
     {
         leaderHP.value = manager.leader.currHealth;
         leaderHP.maxValue = manager.leader.GetMaxHealth();
+    }
+
+    void UpdatePortraits()
+    {
+        for (int i = 0; i < manager.minions.Count; i++)
+        {
+            if (manager.minions[i] != null)
+            {
+                minionPortraits[i].gameObject.SetActive(true);
+                minionPortraits[i].sprite = manager.minions[i].portrait;
+            }
+            else
+            {
+                minionPortraits[i].gameObject.SetActive(false);
+            }
+        }
     }
 }
