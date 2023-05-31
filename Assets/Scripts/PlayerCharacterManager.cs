@@ -37,6 +37,8 @@ public class PlayerCharacterManager : MonoBehaviour
     [SerializeField] public Transform currentMimicPointsParent;
     [SerializeField] public List<Transform> mimicPointParents;
 
+
+    [SerializeField] public float outOfCombatSpeedBoost;
     [SerializeField] public float transitionStoppingDistance;
     [SerializeField] public float transitionSpeedModifier;
     // Changes the target destination to be slightly in front of the exit instead of inside it
@@ -85,13 +87,10 @@ public class PlayerCharacterManager : MonoBehaviour
                 {
                     leader.Move(axis);
 
-
                     break;
                 }
         }
     }
-
-    // Move
 
     public bool AddMinion(Minion newMinion)
     {
@@ -241,7 +240,7 @@ public class PlayerCharacterManager : MonoBehaviour
             leader.Move(leader.axis, 0);
             return;
         }
-        
+        leader.SetMoveSpeedModifier(1);
 
         switch (party)
         {
@@ -321,6 +320,8 @@ public class PlayerCharacterManager : MonoBehaviour
 
     protected void FollowUpdate()
     {
+        leader.axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
+
         if (leader.axis == Vector2.zero || leader.rgd.velocity == Vector3.zero)
         {
             for (int i = 0; i < minions.Count; i++)
@@ -422,6 +423,7 @@ public class PlayerCharacterManager : MonoBehaviour
     {
         attacking = IsCharacterInPartyInState(CharacterState.Attack);
         PartyStateUpdate();
+
         if(party == PartyMovementState.Follow)
         {
             stateView.text = "Party State: " + party.ToString() + "\nFormation: None";

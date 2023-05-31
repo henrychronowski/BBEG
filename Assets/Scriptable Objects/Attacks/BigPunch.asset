@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startupInSeconds: 0.15
   activeTimeInSeconds: 0.5
-  totalTimeInSeconds: 1.1
+  totalTimeInSeconds: 0.9
   damage: 2
+  soundId: 0
   spawnOffset: 1
   hitboxPrefab: {fileID: 5991274363449762214, guid: 380badcb5c7f1db4fbe1c1ad30093a9c, type: 3}
+  isProjectile: 0
   animController: {fileID: 22100000, guid: 50e79587a0395214285996b0c7592073, type: 2}
   projectileLifetime: 0

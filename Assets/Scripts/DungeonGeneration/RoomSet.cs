@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewRoomSet", menuName = "ScriptableObjects/Create Room Set", order = 1)]
+[CreateAssetMenu(fileName = "NewRoomSet", menuName = "ScriptableObjects/Room Set", order = 1)]
 [System.Serializable]
 public class RoomSet : ScriptableObject
 {

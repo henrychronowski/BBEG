@@ -4923,7 +4923,7 @@ MonoBehaviour:
   maxMinions: 3
   minions: []
   leader: {fileID: 585977229852324690}
-  party: 0
+  party: 1
   attacking: 0
   mimicPointsContainer: {fileID: 1190369653}
   currentMimicPointsParent: {fileID: 2057935142}
@@ -4932,6 +4932,7 @@ MonoBehaviour:
   - {fileID: 1908922365}
   - {fileID: 1730887772}
   - {fileID: 453634877}
+  outOfCombatSpeedBoost: 0.5
   transitionStoppingDistance: 0.5
   transitionSpeedModifier: 0.1
   transitionArrivalOffset: 1.5
