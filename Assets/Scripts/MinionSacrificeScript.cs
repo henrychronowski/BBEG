@@ -16,7 +16,7 @@ public class MinionSacrificeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        manager = FindObjectOfType<PlayerCharacterManager>();
+        manager = PlayerCharacterManager.instance;
         minionImages = new List<Image>();
         minionImages.Add(minion1Image);
         minionImages.Add(minion2Image);
@@ -66,10 +66,6 @@ public class MinionSacrificeScript : MonoBehaviour
                 Destroy(manager.minions[i].gameObject);
                 manager.minions[i] = null;
                 break;
-            }
-            else
-            {
-                continue;
             }
         }
     }
