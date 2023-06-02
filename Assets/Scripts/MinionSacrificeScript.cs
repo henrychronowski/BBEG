@@ -45,13 +45,13 @@ public class MinionSacrificeScript : MonoBehaviour
                 minionImages[i].gameObject.SetActive(false);
             }
         }
-        PauseScript.instance.Pause();
+        pause.Pause();
     }
 
     public void CloseScreen()
     {
         sacrificeMenu.gameObject.SetActive(false);
-        PauseScript.instance.Pause();
+        pause.Pause();
     }
 
     public void Sacrifice(Image minionImage)
