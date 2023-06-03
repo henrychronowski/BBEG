@@ -146,6 +146,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<ArtifactBase> onArtifactAdded;
+
+    public void AddArtifact(ArtifactBase a)
+    {
+        if(onArtifactAdded != null)
+        {
+            onArtifactAdded(a);
+        }
+    }
+
     // Useful for events that do not pass variables, prevents needing to make unique functions for those
     public void FireTypelessEvent(Action typelessAction)
     {

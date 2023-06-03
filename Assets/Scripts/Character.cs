@@ -103,7 +103,7 @@ public class Character : MonoBehaviour
         float moveSpeedBuffTotal = 0;
         foreach (Buff b in activeBuffs)
         {
-            moveSpeedBuffTotal += b.movementSpeedBuff;
+            moveSpeedBuffTotal += (b.movementSpeedBuff * b.GetMultiplier());
         }
 
         if(PlayerCharacterManager.instance.activeRoom.isRoomCleared)
@@ -119,7 +119,7 @@ public class Character : MonoBehaviour
         int maxHealthBuffTotal = 0;
         foreach(Buff b in activeBuffs)
         {
-            maxHealthBuffTotal += b.maxHealthBuff;
+            maxHealthBuffTotal += (int)(b.maxHealthBuff * b.GetMultiplier());
         }
         return maxHealthBuffTotal + baseHealth;
     }
@@ -129,7 +129,7 @@ public class Character : MonoBehaviour
         int defenseBuffTotal = 0;
         foreach (Buff b in activeBuffs)
         {
-            defenseBuffTotal += b.defenseBuff;
+            defenseBuffTotal += (int)(b.defenseBuff * b.GetMultiplier());
         }
         return defenseBuffTotal;
     }
@@ -139,7 +139,7 @@ public class Character : MonoBehaviour
         int meleeAffinityBuffTotal = 0;
         foreach (Buff b in activeBuffs)
         {
-            meleeAffinityBuffTotal += b.meleeAttackBuff;
+            meleeAffinityBuffTotal += (int)(b.meleeAttackBuff * b.GetMultiplier());
         }
         return meleeAffinityBuffTotal + baseMeleeAffinity;
     }
@@ -149,7 +149,7 @@ public class Character : MonoBehaviour
         int rangedAffinityBuffTotal = 0;
         foreach (Buff b in activeBuffs)
         {
-            rangedAffinityBuffTotal += b.rangedAttackBuff;
+            rangedAffinityBuffTotal += (int)(b.rangedAttackBuff * b.GetMultiplier());
         }
         return rangedAffinityBuffTotal + baseRangedAffinity;
     }

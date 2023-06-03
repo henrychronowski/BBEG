@@ -1575,6 +1575,7 @@ Transform:
   - {fileID: 4211626580232844420}
   - {fileID: 5080486630309785792}
   - {fileID: 5122532484953489395}
+  - {fileID: 7104758231621898132}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1598,6 +1599,7 @@ MonoBehaviour:
   focus: {fileID: 5629018737613818289}
   roomExtents: {x: 30, y: 1, z: 30}
   roomCenter: {fileID: 9037347872013043208}
+  rewardSpawn: {fileID: 7104758231621898132}
   stairs: {fileID: 5815171418841795642}
   enemies: {fileID: 5122532484953489395}
   isStaircaseRoom: 0
@@ -1629,6 +1631,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 30, y: 1, z: 30}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3594393068581445672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7104758231621898132}
+  m_Layer: 10
+  m_Name: RewardSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7104758231621898132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3594393068581445672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4229026288906266036}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4925869116733952902
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,4 +17,5 @@ MonoBehaviour:
   affectedCharacterTypes: 0
   targetTribe: 0
   behavior: 1
-  behaviorComponent: {fileID: 0}
+  uiSprite: {fileID: 21300000, guid: 5c0a8a00a0788584abf32d66ff9baf5e, type: 3}
+  runtimeBehaviorComponent: {fileID: 0}

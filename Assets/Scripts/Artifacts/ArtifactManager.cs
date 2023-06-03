@@ -17,11 +17,12 @@ public class ArtifactManager : MonoBehaviour
     [SerializeField] ArtifactBase healArtifact;
     [SerializeField] ArtifactBase damageArtifact;
 
-    bool AddArtifact(ArtifactBase artifact)
+    void AddArtifact(ArtifactBase artifact)
     {
         if(activeArtifacts.Contains(artifact) && !artifact.canStack)
         {
-            return false;
+            Debug.Log("Artifact cannot stack");
+            return;
         }
         activeArtifacts.Add(artifact);
         artifact.ApplyBuff();
@@ -42,7 +43,6 @@ public class ArtifactManager : MonoBehaviour
         }
         artifact.runtimeBehaviorComponent = behaviorComponent;
 
-        return true;
     }
 
     void RemoveArtifact(ArtifactBase artifact)
@@ -73,6 +73,7 @@ public class ArtifactManager : MonoBehaviour
     void Start()
     {
         EventManager.instance.onNewMinionAdded += ApplyBuffsToNewMinion;
+        EventManager.instance.onArtifactAdded += AddArtifact;
         if(addArtifactOnStart)
             AddArtifact(healArtifact);
     }

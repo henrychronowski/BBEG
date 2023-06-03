@@ -33,7 +33,7 @@ public class ArtifactBase : ScriptableObject
     public Tribe targetTribe = Tribe.Neutral;
     public ArtifactBehaviorType behavior;
     public Sprite uiSprite;
-
+    public Rarity rarity;
     // Reference to the component that runs the artifact behavior.
     // If we want to remove artifacts without removing everything this will be useful
     public Component runtimeBehaviorComponent;
@@ -58,7 +58,7 @@ public class ArtifactBase : ScriptableObject
                 }
             }
         }
-
+        
         return true;
     }
 
@@ -77,6 +77,12 @@ public class ArtifactBase : ScriptableObject
         }
 
         return true;
+    }
+
+    public void SetRarity(Rarity r)
+    {
+        rarity = r;
+        buff.rarity = r;
     }
 
     private void OnEnable()

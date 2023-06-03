@@ -11,6 +11,7 @@ public class RoomInfo : MonoBehaviour
     public CameraFocus focus;
     public Vector3 roomExtents;
     public Transform roomCenter;
+    public Transform rewardSpawn;
     [SerializeField] GameObject stairs;
     [SerializeField] Transform enemies;
     public bool isStaircaseRoom = false;

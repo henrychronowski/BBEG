@@ -33,6 +33,7 @@ public class Minion : Character
     [SerializeField] float mimicCatchupSpeedModifier;
 
     [SerializeField] public bool isStray; // Hasn't joined party yet
+    [SerializeField] Rarity rarity;
 
     // Start is called before the first frame update
     void Start()

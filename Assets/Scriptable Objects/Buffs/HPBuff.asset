@@ -17,3 +17,6 @@ MonoBehaviour:
   meleeAttackBuff: 0
   rangedAttackBuff: 0
   defenseBuff: 0
+  uncommonMultiplier: 1.5
+  rareMultiplier: 2
+  rarity: 0
