@@ -2916,6 +2916,7 @@ GameObject:
   - component: {fileID: 440264317}
   - component: {fileID: 440264319}
   - component: {fileID: 440264320}
+  - component: {fileID: 440264321}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -3000,6 +3001,19 @@ MonoBehaviour:
   minion3Image: {fileID: 987542269}
   manager: {fileID: 0}
   pause: {fileID: 0}
+--- !u!114 &440264321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440264316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011ac814012d9464192ed532667b0b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetScreen: {fileID: 1527722939}
 --- !u!1 &453565024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4367,7 +4381,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 702842241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 440264321}
+        m_TargetAssemblyTypeName: ReloadSceneScript, Assembly-CSharp
+        m_MethodName: ResetScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &702842241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5369,7 +5395,7 @@ GameObject:
   - component: {fileID: 838279330}
   - component: {fileID: 838279329}
   m_Layer: 5
-  m_Name: UpgradeButton
+  m_Name: SacrificeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8550,7 +8576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Load
+  m_Text: Reset
 --- !u!222 &1194342961
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10312,7 +10338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1527722940
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11077,7 +11103,7 @@ GameObject:
   - component: {fileID: 1703637296}
   - component: {fileID: 1703637295}
   m_Layer: 5
-  m_Name: LoadButton
+  m_Name: ResetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11148,9 +11174,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 789541248}
-        m_TargetAssemblyTypeName: SaveAndLoadData, Assembly-CSharp
-        m_MethodName: LoadPlayerData
+      - m_Target: {fileID: 440264321}
+        m_TargetAssemblyTypeName: ReloadSceneScript, Assembly-CSharp
+        m_MethodName: OpenScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
