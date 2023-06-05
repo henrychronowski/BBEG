@@ -2918,7 +2918,7 @@ GameObject:
   - component: {fileID: 440264320}
   - component: {fileID: 440264321}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PauseObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
