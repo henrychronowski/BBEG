@@ -12,11 +12,14 @@ public class MinionSacrificeScript : MonoBehaviour
     public Image minion3Image;
 
     public PlayerCharacterManager manager;
+    public PauseScript pause;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = FindObjectOfType<PlayerCharacterManager>();
+        manager = PlayerCharacterManager.instance;
+        pause = PauseScript.instance;
+
         minionImages = new List<Image>();
         minionImages.Add(minion1Image);
         minionImages.Add(minion2Image);
@@ -25,12 +28,6 @@ public class MinionSacrificeScript : MonoBehaviour
         minion1Image.gameObject.SetActive(false);
         minion2Image.gameObject.SetActive(false);
         minion3Image.gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OpenScreen()
@@ -48,13 +45,13 @@ public class MinionSacrificeScript : MonoBehaviour
                 minionImages[i].gameObject.SetActive(false);
             }
         }
-        Time.timeScale = 0f;
+        pause.Pause();
     }
 
     public void CloseScreen()
     {
         sacrificeMenu.gameObject.SetActive(false);
-        Time.timeScale = 1f;
+        pause.Pause();
     }
 
     public void Sacrifice(Image minionImage)
@@ -66,10 +63,6 @@ public class MinionSacrificeScript : MonoBehaviour
                 Destroy(manager.minions[i].gameObject);
                 manager.minions[i] = null;
                 break;
-            }
-            else
-            {
-                continue;
             }
         }
     }

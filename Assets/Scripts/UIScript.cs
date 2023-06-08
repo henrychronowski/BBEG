@@ -21,7 +21,7 @@ public class UIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        manager = FindObjectOfType<PlayerCharacterManager>();
+        manager = PlayerCharacterManager.instance;
 
         tempCurr.text = "Gold: " + manager.tempCurr.ToString();
         permCurr.text = "Gems: " + manager.tempCurr.ToString();

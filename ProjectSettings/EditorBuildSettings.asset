@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DungeonRoom/TestRoom.unity
     guid: a24feca4977f09a46bae34914345bc2f
+  - enabled: 1
+    path: Assets/Scenes/UISetupScene.unity
+    guid: 7354360fefeea6547aa52b42e38e1aa5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 50580b86a1cedb549a8057510e251deb, type: 2}
