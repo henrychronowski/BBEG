@@ -46,6 +46,8 @@ public class Character : MonoBehaviour
     //[SerializeField] public Image portrait;
     [SerializeField] public Sprite portrait;
 
+    [SerializeField] public float dodgeDuration;
+
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
 

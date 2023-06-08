@@ -89,6 +89,14 @@ public class PlayerCharacterManager : MonoBehaviour
         }
     }
 
+    private void OnDodgeRoll()
+    {
+        if(!attacking)
+        {
+            leader.state = new DodgeState(leader, leader.axis);
+        }
+    }
+
     // Move
 
     public bool AddMinion(Minion newMinion)
