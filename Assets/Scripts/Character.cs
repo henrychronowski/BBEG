@@ -26,6 +26,7 @@ public class Character : MonoBehaviour
     [SerializeField] public int currHealth = 5;
     [SerializeField] public int baseDefense = 0;
     [SerializeField] public float moveSpeed = 1f;
+
     [SerializeField] public int baseMeleeAffinity;
     [SerializeField] public int baseRangedAffinity;
     [SerializeField] public Rigidbody rgd;
@@ -85,6 +86,7 @@ public class Character : MonoBehaviour
         
         if(currHealth <= 0)
         {
+            // 
             Destroy(gameObject);
         }
     }
@@ -105,6 +107,12 @@ public class Character : MonoBehaviour
         {
             moveSpeedBuffTotal += b.movementSpeedBuff;
         }
+
+        if(PlayerCharacterManager.instance.activeRoom.isRoomCleared)
+        {
+            moveSpeedBuffTotal += PlayerCharacterManager.instance.outOfCombatSpeedBoost;
+        }
+
         return moveSpeedBuffTotal + moveSpeed;
     }
 
@@ -231,6 +239,8 @@ public class Character : MonoBehaviour
             UpdateOverrider(atk);
             animator.SetTrigger("Attack");
             state = new AttackState(this, atk);
+            EventManager.instance.AttackStarted(atk);
+
         }
     }
     // Start is called before the first frame update

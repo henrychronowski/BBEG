@@ -40,7 +40,7 @@ public class ArtifactManager : MonoBehaviour
                     break;
                 }
         }
-        artifact.behaviorComponent = behaviorComponent;
+        artifact.runtimeBehaviorComponent = behaviorComponent;
 
         return true;
     }
@@ -52,7 +52,7 @@ public class ArtifactManager : MonoBehaviour
         activeArtifacts.Remove(artifact);
 
         if(artifact.behavior != ArtifactBehaviorType.None)
-            Destroy(artifact.behaviorComponent);
+            Destroy(artifact.runtimeBehaviorComponent);
     }
 
     void ApplyBuffsToNewMinion(Minion m)

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public enum AttackType
 {
-    LightMelee,
-    LightRanged,
-    HeavyMelee,
-    HeavyRanged
+    Melee,
+    Ranged
 }
 
 public struct HitData
@@ -41,7 +39,7 @@ public struct HitData
     public float mDamage { get; set; }
 }
 
-[CreateAssetMenu(fileName = "NewAttack", menuName = "ScriptableObjects/Create Attack", order = 1)]
+[CreateAssetMenu(fileName = "NewAttack", menuName = "ScriptableObjects/Attack", order = 1)]
 [SerializeField]
 public class Attack : ScriptableObject
 {

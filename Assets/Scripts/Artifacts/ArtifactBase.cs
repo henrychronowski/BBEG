@@ -18,7 +18,7 @@ public enum ArtifactTarget
 }
 
 
-[CreateAssetMenu(fileName = "NewArtifact", menuName = "ScriptableObjects/New Artifact", order = 1)]
+[CreateAssetMenu(fileName = "NewArtifact", menuName = "ScriptableObjects/Artifact", order = 1)]
 [SerializeField]
 public class ArtifactBase : ScriptableObject
 {
@@ -32,10 +32,11 @@ public class ArtifactBase : ScriptableObject
     // Set to neutral if tribe is irrelevant
     public Tribe targetTribe = Tribe.Neutral;
     public ArtifactBehaviorType behavior;
+    public Sprite uiSprite;
 
     // Reference to the component that runs the artifact behavior.
     // If we want to remove artifacts without removing everything this will be useful
-    public Component behaviorComponent;
+    public Component runtimeBehaviorComponent;
     public bool ApplyBuff()
     {
         if(buff == null)

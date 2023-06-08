@@ -22,7 +22,6 @@ public class Minion : Character
 
     // Contains a trait?
     public Tribe tribe;
-    [SerializeField] Leader leader;
     [SerializeField] float followDistance;
     [SerializeField] float brakingDrag; //How much the minion's speed is reduced when in braking range but 
     [SerializeField] float catchupDistance;
@@ -39,7 +38,6 @@ public class Minion : Character
     void Start()
     {
         state = new IdleState(this);
-        leader = FindObjectOfType<Leader>();
     }
 
     private void Update()
@@ -89,38 +87,6 @@ public class Minion : Character
         //else
         rgd.velocity = Vector3.zero;
         axis = Vector2.zero;
-    }
-
-    public void Mimic(Transform point)
-    {
-        if (Vector3.Distance(transform.position, point.position) > mimicCatchupDistance)
-        {
-            moveSpeedModifier = mimicCatchupSpeedModifier;
-            if (state.stateType != CharacterState.Move)
-                state = new MoveState(this);
-            Vector3 dir = (point.position - transform.position).normalized;
-            Move(new Vector2(dir.x, dir.z), mimicCatchupSpeedModifier);
-            Debug.Log(name + " catching up");
-        }
-        else if (Vector3.Distance(transform.position, point.position) > mimicFollowDistance)
-        {
-            if (state.stateType != CharacterState.Move)
-                state = new MoveState(this);
-            Vector3 dir = (point.position - transform.position).normalized;
-            Move(new Vector2(dir.x, dir.z), 1.25f);
-            Debug.Log(name + " lagging");
-
-        }
-        else
-        {
-            moveSpeedModifier = 1f;
-            if (state.stateType != CharacterState.Move)
-                state = new MoveState(this);
-            transform.position = point.position;
-            Vector3 dir = leader.axis;
-            Move(new Vector2(dir.x, dir.z), 1.25f);
-            Debug.Log(name + " synced moving towards " + dir);
-        }
     }
 
     public void NewMimic(Transform point)

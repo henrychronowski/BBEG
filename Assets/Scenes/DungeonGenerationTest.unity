@@ -2888,13 +2888,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 402895871, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2116279637098452508, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2116279637098452508, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2116279637098452515, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
       propertyPath: m_RootOrder
@@ -2940,89 +2944,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1313179868658664433, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
---- !u!1 &402895866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2116279637098452508, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
-  m_PrefabInstance: {fileID: 402895865}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &402895867 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 580238964388377909, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
-  m_PrefabInstance: {fileID: 402895865}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &402895868 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1729568403023574922, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
-  m_PrefabInstance: {fileID: 402895865}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df3e0a6d61e1aa418ae03bcc7a72b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &402895869 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8009887365965442807, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
-  m_PrefabInstance: {fileID: 402895865}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &402895870 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 2116279637098452517, guid: da0eb1bd73b76e341bb1cde943f8cf2b, type: 3}
-  m_PrefabInstance: {fileID: 402895865}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &402895871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402895866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f52d10c721091439112430dfec5a59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  activeBuffs: []
-  baseHealth: 5
-  currHealth: 5
-  baseDefense: 0
-  moveSpeed: 0
-  baseMeleeAffinity: 0
-  baseRangedAffinity: 0
-  rgd: {fileID: 402895870}
-  axis: {x: 0, y: 0}
-  turnSmoothVelocity: 1
-  turnSmoothTime: 0
-  followPoint: {fileID: 402895869}
-  moveSpeedModifier: 1
-  meleeAttack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
-  rangedAttack: {fileID: 11400000, guid: 92482cadcf16eea4c94f95f159b49880, type: 2}
-  hitbox: {fileID: 0}
-  overrider: {fileID: 402895868}
-  animator: {fileID: 402895867}
-  portrait: {fileID: 0}
-  minWanderTime: 1
-  maxWanderTime: 3
-  viewRange: 3
-  attackingRange: 2
---- !u!114 &402895872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402895866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 311f8e0aec32d4e4cb045b1f554d9de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateType: 0
 --- !u!1 &429589489
 GameObject:
   m_ObjectHideFlags: 0
@@ -5000,7 +4923,7 @@ MonoBehaviour:
   maxMinions: 3
   minions: []
   leader: {fileID: 585977229852324690}
-  party: 0
+  party: 1
   attacking: 0
   mimicPointsContainer: {fileID: 1190369653}
   currentMimicPointsParent: {fileID: 2057935142}
@@ -5009,8 +4932,10 @@ MonoBehaviour:
   - {fileID: 1908922365}
   - {fileID: 1730887772}
   - {fileID: 453634877}
+  outOfCombatSpeedBoost: 0.5
   transitionStoppingDistance: 0.5
   transitionSpeedModifier: 0.1
+  transitionArrivalOffset: 1.5
   minionAttackDisplacement: 1
   currentAttackIndex: 0
   input: {fileID: 671083247}
@@ -5693,7 +5618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -8882,10 +8807,10 @@ RectTransform:
   m_Father: {fileID: 800628348}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 846, y: 476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1270494906
 CanvasGroup:
@@ -8897,7 +8822,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1270494907
 MonoBehaviour:
@@ -13694,7 +13619,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

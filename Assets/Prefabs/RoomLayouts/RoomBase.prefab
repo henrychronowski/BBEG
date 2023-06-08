@@ -1599,7 +1599,9 @@ MonoBehaviour:
   roomExtents: {x: 30, y: 1, z: 30}
   roomCenter: {fileID: 9037347872013043208}
   stairs: {fileID: 5815171418841795642}
+  enemies: {fileID: 5122532484953489395}
   isStaircaseRoom: 0
+  isRoomCleared: 0
 --- !u!114 &5629018737613818289
 MonoBehaviour:
   m_ObjectHideFlags: 0

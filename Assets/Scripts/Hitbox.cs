@@ -12,7 +12,7 @@ public enum AttackPhase
 public class Hitbox : MonoBehaviour
 {
     private Character owner;
-    private MeshRenderer mesh;
+    [SerializeField] private MeshRenderer mesh;
     private Rigidbody rgd;
     private Attack attack;
     private Collider collider;
@@ -25,6 +25,7 @@ public class Hitbox : MonoBehaviour
 
     List<Character> charactersHit;
 
+    // Debug purposes
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Character") && isActive)
@@ -33,18 +34,7 @@ public class Hitbox : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.layer == LayerMask.NameToLayer("Character") && isActive)
-    //    {
-    //        if(PlayerCharacterManager.HitboxAllegianceCheck(owner.gameObject, other.gameObject))
-    //        {
-    //            Debug.Log("Character " + owner.name + " Hit " + other.gameObject.name);
-    //            other.gameObject.GetComponent<Character>().Hit(attack);
-    //        }
-    //    }
-    //}
-
+    // Only works with spherical hitboxes right now
     void CollisionCheck()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, radius);
@@ -85,7 +75,7 @@ public class Hitbox : MonoBehaviour
     {
         
         // Melee
-        if (type == AttackType.LightMelee || type == AttackType.HeavyMelee)
+        if (type == AttackType.Melee)
         {
 
         }
@@ -101,7 +91,7 @@ public class Hitbox : MonoBehaviour
         isActive = true;
         collider.enabled = true;
         // Melee
-        if (type == AttackType.LightMelee || type == AttackType.HeavyMelee)
+        if (type == AttackType.Melee)
         {
 
         }
@@ -113,11 +103,14 @@ public class Hitbox : MonoBehaviour
     public void CooldownPhase()
     {
         // Melee
-        if (type == AttackType.LightMelee || type == AttackType.HeavyMelee)
+        if (type == AttackType.Melee)
         {
             isActive = false;
-            mesh.enabled = false;
-            collider.enabled = false;
+            if(mesh)
+            {
+                mesh.enabled = false;
+                collider.enabled = false;
+            }
             Destroy(gameObject);
         }
         else // Ranged
@@ -136,7 +129,7 @@ public class Hitbox : MonoBehaviour
 
     void CheckProjectileLifetime()
     {
-        if (type == AttackType.LightRanged || type == AttackType.HeavyRanged)
+        if (type == AttackType.Ranged)
         {
             if (attack.projectileLifetime <= timeElapsed)
             {
@@ -149,9 +142,9 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         rgd = GetComponent<Rigidbody>();
-        mesh = GetComponent<MeshRenderer>();
         collider = GetComponent<SphereCollider>();
         charactersHit = new List<Character>();
+        mesh.transform.localScale = Vector3.one * (radius * 2);
     }
 
     // Update is called once per frame
