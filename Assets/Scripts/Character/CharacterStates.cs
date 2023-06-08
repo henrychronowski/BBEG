@@ -208,13 +208,7 @@ public class DodgeState : CharacterBaseState
     public void Integrate()
     {
         timeElapsed += Time.deltaTime;
-        if (c.axis == Vector2.zero)
-        {
-            //Debug.Log("Moving, Axis = 0 0");
-
-            c.rgd.velocity = Vector2.zero;
-            return;
-        }
+        
         float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 

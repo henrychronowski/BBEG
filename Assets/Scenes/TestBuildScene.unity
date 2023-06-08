@@ -4714,6 +4714,7 @@ MonoBehaviour:
   overrider: {fileID: 172048260}
   animator: {fileID: 172048258}
   portrait: {fileID: 0}
+  dodgeDuration: 0
   minWanderTime: 1
   maxWanderTime: 3
   viewRange: 3
@@ -6703,6 +6704,10 @@ PrefabInstance:
       propertyPath: rangedAttack
       value: 
       objectReference: {fileID: 11400000, guid: 92482cadcf16eea4c94f95f159b49880, type: 2}
+    - target: {fileID: 552570251855023658, guid: ba21a112a43319f49817f358d053a0e3, type: 3}
+      propertyPath: dodgeDuration
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 552570251855023658, guid: ba21a112a43319f49817f358d053a0e3, type: 3}
       propertyPath: turnSmoothTime
       value: 0
@@ -9290,8 +9295,10 @@ MonoBehaviour:
   - {fileID: 718307408}
   - {fileID: 431731298}
   - {fileID: 842607390}
+  outOfCombatSpeedBoost: 0
   transitionStoppingDistance: 0.5
   transitionSpeedModifier: 0.1
+  transitionArrivalOffset: 0
   minionAttackDisplacement: 1
   currentAttackIndex: 0
   input: {fileID: 1246782751}

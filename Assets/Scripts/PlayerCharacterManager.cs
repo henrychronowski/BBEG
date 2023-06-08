@@ -75,6 +75,11 @@ public class PlayerCharacterManager : MonoBehaviour
             return;
         }
 
+        if(leader.state.stateType == CharacterState.Dodge)
+        {
+            return;
+        }
+
         switch (party)
         {
             case PartyMovementState.Follow:
@@ -96,7 +101,14 @@ public class PlayerCharacterManager : MonoBehaviour
     {
         if(!attacking)
         {
-            leader.state = new DodgeState(leader, leader.axis);
+            if(leader.axis == Vector2.zero)
+            {
+                leader.state = new DodgeState(leader, new Vector2(leader.transform.forward.x, leader.transform.forward.z));
+            }
+            else
+            {
+                leader.state = new DodgeState(leader, leader.axis);
+            }
         }
     }
 
