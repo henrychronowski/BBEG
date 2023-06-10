@@ -214,7 +214,7 @@ public class DodgeState : CharacterBaseState
 
         float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
 
-        c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, angle, c.transform.eulerAngles.z);
+        c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, c.transform.eulerAngles.y + (360 / (c.dodgeDuration / Time.deltaTime)), c.transform.eulerAngles.z);
         c.rgd.velocity = moveDir * (c.GetMoveSpeed() * c.moveSpeedModifier); //?
 
         if(c.dodgeDuration <= timeElapsed)
