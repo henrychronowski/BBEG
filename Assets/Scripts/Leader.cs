@@ -12,5 +12,15 @@ public class Leader : Character
 
     // Passive ability, implement it like a unique artifact
     // Active ability
+    public override void Hit(int damage)
+    {
+        if (damage < 0)
+            damage = 0;
+        currHealth -= damage;
 
+        if (currHealth <= 0)
+        {
+            
+        }
+    }
 }

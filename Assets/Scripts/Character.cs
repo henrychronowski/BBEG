@@ -78,7 +78,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void Hit(int damage)
+    public virtual void Hit(int damage)
     {
         if(damage < 0)
             damage = 0;
