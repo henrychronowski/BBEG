@@ -180,16 +180,20 @@ public class AttackState : CharacterBaseState
 
 public class DodgeState : CharacterBaseState
 {
-    public DodgeState(Character c)
+    Vector2 dir;
+    float timeElapsed;
+    public DodgeState(Character c, Vector2 _dir)
     {
         base.c = c;
         stateType = CharacterState.Dodge;
-
+        dir = _dir;
+        timeElapsed = 0;
+        
         Enter();
     }
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void FixedUpdate()
@@ -198,6 +202,24 @@ public class DodgeState : CharacterBaseState
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        Integrate();
+    }
+
+    public void Integrate()
+    {
+        timeElapsed += Time.deltaTime;
+        
+        float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+        float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
+
+        c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, c.transform.eulerAngles.y + (360 / (c.dodgeDuration / Time.deltaTime)), c.transform.eulerAngles.z);
+        c.rgd.velocity = moveDir * (c.GetMoveSpeed() * c.moveSpeedModifier); //?
+
+        if(c.dodgeDuration <= timeElapsed)
+        {
+            c.state = new IdleState(c);
+        }
     }
 }

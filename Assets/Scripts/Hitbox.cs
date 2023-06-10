@@ -111,7 +111,8 @@ public class Hitbox : MonoBehaviour
                 mesh.enabled = false;
                 collider.enabled = false;
             }
-            Destroy(gameObject);
+            if(this != null)
+                Destroy(gameObject);
         }
         else // Ranged
         {

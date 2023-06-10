@@ -60,18 +60,59 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public TextMeshProUGUI stateView;
 
-    private void OnMove(InputValue val)
-    {
-        Vector2 axis = Vector2.zero;
+    //private void OnMove(InputValue val)
+    //{
+    //    Vector2 axis = Vector2.zero;
 
-        if (val.Get() != null)
-            axis = (Vector2)val.Get();
+    //    if (val.Get() != null)
+    //        axis = (Vector2)val.Get();
+
+    //    // Lock the player out of moving when anyone is attacking
+    //    if (attacking)
+    //    {
+    //        //leader.UpdateAxis(axis);
+    //        leader.Move(axis, 0);
+    //        return;
+    //    }
+
+    //    if(leader.state.stateType == CharacterState.Dodge)
+    //    {
+    //        return;
+    //    }
+
+    //    switch (party)
+    //    {
+    //        case PartyMovementState.Follow:
+    //            {
+    //                leader.Move(axis);
+
+    //                break;
+    //            }
+    //        case PartyMovementState.Mimic:
+    //            {
+    //                leader.Move(axis);
+
+    //                break;
+    //            }
+    //    }
+    //}
+
+    // Gets called every frame, superior to OnMove in the sense that OnMove only gets called when the input value is changed
+    // Avoids lots of bugs when forcibly stopping the player and giving control again this way
+    private void MoveUpdate()
+    {
+        Vector2 axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
 
         // Lock the player out of moving when anyone is attacking
         if (attacking)
         {
             //leader.UpdateAxis(axis);
             leader.Move(axis, 0);
+            return;
+        }
+
+        if (leader.state.stateType == CharacterState.Dodge)
+        {
             return;
         }
 
@@ -92,6 +133,22 @@ public class PlayerCharacterManager : MonoBehaviour
         }
     }
 
+    private void OnDodgeRoll()
+    {
+        if(!attacking)
+        {
+            if(leader.axis == Vector2.zero)
+            {
+                leader.state = new DodgeState(leader, new Vector2(leader.transform.forward.x, leader.transform.forward.z));
+            }
+            else
+            {
+                leader.state = new DodgeState(leader, leader.axis);
+            }
+        }
+    }
+
+    // Move
     public bool AddMinion(Minion newMinion)
     {
         if(minions.Count == maxMinions)
@@ -199,7 +256,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public void OnMimicEnd()
     {
-        party = PartyMovementState.Follow;
+        //party = PartyMovementState.Follow;
     }
 
     CharacterState[] GetPartyCharacterStates()
@@ -376,6 +433,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     static void HitCharacter(HitData data)
     {
+        
         data.mRecipient.Hit(data.ProcessDamage());
     }
 
@@ -398,7 +456,7 @@ public class PlayerCharacterManager : MonoBehaviour
     void StartScriptedState()
     {
         party = PartyMovementState.Scripted;
-        leader.SetMoveSpeedModifier(0);
+        leader.axis = Vector2.zero;
     }
 
     // Start is called before the first frame update
@@ -421,6 +479,8 @@ public class PlayerCharacterManager : MonoBehaviour
 
     private void Update()
     {
+        MoveUpdate();
+
         attacking = IsCharacterInPartyInState(CharacterState.Attack);
         PartyStateUpdate();
 

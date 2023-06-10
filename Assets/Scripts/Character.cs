@@ -47,6 +47,8 @@ public class Character : MonoBehaviour
     //[SerializeField] public Image portrait;
     [SerializeField] public Sprite portrait;
 
+    [SerializeField] public float dodgeDuration;
+
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
 
@@ -76,7 +78,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void Hit(int damage)
+    public virtual void Hit(int damage)
     {
         if(damage < 0)
             damage = 0;
