@@ -102,9 +102,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  maxHealth: 5
+  activeBuffs: []
+  baseHealth: 5
   currHealth: 5
+  baseDefense: 0
   moveSpeed: 10
+  baseMeleeAffinity: 0
+  baseRangedAffinity: 0
   rgd: {fileID: 6374090462111345341}
   axis: {x: 0, y: 0}
   turnSmoothVelocity: 1
@@ -113,13 +117,12 @@ MonoBehaviour:
   moveSpeedModifier: 1
   meleeAttack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
   rangedAttack: {fileID: 11400000, guid: 92482cadcf16eea4c94f95f159b49880, type: 2}
-  baseMeleeAffinity: 0
-  baseRangedAffinity: 0
   hitbox: {fileID: 0}
   overrider: {fileID: 6713584822893857554}
   animator: {fileID: 5559329649232365997}
-  portrait: {fileID: 0}
-  leader: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 4211d2c4091af8945bb6a41d22f6b00c, type: 3}
+  dodgeDuration: 0
+  tribe: 0
   followDistance: 1
   brakingDrag: 0.25
   catchupDistance: 0
@@ -129,6 +132,7 @@ MonoBehaviour:
   mimicCatchupDistance: 3
   mimicCatchupSpeedModifier: 1.5
   isStray: 1
+  rarity: 0
 --- !u!54 &6374090462111345341 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6080025853874627410, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}

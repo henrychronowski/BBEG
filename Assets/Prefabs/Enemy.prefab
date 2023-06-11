@@ -97,10 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   activeBuffs: []
-  baseHealth: 5
-  currHealth: 5
+  baseHealth: 4
+  currHealth: 4
   baseDefense: 0
-  moveSpeed: 4
+  moveSpeed: 3
   baseMeleeAffinity: 0
   baseRangedAffinity: 0
   rgd: {fileID: 2116279637098452517}
@@ -118,7 +118,7 @@ MonoBehaviour:
   dodgeDuration: 0
   minWanderTime: 1
   maxWanderTime: 3
-  viewRange: 7
+  viewRange: 8
   attackingRange: 2
 --- !u!114 &402895872
 MonoBehaviour:
