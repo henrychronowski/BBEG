@@ -459,6 +459,12 @@ public class PlayerCharacterManager : MonoBehaviour
         leader.axis = Vector2.zero;
     }
 
+    void KillMinion(Minion m)
+    {
+        minions.Remove(m);
+        Destroy(m.gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -466,7 +472,7 @@ public class PlayerCharacterManager : MonoBehaviour
         EventManager.instance.onGenerationComplete += TeleportParty;
         EventManager.instance.onStairsReached += StartScriptedState;
         EventManager.instance.onTransitionComplete += EndScriptedState;
-
+        EventManager.instance.onSacrificeMinion += KillMinion;
     }
 
     private void OnDestroy()
@@ -475,6 +481,7 @@ public class PlayerCharacterManager : MonoBehaviour
         EventManager.instance.onGenerationComplete -= TeleportParty;
         EventManager.instance.onStairsReached -= StartScriptedState;
         EventManager.instance.onTransitionComplete -= EndScriptedState;
+        EventManager.instance.onSacrificeMinion -= KillMinion;
     }
 
     private void Update()

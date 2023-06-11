@@ -15,4 +15,15 @@ public class ReloadSceneScript : MonoBehaviour
     {
         SceneManager.LoadScene(sceneNum);
     }
+
+    private void Start()
+    {
+        EventManager.instance.onDemoEndReached += OpenScreen;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.onDemoEndReached -= OpenScreen;
+
+    }
 }

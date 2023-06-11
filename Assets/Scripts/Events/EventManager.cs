@@ -32,8 +32,9 @@ public class EventManager : MonoBehaviour
         if(onAttackConnected != null)
         {
             onAttackConnected(data);
-            HitProcessed(data);
         }
+            if(data.mRecipient.transform.tag != "Minion")
+                HitProcessed(data);
     }
 
     // Meant to run immediately after AttackConnected is completed
@@ -155,6 +156,37 @@ public class EventManager : MonoBehaviour
             onArtifactAdded(a);
         }
     }
+
+    public event Action onLeaderDeath;
+
+    public void LeaderDeath()
+    {
+        if (onLeaderDeath != null)
+        {
+            onLeaderDeath();
+        }
+    }
+
+    public event Action<Minion> onSacrificeMinion;
+
+    public void SacrificeMinion(Minion m)
+    {
+        if (onSacrificeMinion != null)
+        {
+            onSacrificeMinion(m);
+        }
+    }
+
+    public event Action onDemoEndReached;
+
+    public void DemoEndReached()
+    {
+        if (onDemoEndReached != null)
+        {
+            onDemoEndReached();
+        }
+    }
+
 
     // Useful for events that do not pass variables, prevents needing to make unique functions for those
     public void FireTypelessEvent(Action typelessAction)

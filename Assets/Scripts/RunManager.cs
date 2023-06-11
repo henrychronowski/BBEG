@@ -16,6 +16,7 @@ public enum Area
 public class RunManager : MonoBehaviour
 {
     public int floorNumber = 1;
+    public int demoGoalFloor = 10;
     public Area currentArea;
     [SerializeField] TextMeshProUGUI text;
 
@@ -24,6 +25,10 @@ public class RunManager : MonoBehaviour
     {
         floorNumber++;
         text.text = currentArea.ToString() + "\nFloor " + floorNumber.ToString();
+        if(floorNumber >= demoGoalFloor)
+        {
+            EventManager.instance.DemoEndReached();
+        }
     }
 
     private void OnMove(InputValue val)

@@ -48,4 +48,15 @@ public class PauseScript : MonoBehaviour
 
         pauseScreen.gameObject.SetActive(false);
     }
+
+    private void Start()
+    {
+        EventManager.instance.onDemoEndReached += Pause;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.onDemoEndReached -= Pause;
+
+    }
 }

@@ -176,7 +176,8 @@ public class DungeonGeneration : MonoBehaviour
         foreach (Exit e in exits)
         {
             if (e.connectedExit == null)
-                e.gameObject.SetActive(false);
+                e.Close();
+                //e.gameObject.SetActive(false);
         }
     }
 

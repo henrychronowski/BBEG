@@ -100,7 +100,7 @@ MonoBehaviour:
   baseHealth: 5
   currHealth: 5
   baseDefense: 0
-  moveSpeed: 1
+  moveSpeed: 4
   baseMeleeAffinity: 0
   baseRangedAffinity: 0
   rgd: {fileID: 2116279637098452517}
@@ -115,9 +115,10 @@ MonoBehaviour:
   overrider: {fileID: 1729568403023574922}
   animator: {fileID: 580238964388377909}
   portrait: {fileID: 0}
+  dodgeDuration: 0
   minWanderTime: 1
   maxWanderTime: 3
-  viewRange: 3
+  viewRange: 7
   attackingRange: 2
 --- !u!114 &402895872
 MonoBehaviour:

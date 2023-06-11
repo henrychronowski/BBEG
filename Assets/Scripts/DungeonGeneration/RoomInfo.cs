@@ -48,7 +48,7 @@ public class RoomInfo : MonoBehaviour
     {
         foreach(Exit ex in exitLocations)
         {
-            if(open)
+            if(open && ex.HasConnectingRoom())
                 ex.Open();
             else
                 ex.Close();
@@ -116,7 +116,10 @@ public class RoomInfo : MonoBehaviour
         roomExtents = GetComponent<BoxCollider>().size;
         EventManager.instance.roomEntered += PlayerEnteredRoom;
         EventManager.instance.roomCleared += ClearRoom;
-
+        if(!AreEnemiesAlive())
+        {
+            ClearRoom(this);
+        }
     }
 
     private void OnDestroy()

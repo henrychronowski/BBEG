@@ -28,17 +28,24 @@ public class MinionSacrificeScript : MonoBehaviour
         minion1Image.gameObject.SetActive(false);
         minion2Image.gameObject.SetActive(false);
         minion3Image.gameObject.SetActive(false);
+
+        EventManager.instance.onLeaderDeath += OpenScreen;
     }
+
+
 
     public void OpenScreen()
     {
         sacrificeMenu.gameObject.SetActive(true);
         for(int i = 0; i < minionImages.Count; i++)
         {
-            if(manager.minions[i] != null)
+            if (i < manager.minions.Count)
             {
-                minionImages[i].gameObject.SetActive(true);
-                minionImages[i].sprite = manager.minions[i].portrait;
+                if (manager.minions[i] != null)
+                {
+                    minionImages[i].gameObject.SetActive(true);
+                    minionImages[i].sprite = manager.minions[i].portrait;
+                }
             }
             else
             {
@@ -60,8 +67,7 @@ public class MinionSacrificeScript : MonoBehaviour
         {
             if(manager.minions[i] != null && manager.minions[i].portrait == minionImage.sprite)
             {
-                Destroy(manager.minions[i].gameObject);
-                manager.minions[i] = null;
+                EventManager.instance.SacrificeMinion(manager.minions[i]);
                 break;
             }
         }

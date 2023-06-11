@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class UIScript : MonoBehaviour
 {
     public Text tempCurr;
     public Text permCurr;
+
+    public TextMeshProUGUI hpText;
 
     public Slider leaderHP;
     public Image leaderImage;
@@ -22,7 +25,6 @@ public class UIScript : MonoBehaviour
     void Start()
     {
         manager = PlayerCharacterManager.instance;
-
         tempCurr.text = "Gold: " + manager.tempCurr.ToString();
         permCurr.text = "Gems: " + manager.tempCurr.ToString();
 
@@ -61,22 +63,39 @@ public class UIScript : MonoBehaviour
     {
         tempCurr.text = "Gold: " + manager.tempCurr.ToString();
         permCurr.text = "Gems: " + manager.permCurr.ToString();
+        hpText.text = manager.leader.currHealth + "/" + manager.leader.GetMaxHealth();
     }
 
     void UpdateHealth()
     {
         leaderHP.value = manager.leader.currHealth;
         leaderHP.maxValue = manager.leader.GetMaxHealth();
+        leaderHP.fillRect.gameObject.SetActive(leaderHP.value > 0);
     }
 
     void UpdatePortraits()
     {
-        for (int i = 0; i < manager.minions.Count; i++)
+        //for (int i = 0; i < manager.minions.Count; i++)
+        //{
+        //    if (manager.minions[i] != null)
+        //    {
+        //        minionPortraits[i].gameObject.SetActive(true);
+        //        minionPortraits[i].sprite = manager.minions[i].portrait;
+        //    }
+        //    else
+        //    {
+        //        minionPortraits[i].gameObject.SetActive(false);
+        //    }
+        //}
+        for (int i = 0; i < minionPortraits.Count; i++)
         {
-            if (manager.minions[i] != null)
+            if(i < manager.minions.Count)
             {
-                minionPortraits[i].gameObject.SetActive(true);
-                minionPortraits[i].sprite = manager.minions[i].portrait;
+                if (manager.minions[i] != null)
+                {
+                    minionPortraits[i].gameObject.SetActive(true);
+                    minionPortraits[i].sprite = manager.minions[i].portrait;
+                }
             }
             else
             {

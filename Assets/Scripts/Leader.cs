@@ -20,7 +20,29 @@ public class Leader : Character
 
         if (currHealth <= 0)
         {
-            
+            if (PlayerCharacterManager.instance.minions.Count == 0)
+                EventManager.instance.DemoEndReached();
+            else
+                EventManager.instance.LeaderDeath();
         }
+    }
+
+    void SacrificeHeal(Minion m)
+    {
+        currHealth += m.currHealth;
+        if(currHealth > GetMaxHealth())
+        {
+            currHealth = GetMaxHealth();
+        }
+    }
+    private void Start()
+    {
+        state = new IdleState(this);
+        EventManager.instance.onSacrificeMinion += SacrificeHeal;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.instance.onSacrificeMinion -= SacrificeHeal;
     }
 }

@@ -90,6 +90,11 @@ public class Minion : Character
         axis = Vector2.zero;
     }
 
+    public override void Hit(int damage)
+    {
+        // Do nothing
+    }
+
     public void NewMimic(Transform point)
     {
         if (Vector3.Distance(transform.position, point.position) > mimicFollowDistance)
