@@ -64,6 +64,10 @@ PrefabInstance:
       value: Minion
       objectReference: {fileID: 0}
     - target: {fileID: 6080025853874627435, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080025853874627435, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

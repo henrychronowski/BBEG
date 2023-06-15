@@ -73,10 +73,31 @@ public class RoomInfo : MonoBehaviour
         return enemies.childCount > 0;
     }
 
+    void FreezeEnemies()
+    {
+        foreach(EnemyAI e in enemies.GetComponentsInChildren<EnemyAI>())
+        {
+            e.enabled = false;
+        }
+    }
+
+    void UnfreezeEnemies()
+    {
+        foreach (EnemyAI e in enemies.GetComponentsInChildren<EnemyAI>())
+        {
+            e.enabled = true;
+        }
+    }
+
     void PlayerEnteredRoom(RoomInfo room)
     {
         if (room != this)
+        {
+            FreezeEnemies();
             return;
+        }
+
+        UnfreezeEnemies(); 
 
         if(AreEnemiesAlive())
         {
@@ -120,6 +141,7 @@ public class RoomInfo : MonoBehaviour
         {
             ClearRoom(this);
         }
+        FreezeEnemies();
     }
 
     private void OnDestroy()

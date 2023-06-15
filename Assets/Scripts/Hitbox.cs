@@ -41,7 +41,8 @@ public class Hitbox : MonoBehaviour
 
         foreach(Collider hit in hits)
         {
-            if (hit.gameObject.layer != LayerMask.NameToLayer("Character"))
+            if (hit.gameObject.layer != LayerMask.NameToLayer("Character")
+                && hit.gameObject.layer != LayerMask.NameToLayer("Enemy"))
             {
                 continue;
             }
