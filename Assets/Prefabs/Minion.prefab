@@ -107,8 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   activeBuffs: []
-  baseHealth: 5
-  currHealth: 5
+  baseHealth: 3
+  currHealth: 3
   baseDefense: 0
   moveSpeed: 10
   baseMeleeAffinity: 0

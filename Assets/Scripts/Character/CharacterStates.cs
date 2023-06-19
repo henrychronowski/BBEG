@@ -193,7 +193,7 @@ public class DodgeState : CharacterBaseState
     }
     public override void Enter()
     {
-        
+        //c.invulnerable = true;
     }
 
     public override void FixedUpdate()
@@ -203,6 +203,18 @@ public class DodgeState : CharacterBaseState
     public override void Update()
     {
         Integrate();
+
+        if (c.dodgeDuration <= c.dodgeInvulDuration)
+        {
+            c.invulnerable = false;
+        }
+
+        if (c.dodgeDuration <= timeElapsed)
+        {
+            c.invulnerable = false;
+            c.transform.forward = dir;
+            c.state = new IdleState(c);
+        }
     }
 
     public void Integrate()
@@ -215,11 +227,8 @@ public class DodgeState : CharacterBaseState
         float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
 
         c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, c.transform.eulerAngles.y + (360 / (c.dodgeDuration / Time.deltaTime)), c.transform.eulerAngles.z);
-        c.rgd.velocity = moveDir * (c.GetMoveSpeed() * c.moveSpeedModifier); //?
+        c.rgd.velocity = moveDir * (c.GetMoveSpeed() * c.GetMoveSpeedModifier() * c.dodgeSpeedMultiplier); //?
 
-        if(c.dodgeDuration <= timeElapsed)
-        {
-            c.state = new IdleState(c);
-        }
+        
     }
 }

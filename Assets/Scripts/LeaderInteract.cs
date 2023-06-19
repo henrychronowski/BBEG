@@ -13,6 +13,7 @@ public class LeaderInteract : MonoBehaviour
             {
                 m.isStray = false;
                 PlayerCharacterManager.instance.AddMinion(m);
+                m.transform.parent = null;
             }
         }
     }

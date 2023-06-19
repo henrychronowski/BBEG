@@ -48,6 +48,9 @@ public class Character : MonoBehaviour
     [SerializeField] public Sprite portrait;
 
     [SerializeField] public float dodgeDuration;
+    [SerializeField] public float dodgeSpeedMultiplier;
+    [SerializeField] public float dodgeInvulDuration;
+    [SerializeField] public bool invulnerable = false;
 
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
@@ -294,7 +297,11 @@ public class Character : MonoBehaviour
         Gizmos.color = Color.red;
         //Gizmos.DrawLine(transform.position, transform.position + rgd.velocity);
         Gizmos.DrawLine(transform.position, transform.position + (transform.forward * 5));
-
+        if(invulnerable)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, 3f);
+        }
     }
 }
 

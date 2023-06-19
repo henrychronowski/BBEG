@@ -36,6 +36,8 @@ public class RewardSpawner : MonoBehaviour
 
     public List<ArtifactBase> artifactPool;
     public List<GameObject> minionPool;
+    [SerializeField] int baseHealing = 2;
+
 
     public int[] rarityWeights;
 
@@ -80,9 +82,9 @@ public class RewardSpawner : MonoBehaviour
                     newArtifact.GetComponent<CollectableArtifact>().AssignArtifact(artifactPool[random], rarity);
                     break;
                 }
-            case RewardType.Minion:
+            case RewardType.Healing:
                 {
-
+                    PlayerCharacterManager.instance.leader.Heal(baseHealing);
                     break;
                 }
         }

@@ -51,6 +51,11 @@ public class Hitbox : MonoBehaviour
             {
                 continue;
             }
+
+            if(hit.GetComponent<Character>().invulnerable)
+            {
+                continue;
+            }
             
             if (charactersHit.Contains(hit.GetComponent<Character>()))
             {
@@ -157,6 +162,10 @@ public class Hitbox : MonoBehaviour
         if(isActive)
         {
             CollisionCheck();
+        }
+        if(owner == null)
+        {
+            Destroy(gameObject);
         }
     }
 

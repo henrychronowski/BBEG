@@ -109,7 +109,7 @@ MonoBehaviour:
   currHealth: 4
   baseDefense: 0
   moveSpeed: 3
-  baseMeleeAffinity: 0
+  baseMeleeAffinity: 1
   baseRangedAffinity: 0
   rgd: {fileID: 2116279637098452517}
   axis: {x: 0, y: 0}

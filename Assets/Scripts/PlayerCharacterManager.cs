@@ -465,6 +465,13 @@ public class PlayerCharacterManager : MonoBehaviour
         Destroy(m.gameObject);
     }
 
+    bool TryChangeState(Character c, CharacterBaseState newState)
+    {
+        // Not implemented yet, used to prevent states from being switched to during specific states
+        // (i.e. cannot attack while dodging)
+        return true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
