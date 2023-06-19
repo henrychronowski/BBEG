@@ -19,18 +19,22 @@ public class SoundManager : MonoBehaviour
         source.PlayOneShot(clips[atk.soundId]);
     }
 
+    private void Awake()
+    {
+        EventManager.instance.onAttackConnected += PlayAttackSound;
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         EventManager.instance.onAttackStarted += PlayAttackStartSound;
-        EventManager.instance.onHitProcessed += PlayAttackSound;
     }
 
     private void OnDestroy()
     {
         EventManager.instance.onAttackStarted -= PlayAttackStartSound;
-        EventManager.instance.onHitProcessed -= PlayAttackSound;
+        EventManager.instance.onAttackConnected -= PlayAttackSound;
     }
 
     // Update is called once per frame

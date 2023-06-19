@@ -51,7 +51,7 @@ public class Character : MonoBehaviour
     [SerializeField] public float dodgeSpeedMultiplier;
     [SerializeField] public float dodgeInvulDuration;
     [SerializeField] public bool invulnerable = false;
-
+    [SerializeField] CharacterStateTransitionRules stateRules;
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
 
@@ -165,6 +165,10 @@ public class Character : MonoBehaviour
     {
         axis = ax;
 
+        if (!CanPerformStateTransition(CharacterState.Move))
+        {
+            return;
+        }
 
         if (state.stateType != CharacterState.Move)
         {
@@ -180,14 +184,7 @@ public class Character : MonoBehaviour
     {
         axis = new Vector2(ax.x, ax.z);
 
-        if (state.stateType != CharacterState.Move)
-        {
-            if (state.stateType == CharacterState.Attack)
-                return;
-            state = new MoveState(this);
-        }
-
-        moveSpeedModifier = modifier;
+        Move(axis, modifier);
     }
 
     // Useful for when we want to continue keeping track of the char's axis but don't want them to move
@@ -290,6 +287,16 @@ public class Character : MonoBehaviour
             Debug.Log(Vector3.Distance(newPos, transform.position));
             yield return null;
         }
+    }
+
+    public bool CanPerformStateTransition(CharacterState stateToAttempt)
+    {
+        if(stateRules.GetSelectedStates(state.stateType).Contains(stateToAttempt))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnDrawGizmos()

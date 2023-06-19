@@ -5,7 +5,7 @@ using UnityEngine;
 public class LowHPAttackBoost : ArtifactBehaviorBase
 {
     public float healthPercentageRequirement = .2f;
-    public float damageModifier = 1.2f;
+    public float damageModifier = 4f;
     void ApplyAttackBoost(HitData hit)
     {
         float healthPercentage = hit.mOwner.currHealth / hit.mOwner.GetMaxHealth();
@@ -18,7 +18,7 @@ public class LowHPAttackBoost : ArtifactBehaviorBase
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         EventManager.instance.onAttackConnected += ApplyAttackBoost;
     }

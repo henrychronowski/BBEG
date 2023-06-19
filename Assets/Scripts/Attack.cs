@@ -8,7 +8,7 @@ public enum AttackType
     Ranged
 }
 
-public struct HitData
+public class HitData
 {
     // This is to simplify AttackConnected event listeners so that functions being called from the event
     // can just take in a HitData object instead of two characters an attack and a float
@@ -28,9 +28,11 @@ public struct HitData
     public int ProcessDamage()
     {
         if(mAttack.isProjectile)
-            return Mathf.RoundToInt((mDamage + mOwner.GetRangedAffinity()) - mRecipient.GetDefense());
+            mDamage = Mathf.RoundToInt((mDamage + mOwner.GetRangedAffinity()) - mRecipient.GetDefense());
         else
-            return Mathf.RoundToInt((mDamage + mOwner.GetMeleeAffinity()) - mRecipient.GetDefense());
+            mDamage = Mathf.RoundToInt((mDamage + mOwner.GetMeleeAffinity()) - mRecipient.GetDefense());
+
+        return (int)mDamage;
     }
 
     public Character mOwner { get; private set; }

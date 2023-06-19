@@ -60,43 +60,6 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public TextMeshProUGUI stateView;
 
-    //private void OnMove(InputValue val)
-    //{
-    //    Vector2 axis = Vector2.zero;
-
-    //    if (val.Get() != null)
-    //        axis = (Vector2)val.Get();
-
-    //    // Lock the player out of moving when anyone is attacking
-    //    if (attacking)
-    //    {
-    //        //leader.UpdateAxis(axis);
-    //        leader.Move(axis, 0);
-    //        return;
-    //    }
-
-    //    if(leader.state.stateType == CharacterState.Dodge)
-    //    {
-    //        return;
-    //    }
-
-    //    switch (party)
-    //    {
-    //        case PartyMovementState.Follow:
-    //            {
-    //                leader.Move(axis);
-
-    //                break;
-    //            }
-    //        case PartyMovementState.Mimic:
-    //            {
-    //                leader.Move(axis);
-
-    //                break;
-    //            }
-    //    }
-    //}
-
     // Gets called every frame, superior to OnMove in the sense that OnMove only gets called when the input value is changed
     // Avoids lots of bugs when forcibly stopping the player and giving control again this way
     private void MoveUpdate()
@@ -135,11 +98,14 @@ public class PlayerCharacterManager : MonoBehaviour
 
     private void OnDodgeRoll()
     {
-        if(!attacking)
+        if(leader.CanPerformStateTransition(CharacterState.Dodge))
         {
             if(leader.axis == Vector2.zero)
             {
-                leader.state = new DodgeState(leader, new Vector2(leader.transform.forward.x, leader.transform.forward.z));
+                // Do nothing
+                // This line causes problems with the player's facing direction when mashing dodge
+                // If we remove dodge mashing then this one can stay
+                //leader.state = new DodgeState(leader, new Vector2(leader.transform.forward.x, leader.transform.forward.z));
             }
             else
             {
@@ -362,7 +328,6 @@ public class PlayerCharacterManager : MonoBehaviour
         // Without this line, if the player holds a direction during the scripted movement their axis never gets updated
         // properly since it hasn't changed since the scripted movement ended
         leader.SetMoveSpeedModifier(1);
-        leader.axis = input.currentActionMap.FindAction("Move").ReadValue<Vector2>();
         party = PartyMovementState.Mimic;
         EventManager.instance.RoomEntered(activeRoom);
         
@@ -433,8 +398,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     static void HitCharacter(HitData data)
     {
-        
-        data.mRecipient.Hit(data.ProcessDamage());
+        data.mRecipient.Hit((int)data.mDamage);
     }
 
     void TeleportParty(Transform newPos)
@@ -471,6 +435,8 @@ public class PlayerCharacterManager : MonoBehaviour
         // (i.e. cannot attack while dodging)
         return true;
     }
+
+    
 
     // Start is called before the first frame update
     void Start()

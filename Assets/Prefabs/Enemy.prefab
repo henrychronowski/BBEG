@@ -124,6 +124,10 @@ MonoBehaviour:
   animator: {fileID: 580238964388377909}
   portrait: {fileID: 0}
   dodgeDuration: 0
+  dodgeSpeedMultiplier: 0
+  dodgeInvulDuration: 0
+  invulnerable: 0
+  stateRules: {fileID: 11400000, guid: 9ec95117da1ed9d45a34e67276da6f92, type: 2}
   minWanderTime: 1
   maxWanderTime: 3
   viewRange: 8

@@ -33,16 +33,30 @@ public class EventManager : MonoBehaviour
         {
             onAttackConnected(data);
         }
-            if(data.mRecipient.transform.tag != "Minion")
-                HitProcessed(data);
+
+        if(data.mRecipient.transform.tag != "Minion")
+        {
+            // Process the damage from here so 
+            data.ProcessDamage();
+            HitProcessed(data);
+        }
     }
 
     // Meant to run immediately after AttackConnected is completed
-    // Should only ever contain HitCharacter so that onAttackConnected can modify HitData
-    // before the damage gets applied
     public event Action<HitData> onHitProcessed;
 
     public void HitProcessed(HitData data)
+    {
+        if (onHitProcessed != null)
+        {
+            onHitProcessed(data);
+        }
+    }
+
+    // Meant to run immediately after AttackConnected is completed
+    public event Action<HitData> onAttackFinalized;
+
+    public void HitFinalized(HitData data)
     {
         if (onHitProcessed != null)
         {

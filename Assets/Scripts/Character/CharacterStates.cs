@@ -193,7 +193,8 @@ public class DodgeState : CharacterBaseState
     }
     public override void Enter()
     {
-        //c.invulnerable = true;
+            c.transform.forward = new Vector3(c.axis.x, 0, c.axis.y);
+        c.invulnerable = true;
     }
 
     public override void FixedUpdate()
@@ -204,7 +205,7 @@ public class DodgeState : CharacterBaseState
     {
         Integrate();
 
-        if (c.dodgeDuration <= c.dodgeInvulDuration)
+        if (c.dodgeInvulDuration <= timeElapsed)
         {
             c.invulnerable = false;
         }
@@ -212,7 +213,7 @@ public class DodgeState : CharacterBaseState
         if (c.dodgeDuration <= timeElapsed)
         {
             c.invulnerable = false;
-            c.transform.forward = dir;
+            c.transform.forward = new Vector3(dir.x, 0, dir.y);
             c.state = new IdleState(c);
         }
     }
@@ -230,5 +231,12 @@ public class DodgeState : CharacterBaseState
         c.rgd.velocity = moveDir * (c.GetMoveSpeed() * c.GetMoveSpeedModifier() * c.dodgeSpeedMultiplier); //?
 
         
+    }
+
+    // Failsafe to remove invulnerability in the event of unexpected interruptions
+    ~DodgeState()
+    {
+        //c.transform.forward = dir;
+        c.invulnerable = false;
     }
 }

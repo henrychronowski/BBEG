@@ -3688,19 +3688,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8464c5ad69b58ea458ee503009bec154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  currentState: 0
+  activeBuffs: []
+  baseHealth: 5
+  currHealth: 5
+  baseDefense: 0
   moveSpeed: 5
-  facing: {x: 0, y: 0, z: 0}
+  baseMeleeAffinity: 0
+  baseRangedAffinity: 0
   rgd: {fileID: 6080025853874627410}
   axis: {x: 0, y: 0}
   turnSmoothVelocity: 1
   turnSmoothTime: 0
   followPoint: {fileID: 2744601260002139008}
   moveSpeedModifier: 1
-  attack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
+  meleeAttack: {fileID: 0}
+  rangedAttack: {fileID: 0}
   hitbox: {fileID: 0}
   overrider: {fileID: 5854317907104989949}
   animator: {fileID: 4698224255747457090}
+  portrait: {fileID: 0}
+  dodgeDuration: 0
+  dodgeSpeedMultiplier: 0
+  dodgeInvulDuration: 0
+  invulnerable: 0
+  stateRules: {fileID: 11400000, guid: 9ec95117da1ed9d45a34e67276da6f92, type: 2}
 --- !u!1 &6189456268790923021
 GameObject:
   m_ObjectHideFlags: 0
