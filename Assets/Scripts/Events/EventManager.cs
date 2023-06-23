@@ -201,7 +201,6 @@ public class EventManager : MonoBehaviour
         }
     }
 
-
     // Useful for events that do not pass variables, prevents needing to make unique functions for those
     public void FireTypelessEvent(Action typelessAction)
     {

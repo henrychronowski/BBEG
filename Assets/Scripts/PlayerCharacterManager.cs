@@ -381,7 +381,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public static bool HitboxAllegianceCheck(GameObject hitboxOwner, GameObject recipient)
     {
-        if((hitboxOwner.tag == "Player" || hitboxOwner.tag == "Minion") && recipient.tag == "Enemy")
+        if((hitboxOwner.tag == "Player" || hitboxOwner.tag == "Minion") && (recipient.tag == "Enemy" || recipient.tag == "Breakable"))
         {
             return true;
         }
