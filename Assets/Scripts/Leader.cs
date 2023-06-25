@@ -6,9 +6,6 @@ using UnityEngine;
 public class Leader : Character
 {
     // PlayerCharacterManager sends input to this character
-    // Minions check the Leader's state to determine their actions
-
-    // Currently has same functionality as Character.cs but can use this to easily add leader-specific stuff
 
     // Passive ability, implement it like a unique artifact
     // Active ability
@@ -20,6 +17,7 @@ public class Leader : Character
 
         if (currHealth <= 0)
         {
+            currHealth = 0;
             if (PlayerCharacterManager.instance.minions.Count == 0)
                 EventManager.instance.DemoEndReached();
             else

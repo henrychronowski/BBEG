@@ -79,11 +79,11 @@ public class Hitbox : MonoBehaviour
 
     public void StartupPhase()
     {
-        
+            mesh.enabled = false;
+
         // Melee
         if (type == AttackType.Melee)
         {
-
         }
         else // Ranged
         {
@@ -139,6 +139,15 @@ public class Hitbox : MonoBehaviour
         if (type == AttackType.Ranged)
         {
             if (attack.projectileLifetime <= timeElapsed)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        if (type == AttackType.Melee)
+        {
+            // Runs if character gets interrupted by another state, such as dodge/stun
+            if(owner.state.stateType != CharacterState.Attack)
             {
                 Destroy(gameObject);
             }
