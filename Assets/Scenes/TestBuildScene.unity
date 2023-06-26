@@ -1731,6 +1731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArtifactManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5605486203857624311, guid: 6b9e58f14f4263c48aba009e96b1a912, type: 3}
+      propertyPath: tempArti
+      value: 
+      objectReference: {fileID: 1518005595}
     - target: {fileID: 5605486203857624312, guid: 6b9e58f14f4263c48aba009e96b1a912, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -3542,6 +3546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518005593}
   - component: {fileID: 1518005594}
+  - component: {fileID: 1518005595}
   m_Layer: 5
   m_Name: ArtifactContainer
   m_TagString: Untagged
@@ -3598,6 +3603,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1518005595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518005592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a7f6ee9e4fc124d8c19eff7239213c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SquimbText: {fileID: 782020779}
+  MarText: {fileID: 1600620210}
+  WaltText: {fileID: 945862800}
 --- !u!114 &1530908181 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3566018589309821103, guid: 6eee952eaaf9a1f41936e6365fbaf7ff, type: 3}
