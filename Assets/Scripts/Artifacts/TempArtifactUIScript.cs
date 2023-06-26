@@ -11,23 +11,48 @@ public class TempArtifactUIScript : ArtifactBase
     int MarCount = 0;
     int WaltCount = 0;
 
-    public Sprite SquimbSprite;
-
     
     void AddCount(ArtifactBase artifact)
     {
-        switch(artifact.uiSprite)
+        switch(artifact.behavior)
         {
-            //case (SquimbSprite):
-                //{
-                //    SquimbCount++;
-                //    break;
-                //}
+            case (ArtifactBehaviorType.HealUponNewMinion):
+                {
+                    SquimbCount++;
+                    break;
+                }
+            case (ArtifactBehaviorType.LowHPAttackBoost):
+                {
+                    MarCount++;
+                    break;
+                }
+            case (ArtifactBehaviorType.None):
+                {
+                    WaltCount++;
+                    break;
+                }
         }
     }
 
     void SubCount(ArtifactBase artifact)
     {
-
+        switch (artifact.behavior)
+        {
+            case (ArtifactBehaviorType.HealUponNewMinion):
+                {
+                    SquimbCount--;
+                    break;
+                }
+            case (ArtifactBehaviorType.LowHPAttackBoost):
+                {
+                    MarCount--;
+                    break;
+                }
+            case (ArtifactBehaviorType.None):
+                {
+                    WaltCount--;
+                    break;
+                }
+        }
     }
 }
