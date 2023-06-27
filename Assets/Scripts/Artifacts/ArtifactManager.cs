@@ -17,6 +17,8 @@ public class ArtifactManager : MonoBehaviour
     [SerializeField] ArtifactBase healArtifact;
     [SerializeField] ArtifactBase damageArtifact;
 
+    public TempArtifactUIScript tempArti;
+
     void AddArtifact(ArtifactBase artifact)
     {
         if(activeArtifacts.Contains(artifact) && !artifact.canStack)
@@ -43,10 +45,14 @@ public class ArtifactManager : MonoBehaviour
         }
         artifact.runtimeBehaviorComponent = behaviorComponent;
 
+        tempArti.AddCount(artifact);
+
     }
 
     void RemoveArtifact(ArtifactBase artifact)
     {
+        tempArti.SubCount(artifact);
+
         artifact.RemoveBuff();
 
         activeArtifacts.Remove(artifact);
