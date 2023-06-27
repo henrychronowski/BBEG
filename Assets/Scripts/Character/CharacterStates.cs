@@ -80,6 +80,12 @@ public class MoveState : CharacterBaseState
 
         float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
 
+        if (Physics.Raycast(c.transform.position, moveDir, out RaycastHit hitInfo, 0.75f))
+        {
+            if(hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+                moveDir = Vector3.ProjectOnPlane(moveDir, hitInfo.normal);
+        }
+
         c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, angle, c.transform.eulerAngles.z);
         c.rgd.velocity = moveDir * (c.GetMoveSpeed() * c.moveSpeedModifier); //?
     }
@@ -167,6 +173,8 @@ public class AttackState : CharacterBaseState
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
         float angle = Mathf.SmoothDampAngle(c.transform.eulerAngles.y, targetAngle, ref c.turnSmoothVelocity, c.turnSmoothTime);
+
+        
 
         c.transform.rotation = Quaternion.Euler(c.transform.eulerAngles.x, angle, c.transform.eulerAngles.z);
         c.rgd.velocity = moveDir * (c.moveSpeed * c.moveSpeedModifier); //?

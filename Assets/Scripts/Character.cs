@@ -303,7 +303,7 @@ public class Character : MonoBehaviour
     {
         Gizmos.color = Color.red;
         //Gizmos.DrawLine(transform.position, transform.position + rgd.velocity);
-        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * 5));
+        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * .5f));
         if(invulnerable)
         {
             Gizmos.color = Color.blue;

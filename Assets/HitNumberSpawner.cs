@@ -9,6 +9,9 @@ public class HitNumberSpawner : MonoBehaviour
 
     public void SpawnHitNumber(HitData hit)
     {
+        if (hit.mRecipient.tag == "Breakable")
+            return;
+
         GameObject hitNumber = Instantiate(numberObject, null);
         hitNumber.transform.position = hit.mRecipient.transform.position;
         hitNumber.GetComponent<HitNumber>().SetValue((int)hit.mDamage);

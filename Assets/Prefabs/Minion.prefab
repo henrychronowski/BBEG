@@ -139,7 +139,7 @@ MonoBehaviour:
   mimicBrakingDrag: 0.25
   mimicCatchupDistance: 3
   mimicCatchupSpeedModifier: 1.5
-  isStray: 1
+  isStray: 0
   rarity: 0
 --- !u!54 &6374090462111345341 stripped
 Rigidbody:

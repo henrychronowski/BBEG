@@ -25,8 +25,7 @@ public class UIScript : MonoBehaviour
     void Start()
     {
         manager = PlayerCharacterManager.instance;
-        tempCurr.text = "Gold: " + manager.tempCurr.ToString();
-        permCurr.text = "Gems: " + manager.tempCurr.ToString();
+
 
         leaderHP.maxValue = manager.leader.GetMaxHealth();
         leaderHP.value = manager.leader.currHealth;
@@ -61,8 +60,8 @@ public class UIScript : MonoBehaviour
 
     void UpdateText()
     {
-        tempCurr.text = "Gold: " + manager.tempCurr.ToString();
-        permCurr.text = "Gems: " + manager.permCurr.ToString();
+        tempCurr.text = "Keys: " + manager.keys.ToString();
+        permCurr.text = "Gold: " + manager.gold.ToString();
         hpText.text = manager.leader.currHealth + "/" + manager.leader.GetMaxHealth();
     }
 

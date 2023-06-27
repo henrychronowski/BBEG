@@ -61,8 +61,8 @@ public class RewardSpawner : MonoBehaviour
                 currentWeight += weights[i];
                 if (random <= currentWeight)
                 {
-                    //Debug.Log("Generating Room " + roomArray[i].name + " of weight " + roomWeight[i].ToString() + ". Random = " + random.ToString());
                     PickReward((RewardType)i, r);
+                    return;
                 }
             }
         }
@@ -73,7 +73,7 @@ public class RewardSpawner : MonoBehaviour
     {
         Debug.Log("Spawning " + type.ToString());
         Rarity rarity = PickRarity();
-        switch(type)
+        switch (type)
         {
             case RewardType.Artifact:
                 {
@@ -84,7 +84,24 @@ public class RewardSpawner : MonoBehaviour
                 }
             case RewardType.Healing:
                 {
-                    PlayerCharacterManager.instance.leader.Heal(baseHealing);
+                    EventManager.instance.HealReward(baseHealing);
+
+                    break;
+                }
+            case RewardType.Key:
+                {
+                    EventManager.instance.KeyReward(rarity);
+                    break;
+                }
+            case RewardType.Minion:
+                {
+                    EventManager.instance.MinionReward(rarity);
+                    Instantiate(minionPool[0], r.rewardSpawn);
+                    break;
+                }
+            case RewardType.Gold:
+                {
+                    EventManager.instance.GoldReward(rarity);
                     break;
                 }
         }

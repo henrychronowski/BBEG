@@ -16,7 +16,9 @@ MonoBehaviour:
   activeTimeInSeconds: 0.25
   totalTimeInSeconds: 0.5
   damage: 1
+  soundName: MeleeStart
   spawnOffset: 1
   hitboxPrefab: {fileID: 1789328453259137933, guid: b1d5401c2e228cc48baa040ad55abfd9, type: 3}
+  isProjectile: 0
   animController: {fileID: 22100000, guid: c6df42a7aa7980242a684c1f4966a532, type: 2}
   projectileLifetime: 0

@@ -104,7 +104,14 @@ public class Minion : Character
             if (state.stateType != CharacterState.Move)
                 state = new MoveState(this);
             Vector3 dir = (point.position - transform.position).normalized;
-            Move(new Vector2(dir.x, dir.z), mimicCatchupSpeedModifier);
+            if (PlayerCharacterManager.instance.leader.axis == Vector2.zero)
+            {
+                Move(new Vector2(dir.x, dir.z));
+            }
+            else
+            {
+                Move(new Vector2(dir.x, dir.z), mimicCatchupSpeedModifier);
+            }
             Debug.Log(name + " lagging");
 
         }
