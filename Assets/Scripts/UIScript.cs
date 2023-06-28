@@ -68,6 +68,10 @@ public class UIScript : MonoBehaviour
 
     void UpdateHealth()
     {
+        if(manager.leader.currHealth > leaderHP.maxValue)
+        {
+            manager.leader.currHealth = manager.leader.GetMaxHealth();
+        }
         leaderHP.value = manager.leader.currHealth;
         leaderHP.maxValue = manager.leader.GetMaxHealth();
         leaderHP.fillRect.gameObject.SetActive(leaderHP.value > 0);
