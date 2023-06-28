@@ -37,10 +37,12 @@ public class Leader : Character
     {
         state = new IdleState(this);
         EventManager.instance.onSacrificeMinion += SacrificeHeal;
+        EventManager.instance.onHealReward += Heal;
     }
 
     private void OnDestroy()
     {
         EventManager.instance.onSacrificeMinion -= SacrificeHeal;
+        EventManager.instance.onHealReward -= Heal;
     }
 }

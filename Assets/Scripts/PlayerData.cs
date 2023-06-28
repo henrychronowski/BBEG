@@ -36,7 +36,7 @@ public class PlayerData
         leader = player.leader;
         minions = new List<Minion>(player.minions);
 
-        tempCurr = player.tempCurr;
+        tempCurr = player.keys;
         permCurr = player.permCurr;
     }
 }

@@ -25,8 +25,11 @@ public class EventManager : MonoBehaviour
         instance = this;
     }
 
-    public event Action<HitData> onAttackConnected;
+    // Expand regions to view events
 
+    #region Attacks
+
+    public event Action<HitData> onAttackConnected;
     public void AttackConnected(HitData data)
     {
         if(onAttackConnected != null)
@@ -73,8 +76,12 @@ public class EventManager : MonoBehaviour
             onAttackStarted(atk);
         }
     }
+    #endregion
+
+    #region Enemy
 
     public event Action<Enemy, EnemyAIState> onAIStateChanged;
+
 
     public void AIStateChanged(Enemy e, EnemyAIState t)
     {
@@ -84,15 +91,10 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    // Fires when new minion joins the party
-    public event Action<Minion> onNewMinionAdded;
-    public void NewMinionAdded(Minion m)
-    {
-        if(onNewMinionAdded != null)
-        {
-            onNewMinionAdded(m);
-        }
-    }
+    #endregion
+
+    #region Dungeon
+
 
     public event Action<Transform> onGenerationComplete;
     public void GenerationComplete(Transform spawn)
@@ -160,6 +162,9 @@ public class EventManager : MonoBehaviour
             roomCleared(r);
         }
     }
+    #endregion
+
+    #region Player/Party
 
     public event Action<ArtifactBase> onArtifactAdded;
 
@@ -170,7 +175,7 @@ public class EventManager : MonoBehaviour
             onArtifactAdded(a);
         }
     }
-
+    
     public event Action onLeaderDeath;
 
     public void LeaderDeath()
@@ -178,6 +183,16 @@ public class EventManager : MonoBehaviour
         if (onLeaderDeath != null)
         {
             onLeaderDeath();
+        }
+    }
+
+    // Fires when new minion joins the party
+    public event Action<Minion> onNewMinionAdded;
+    public void NewMinionAdded(Minion m)
+    {
+        if(onNewMinionAdded != null)
+        {
+            onNewMinionAdded(m);
         }
     }
 
@@ -190,6 +205,63 @@ public class EventManager : MonoBehaviour
             onSacrificeMinion(m);
         }
     }
+    #endregion
+
+    #region Rewards
+
+    public event Action<Rarity> onKeyReward;
+
+    public void KeyReward(Rarity r)
+    {
+        if (onKeyReward != null)
+        {
+            onKeyReward(r);
+        }
+    }
+
+    public event Action<Rarity> onGoldReward;
+
+    public void GoldReward(Rarity r)
+    {
+        if (onGoldReward != null)
+        {
+            onGoldReward(r);
+        }
+    }
+
+    public event Action<int> onHealReward;
+
+    public void HealReward(int r)
+    {
+        if (onHealReward != null)
+        {
+            onHealReward(r);
+        }
+    }
+    public event Action<Rarity> onArtifactReward;
+
+    public void ArtifactReward(Rarity r)
+    {
+        if (onArtifactReward != null)
+        {
+            onArtifactReward(r);
+        }
+    }
+
+    public event Action<Rarity> onMinionReward;
+
+    public void MinionReward(Rarity r)
+    {
+        if (onMinionReward != null)
+        {
+            onMinionReward(r);
+        }
+    }
+
+    #endregion
+
+    #region Misc
+
 
     public event Action onDemoEndReached;
 
@@ -201,25 +273,38 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<string> onCageBreakFail;
 
-    // Useful for events that do not pass variables, prevents needing to make unique functions for those
-    public void FireTypelessEvent(Action typelessAction)
+    public void CageBreakFail()
     {
-        if(typelessAction != null)
+        if(onCageBreakFail != null)
         {
-            typelessAction();
+            onCageBreakFail("CageBreakFail");
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public event Action<Minion> onCageBreakSuccess;
+
+    public void CageBreakSuccess(Minion m)
     {
-        
+        if (onCageBreakSuccess != null)
+        {
+            onCageBreakSuccess(m);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    #endregion
+
+    #region Sound
+
+    public event Action<string> onPlaySound;
+    public void PlaySound(string _name)
     {
-        
+        if (onPlaySound != null)
+        {
+            onPlaySound(_name);
+        }
     }
+
+    #endregion
 }

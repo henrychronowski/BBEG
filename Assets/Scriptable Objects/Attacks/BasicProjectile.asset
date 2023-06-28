@@ -16,7 +16,7 @@ MonoBehaviour:
   activeTimeInSeconds: 0.5
   totalTimeInSeconds: 1
   damage: 1
-  soundId: 1
+  soundName: RangedStart
   spawnOffset: 1
   hitboxPrefab: {fileID: 343226444243881344, guid: 1eef7cc53856aad4dbd3ae200252fd3b, type: 3}
   isProjectile: 0

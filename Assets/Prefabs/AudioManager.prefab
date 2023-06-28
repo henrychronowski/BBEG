@@ -45,9 +45,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881484fe6bf697d4198450efb0f27eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - name: MeleeStart
+    clip: {fileID: 8300000, guid: 3ff64544ca9231e448d42ff96c19fb85, type: 3}
+    volume: 0.5
+    pitch: 1
+    pitchRand: 0.096
+  - name: HitSound
+    clip: {fileID: 8300000, guid: f9c0e801dab88df40b880e3f44e72ef8, type: 3}
+    volume: 0.5
+    pitch: 1
+    pitchRand: 0
+  - name: RangedStart
+    clip: {fileID: 8300000, guid: 324f64c55e0ad834681be5cee0c5d8f7, type: 3}
+    volume: 0.5
+    pitch: 1
+    pitchRand: 0.105
+  - name: CageBreakFail
+    clip: {fileID: 8300000, guid: 713821b463bb9ea4ea2b1a8000a65d28, type: 3}
+    volume: 0.5
+    pitch: 1
+    pitchRand: 0
+  - name: CageBreak
+    clip: {fileID: 8300000, guid: b26eac4c731d7fb43887de6475dba588, type: 3}
+    volume: 0.5
+    pitch: 1
+    pitchRand: 0
   clips:
-  - {fileID: 8300000, guid: 4e4c7d2c1fd9abb40823da842cbc1d40, type: 3}
-  - {fileID: 8300000, guid: 4e4c7d2c1fd9abb40823da842cbc1d40, type: 3}
+  - {fileID: 8300000, guid: 3ff64544ca9231e448d42ff96c19fb85, type: 3}
+  - {fileID: 8300000, guid: 324f64c55e0ad834681be5cee0c5d8f7, type: 3}
+  - {fileID: 8300000, guid: f9c0e801dab88df40b880e3f44e72ef8, type: 3}
   source: {fileID: 7850123299038083387}
 --- !u!82 &7850123299038083387
 AudioSource:

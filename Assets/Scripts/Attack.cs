@@ -54,7 +54,7 @@ public class Attack : ScriptableObject
 
     public float damage;
 
-    public int soundId;
+    public string soundName;
 
     // How much to offset the hitbox spawn position from the player
     public float spawnOffset;

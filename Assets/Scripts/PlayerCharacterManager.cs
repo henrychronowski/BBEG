@@ -55,8 +55,13 @@ public class PlayerCharacterManager : MonoBehaviour
 
     //Temporary currency (used only during runs) and
     //Permanent currency (used throughout the game)
-    [SerializeField] public int tempCurr;
+    [SerializeField] public int keys;
+    
+    [SerializeField] public int gold;
+    [SerializeField] public int baseGoldReward;
+
     [SerializeField] public int permCurr;
+
 
     public TextMeshProUGUI stateView;
 
@@ -115,16 +120,15 @@ public class PlayerCharacterManager : MonoBehaviour
     }
 
     // Move
-    public bool AddMinion(Minion newMinion)
+    public void AddMinion(Minion newMinion)
     {
         if(minions.Count == maxMinions)
         {
-            return false;
+            return;
         }
 
         minions.Add(newMinion);
         EventManager.instance.NewMinionAdded(newMinion);
-        return true;
     }
 
     private void OnMeleeAttack()
@@ -381,7 +385,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public static bool HitboxAllegianceCheck(GameObject hitboxOwner, GameObject recipient)
     {
-        if((hitboxOwner.tag == "Player" || hitboxOwner.tag == "Minion") && recipient.tag == "Enemy")
+        if((hitboxOwner.tag == "Player" || hitboxOwner.tag == "Minion") && (recipient.tag == "Enemy" || recipient.tag == "Breakable"))
         {
             return true;
         }
@@ -436,7 +440,17 @@ public class PlayerCharacterManager : MonoBehaviour
         return true;
     }
 
-    
+    // Gives one key to the player, gives more depending on rarity
+    // common = +0, uncommon = +1, rare = +2
+    void KeyReward(Rarity r)
+    {
+        keys += (1 + (int)r);
+    }
+
+    void GoldReward(Rarity r)
+    {
+        gold += baseGoldReward * (1 + (int)r);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -446,6 +460,8 @@ public class PlayerCharacterManager : MonoBehaviour
         EventManager.instance.onStairsReached += StartScriptedState;
         EventManager.instance.onTransitionComplete += EndScriptedState;
         EventManager.instance.onSacrificeMinion += KillMinion;
+        EventManager.instance.onCageBreakSuccess += AddMinion;
+        EventManager.instance.onKeyReward += KeyReward;
     }
 
     private void OnDestroy()
@@ -455,6 +471,7 @@ public class PlayerCharacterManager : MonoBehaviour
         EventManager.instance.onStairsReached -= StartScriptedState;
         EventManager.instance.onTransitionComplete -= EndScriptedState;
         EventManager.instance.onSacrificeMinion -= KillMinion;
+        EventManager.instance.onCageBreakSuccess -= AddMinion;
     }
 
     private void Update()
@@ -495,7 +512,7 @@ public class PlayerCharacterManager : MonoBehaviour
         leader = data.leader;
         minions = new List<Minion>(data.minions);
 
-        tempCurr = data.tempCurr;
+        keys = data.tempCurr;
         permCurr = data.permCurr;
     }
     private void Awake()

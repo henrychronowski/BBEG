@@ -84,6 +84,7 @@ public class Hitbox : MonoBehaviour
         // Melee
         if (type == AttackType.Melee)
         {
+
         }
         else // Ranged
         {
