@@ -307,4 +307,55 @@ public class EventManager : MonoBehaviour
     }
 
     #endregion
+
+    #region Dialogue
+
+    public event Action onNodeStart;
+    public void NodeStart()
+    {
+        if (onNodeStart != null)
+        {
+            onNodeStart();
+        }
+    }
+
+    public event Action onNodeComplete;
+    public void NodeComplete()
+    {
+        if (onNodeComplete != null)
+        {
+            onNodeComplete();
+        }
+    }
+
+    public event Action onDialogueComplete;
+    public void DialogueComplete()
+    {
+        if (onDialogueComplete != null)
+        {
+            onDialogueComplete();
+        }
+    }
+
+    public event Action onCommand;
+    public void Command()
+    {
+        if (onCommand != null)
+        {
+            onCommand();
+        }
+    }
+
+    #endregion
+
+    #region Template
+    public event Action onTestEvent;
+    public void TestEvent()
+    {
+        if (onTestEvent != null)
+        {
+            onTestEvent();
+        }
+    }
+    #endregion
 }

@@ -111,9 +111,12 @@ public class Character : MonoBehaviour
             moveSpeedBuffTotal += (b.movementSpeedBuff * b.GetMultiplier());
         }
 
-        if(PlayerCharacterManager.instance.activeRoom.isRoomCleared)
+        if(PlayerCharacterManager.instance.activeRoom != null)
         {
-            moveSpeedBuffTotal += PlayerCharacterManager.instance.outOfCombatSpeedBoost;
+            if(PlayerCharacterManager.instance.activeRoom.isRoomCleared)
+            {
+                moveSpeedBuffTotal += PlayerCharacterManager.instance.outOfCombatSpeedBoost;
+            }
         }
 
         return moveSpeedBuffTotal + moveSpeed;

@@ -28,6 +28,7 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] float roomGapTranslationDistance;
     [SerializeField] bool clearedThisFrame;
     [SerializeField] bool clearedLastFrame;
+    [SerializeField] bool useStartingRoom;
 
 
     public void StartGeneration()
@@ -50,8 +51,14 @@ public class DungeonGeneration : MonoBehaviour
 
         float startingTime = Time.deltaTime;
         int roomsAttempted = 0;
+        RoomInfo activeRoom;
 
-        RoomInfo activeRoom = Room.LoadRoom(startingRoom, Vector3.zero).GetComponent<RoomInfo>();
+        if (useStartingRoom)
+            activeRoom = Room.LoadRoom(startingRoom, Vector3.zero).GetComponent<RoomInfo>();
+        else
+            activeRoom = Room.LoadRoom(roomSet.GetRandomRoom(), Vector3.zero).GetComponent<RoomInfo>();
+
+
         PlayerCharacterManager.instance.activeRoom = activeRoom;
         CameraControl.Instance.ChangeFocus(activeRoom.focus);
 
