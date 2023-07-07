@@ -7,9 +7,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 472868054286220332, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030036085181454291, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030036085181454292, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030036086109507715, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030036086109507716, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7030036086379042726, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
       propertyPath: m_Name
-      value: TestRoomPrefab
+      value: TestRoomPrefab Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030036086379042726, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7030036086379042727, guid: 8b0c26b16e177cb419c927cc902c4a04, type: 3}
       propertyPath: m_RootOrder
