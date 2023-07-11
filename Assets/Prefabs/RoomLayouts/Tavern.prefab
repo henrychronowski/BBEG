@@ -2524,58 +2524,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8924858530713820734, guid: bbc141a204367db4299ccf8a45d5c754, type: 3}
+    - target: {fileID: 8924858530713820734, guid: bbc141a204367db4299ccf8a45d5c754, type: 3}
+      propertyPath: yarnKey
+      value: Tavernkeeper
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc141a204367db4299ccf8a45d5c754, type: 3}
 --- !u!4 &2779666328094341267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8411779280831417324, guid: bbc141a204367db4299ccf8a45d5c754, type: 3}
   m_PrefabInstance: {fileID: 5922232944849580927}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &2779666328094341269 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 8411779280831417322, guid: bbc141a204367db4299ccf8a45d5c754, type: 3}
-  m_PrefabInstance: {fileID: 5922232944849580927}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2779666328094341292 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8411779280831417299, guid: bbc141a204367db4299ccf8a45d5c754, type: 3}
-  m_PrefabInstance: {fileID: 5922232944849580927}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5462316077680364640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2779666328094341292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c081b2169866d24088db37fbc43e8bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  activeBuffs: []
-  baseHealth: 5
-  currHealth: 5
-  baseDefense: 0
-  moveSpeed: 1
-  baseMeleeAffinity: 0
-  baseRangedAffinity: 0
-  rgd: {fileID: 2779666328094341269}
-  axis: {x: 0, y: 0}
-  turnSmoothVelocity: 0
-  turnSmoothTime: 0
-  followPoint: {fileID: 0}
-  moveSpeedModifier: 1
-  meleeAttack: {fileID: 0}
-  rangedAttack: {fileID: 0}
-  hitbox: {fileID: 0}
-  overrider: {fileID: 0}
-  animator: {fileID: 0}
-  portrait: {fileID: 0}
-  dodgeDuration: 0
-  dodgeSpeedMultiplier: 0
-  dodgeInvulDuration: 0
-  invulnerable: 0
-  stateRules: {fileID: 11400000, guid: 9ec95117da1ed9d45a34e67276da6f92, type: 2}

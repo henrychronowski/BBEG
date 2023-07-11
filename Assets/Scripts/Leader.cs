@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 [System.Serializable]
 public class Leader : Character
@@ -9,6 +10,7 @@ public class Leader : Character
 
     // Passive ability, implement it like a unique artifact
     // Active ability
+
     public override void Hit(int damage)
     {
         if (damage < 0)
@@ -24,6 +26,8 @@ public class Leader : Character
                 EventManager.instance.LeaderDeath();
         }
     }
+
+    
 
     void SacrificeHeal(Minion m)
     {

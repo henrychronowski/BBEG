@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
+using Yarn.Unity;
 
 public enum PartyMovementState
 {
@@ -119,6 +119,11 @@ public class PlayerCharacterManager : MonoBehaviour
         }
     }
 
+    public void OnInteract()
+    {
+        leader.AttemptInteract();
+    }
+
     // Move
     public void AddMinion(Minion newMinion)
     {
@@ -143,6 +148,10 @@ public class PlayerCharacterManager : MonoBehaviour
 
     void RequestAttack(AttackType type)
     {
+        // exit conditions
+        if (!leader.CanPerformStateTransition(CharacterState.Dodge))
+            return;
+
         if (party == PartyMovementState.Scripted)
             return;
 
@@ -451,6 +460,16 @@ public class PlayerCharacterManager : MonoBehaviour
     {
         gold += baseGoldReward * (1 + (int)r);
     }
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(instance);
+        else
+            instance = this;
+
+        EventManager.instance.onNodeStart += StartScriptedState;
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -462,6 +481,8 @@ public class PlayerCharacterManager : MonoBehaviour
         EventManager.instance.onSacrificeMinion += KillMinion;
         EventManager.instance.onCageBreakSuccess += AddMinion;
         EventManager.instance.onKeyReward += KeyReward;
+        EventManager.instance.onDialogueComplete += EndScriptedState;
+
     }
 
     private void OnDestroy()
@@ -472,6 +493,9 @@ public class PlayerCharacterManager : MonoBehaviour
         EventManager.instance.onTransitionComplete -= EndScriptedState;
         EventManager.instance.onSacrificeMinion -= KillMinion;
         EventManager.instance.onCageBreakSuccess -= AddMinion;
+        EventManager.instance.onNodeStart -= StartScriptedState;
+        EventManager.instance.onDialogueComplete -= EndScriptedState;
+
     }
 
     private void Update()
@@ -514,13 +538,6 @@ public class PlayerCharacterManager : MonoBehaviour
 
         keys = data.tempCurr;
         permCurr = data.permCurr;
-    }
-    private void Awake()
-    {
-        if (instance != null)
-            Destroy(instance);
-        else
-            instance = this;
     }
 
 }

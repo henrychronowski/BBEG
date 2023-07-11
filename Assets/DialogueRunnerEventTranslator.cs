@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class DialogueRunnerEventTranslator : MonoBehaviour
 {
-    public void OnNodeStart()
+    public static DialogueRunner instance { get; private set; }
+
+    
+
+    private void Awake()
     {
+        if (instance != null)
+            Destroy(instance);
+        else
+            instance = GetComponent<DialogueRunner>();
+    }
+    public void OnNodeStart()
+    { 
         EventManager.instance.NodeStart();
     }
 

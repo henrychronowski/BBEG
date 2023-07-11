@@ -52,6 +52,10 @@ public class Character : MonoBehaviour
     [SerializeField] public float dodgeInvulDuration;
     [SerializeField] public bool invulnerable = false;
     [SerializeField] CharacterStateTransitionRules stateRules;
+
+    [SerializeField] public float interactRadius = 2f;
+    [SerializeField] public string yarnKey;
+
     // Contains common functionality between entities (Leader, minions, enemies, NPCs)
     // Movement, attacking, dodging, health, stats etc
 
@@ -79,6 +83,39 @@ public class Character : MonoBehaviour
             animator.SetFloat("Blend", 0);
 
         }
+    }
+
+    public void AttemptInteract()
+    {
+        // allow interaction only when the character can move
+        if (!CanPerformStateTransition(CharacterState.Move))
+            return;
+
+        Collider[] colliders =
+            Physics.OverlapSphere(transform.position, interactRadius);
+
+        foreach(Collider col in colliders)
+        {
+            if(col.TryGetComponent<Character>(out Character ch))
+            {
+                if (ch.yarnKey != "")
+                {
+                    ch.DialogueStart(this);
+                    return;
+                }
+            }
+        }
+    }
+
+    // initiator = character who performed the interaction to start the dialogue
+    public void DialogueStart(Character initiator)
+    {
+        // Have both characters look at each other
+        // Tell dialogue runner to start a dialogue using this character's key
+        transform.forward = (initiator.transform.position - transform.position).normalized;
+        initiator.transform.forward = -transform.forward;
+
+        DialogueRunnerEventTranslator.instance.StartDialogue(yarnKey);
     }
 
     public virtual void Hit(int damage)
