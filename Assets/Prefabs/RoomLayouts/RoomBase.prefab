@@ -1605,6 +1605,7 @@ MonoBehaviour:
   enemies: {fileID: 5122532484953489395}
   isStaircaseRoom: 0
   isRoomCleared: 0
+  ceiling: {fileID: 3935550657681507128}
 --- !u!114 &5629018737613818289
 MonoBehaviour:
   m_ObjectHideFlags: 0

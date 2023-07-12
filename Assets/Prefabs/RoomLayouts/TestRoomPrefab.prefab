@@ -1141,6 +1141,7 @@ MonoBehaviour:
   enemies: {fileID: 0}
   isStaircaseRoom: 0
   isRoomCleared: 0
+  ceiling: {fileID: 472868054286220332}
 --- !u!1001 &7030036085999145340
 PrefabInstance:
   m_ObjectHideFlags: 0

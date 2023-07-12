@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestBasic00
       objectReference: {fileID: 0}
+    - target: {fileID: 3934344703126633782, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: ceiling
+      value: 
+      objectReference: {fileID: 1313603469528399738}
     - target: {fileID: 3935550657681507128, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -182,6 +186,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+--- !u!1 &1313603469528399738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3935550657681507128, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+  m_PrefabInstance: {fileID: 2641142505648471106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2168408580260583926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4229026288906266036, guid: bd1b1813175db904892631c2d6da04af, type: 3}

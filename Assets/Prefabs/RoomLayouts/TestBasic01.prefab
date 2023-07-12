@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3977620480955804242
 Transform:
   m_ObjectHideFlags: 0
@@ -227,6 +227,10 @@ PrefabInstance:
       value: TestBasic01
       objectReference: {fileID: 0}
     - target: {fileID: 3934344703126633782, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: ceiling
+      value: 
+      objectReference: {fileID: 43612289208516685}
+    - target: {fileID: 3934344703126633782, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: roomExtents.x
       value: 30
       objectReference: {fileID: 0}
@@ -236,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4211626580232844420, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4229026288906266036, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_RootOrder
@@ -296,6 +300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+--- !u!1 &43612289208516685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3935550657681507128, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+  m_PrefabInstance: {fileID: 3893101695667061621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &916366377462212289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4229026288906266036, guid: bd1b1813175db904892631c2d6da04af, type: 3}
