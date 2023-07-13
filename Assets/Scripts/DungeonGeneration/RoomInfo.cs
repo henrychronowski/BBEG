@@ -16,6 +16,8 @@ public class RoomInfo : MonoBehaviour
     [SerializeField] Transform enemies;
     public bool isStaircaseRoom = false;
     public bool isRoomCleared = false;
+
+    public GameObject ceiling;
     public List<Exit> GetExitsByDirection(ExitDirection dir)
     {
         List<Exit> exits = new List<Exit>();
@@ -97,6 +99,7 @@ public class RoomInfo : MonoBehaviour
             return;
         }
 
+        RevealOnMap(room);
         UnfreezeEnemies(); 
 
         if(AreEnemiesAlive())
@@ -124,6 +127,11 @@ public class RoomInfo : MonoBehaviour
                 EventManager.instance.RoomCleared(this);
             }
         }
+    }
+
+    public void RevealOnMap(RoomInfo room)
+    {
+        room.ceiling.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()

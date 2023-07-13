@@ -174,6 +174,8 @@ public class DungeonGeneration : MonoBehaviour
 
         Debug.Log("Generation complete, roomsAttempted = " + roomsAttempted);
 
+        activeRoom.RevealOnMap(generatedRooms[0]);
+
     }
    
     void DisableUnusedExits()
