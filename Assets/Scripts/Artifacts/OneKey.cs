@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArtifactBehaviorBase : MonoBehaviour
+public class OneKey : ArtifactBehaviorBase
 {
 
-    public virtual void OnCollect()
+    public override void OnCollect()
     {
-        Debug.Log("No collect behavior");
+        EventManager.instance.KeyReward(Rarity.Common);
     }
-
     // Start is called before the first frame update
     void Start()
     {

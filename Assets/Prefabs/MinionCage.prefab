@@ -425,8 +425,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   activeBuffs: []
-  baseHealth: 3
-  currHealth: 3
+  baseHealth: 1
+  currHealth: 1
   baseDefense: 0
   moveSpeed: 1
   baseMeleeAffinity: 0
@@ -448,6 +448,8 @@ MonoBehaviour:
   dodgeInvulDuration: 0
   invulnerable: 0
   stateRules: {fileID: 0}
+  interactRadius: 2
+  yarnKey: 
   minionToSpawn: {fileID: 6374090462111345284, guid: 867ff5d2a0d64b14b80e68ea25cc84ae, type: 3}
   spawnedMinion: {fileID: 0}
   spawnPoint: {fileID: 1439264181}

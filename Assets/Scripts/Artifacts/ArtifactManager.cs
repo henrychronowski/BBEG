@@ -7,7 +7,8 @@ public enum ArtifactBehaviorType
 {
     None,
     LowHPAttackBoost,
-    HealUponNewMinion
+    HealUponNewMinion,
+    OneKey
 }
 
 public class ArtifactManager : MonoBehaviour
@@ -42,8 +43,14 @@ public class ArtifactManager : MonoBehaviour
                     behaviorComponent = gameObject.AddComponent<HealUponNewMinion>();
                     break;
                 }
+            case ArtifactBehaviorType.OneKey:
+                {
+                    behaviorComponent = gameObject.AddComponent<OneKey>();
+                    break;
+                }
         }
         artifact.runtimeBehaviorComponent = behaviorComponent;
+        behaviorComponent.OnCollect();
 
         tempArti.AddCount(artifact);
 
