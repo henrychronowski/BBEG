@@ -99,7 +99,7 @@ public class RoomInfo : MonoBehaviour
             return;
         }
 
-        room.ceiling.gameObject.SetActive(false);
+        RevealOnMap(room);
         UnfreezeEnemies(); 
 
         if(AreEnemiesAlive())
@@ -127,6 +127,11 @@ public class RoomInfo : MonoBehaviour
                 EventManager.instance.RoomCleared(this);
             }
         }
+    }
+
+    public void RevealOnMap(RoomInfo room)
+    {
+        room.ceiling.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()
