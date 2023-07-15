@@ -1,5 +1,7 @@
 ﻿title: TestBuildTutorialScript
 tags:
+position: -29,-147
 ---
-
+Tutorial: Welcome to the test build. Here, you'll learn how the game works. Your goal is to get to the end of the 5th floor.
+Tutorial: Use WASD to move, Left Click to use melee attack, Right Click to use ranged attack, and Spacebar to dodge.
 ===
