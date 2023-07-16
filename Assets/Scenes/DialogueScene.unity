@@ -4899,6 +4899,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4625450931121473968, guid: f0f280552e716324d96098e8bee3079b, type: 3}
+      propertyPath: yarnProject
+      value: 
+      objectReference: {fileID: 7545569452688597077, guid: a2c2b728e95ee374998482b229489057, type: 3}
     - target: {fileID: 6316960014644838861, guid: f0f280552e716324d96098e8bee3079b, type: 3}
       propertyPath: m_Name
       value: Dialogue System
