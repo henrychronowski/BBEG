@@ -22,7 +22,9 @@ public class Exit : MonoBehaviour
     [SerializeField] Material openMat;
     [SerializeField] MeshRenderer meshRenderer;
 
-    bool isOpen = true;
+    [SerializeField] bool isOpen = true;
+    [SerializeField] bool closeOnStart = false;
+    
 
     public static ExitDirection GetOpposingDirection(ExitDirection dir)
     {
@@ -165,6 +167,11 @@ public class Exit : MonoBehaviour
         {
             //Debug.Log("Player is close, enable room dependant characters/entities now");
         }
+    }
+
+    private void Start()
+    {
+        if (closeOnStart) Close();
     }
 
     private void OnDrawGizmos()

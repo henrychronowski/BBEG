@@ -409,7 +409,7 @@ public class PlayerCharacterManager : MonoBehaviour
         return false;
     }
 
-    static void HitCharacter(HitData data)
+    public static void HitCharacter(HitData data)
     {
         data.mRecipient.Hit((int)data.mDamage);
     }

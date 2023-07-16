@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4553
+  m_VersionIndex: 4556
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1816,7 +1816,7 @@ GameObject:
   - component: {fileID: 5213653885498655588}
   - component: {fileID: 2478501256574949456}
   m_Layer: 10
-  m_Name: Tavern
+  m_Name: TestingTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1864,6 +1864,7 @@ MonoBehaviour:
   enemies: {fileID: 4706877361802179878}
   isStaircaseRoom: 0
   isRoomCleared: 0
+  ceiling: {fileID: 0}
 --- !u!114 &5213653885498655588
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30aa08b7750eaa64d999e9d0be36bd5a, type: 3}
   m_Name: BigPunch
   m_EditorClassIdentifier: 
-  startupInSeconds: 0.15
-  activeTimeInSeconds: 0.35
+  startupInSeconds: 0.05
+  activeTimeInSeconds: 0.3
   totalTimeInSeconds: 0.55
   damage: 2
   soundName: MeleeStart

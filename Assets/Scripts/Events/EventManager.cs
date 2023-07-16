@@ -186,6 +186,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<Character> onCharacterDeath;
+
+    public void CharacterDeath(Character c)
+    {
+        if (onCharacterDeath != null)
+        {
+            onCharacterDeath(c);
+        }
+    }
+
     // Fires when new minion joins the party
     public event Action<Minion> onNewMinionAdded;
     public void NewMinionAdded(Minion m)

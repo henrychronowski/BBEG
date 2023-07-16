@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicProjectile
   m_EditorClassIdentifier: 
   startupInSeconds: 0.2
-  activeTimeInSeconds: 0.5
+  activeTimeInSeconds: 0.4
   totalTimeInSeconds: 0.7
   damage: 1
   soundName: RangedStart

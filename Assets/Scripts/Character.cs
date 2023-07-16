@@ -127,6 +127,7 @@ public class Character : MonoBehaviour
         if(currHealth <= 0)
         {
             // 
+            EventManager.instance.CharacterDeath(this);
             Destroy(gameObject);
         }
     }
@@ -152,7 +153,9 @@ public class Character : MonoBehaviour
         {
             if(PlayerCharacterManager.instance.activeRoom.isRoomCleared)
             {
-                moveSpeedBuffTotal += PlayerCharacterManager.instance.outOfCombatSpeedBoost;
+                // Causes bug where movement speeds of 0 will still allow slow movement
+                // Problematic for tutorial dummies, disabling this mechanic until this gets fixed
+                //moveSpeedBuffTotal += PlayerCharacterManager.instance.outOfCombatSpeedBoost;
             }
         }
 

@@ -270,6 +270,11 @@ public class DungeonGeneration : MonoBehaviour
 
         if (generateOnPlay)
             Generate();
+        else
+        {
+            PlayerCharacterManager.instance.activeRoom = FindObjectOfType<RoomInfo>();
+            CameraControl.Instance.ChangeFocus(PlayerCharacterManager.instance.activeRoom.focus);
+        }
     }
 
     private void OnDestroy()

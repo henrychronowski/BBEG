@@ -11,7 +11,7 @@ public enum AttackPhase
 
 public class Hitbox : MonoBehaviour
 {
-    private Character owner;
+    public Character owner;
     [SerializeField] private MeshRenderer mesh;
     private Rigidbody rgd;
     private Attack attack;
