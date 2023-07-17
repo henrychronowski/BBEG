@@ -1099,17 +1099,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cdf3c1e7-182e-4671-b6fa-c4f9a6a6eeb9",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AdvanceDialogue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "52e472d0-1744-4511-a97f-e2ddea079659",
                     "path": "<Keyboard>/space",
                     "interactions": "",
