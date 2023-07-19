@@ -50,9 +50,10 @@ public class ArtifactManager : MonoBehaviour
                 }
         }
         artifact.runtimeBehaviorComponent = behaviorComponent;
-        behaviorComponent.OnCollect();
 
         tempArti.AddCount(artifact);
+        if(behaviorComponent != null)
+            behaviorComponent.OnCollect();
 
     }
 

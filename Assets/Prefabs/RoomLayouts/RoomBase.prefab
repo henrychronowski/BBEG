@@ -1959,7 +1959,8 @@ GameObject:
   - component: {fileID: 6061481396364567812}
   - component: {fileID: 1150024344469532802}
   - component: {fileID: 3627513507074793831}
-  m_Layer: 0
+  - component: {fileID: 5828424218183561955}
+  m_Layer: 9
   m_Name: Stairs
   m_TagString: Stairs
   m_Icon: {fileID: 0}
@@ -2040,9 +2041,9 @@ BoxCollider:
   m_GameObject: {fileID: 5815171418841795642}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3627513507074793831
 MonoBehaviour:
@@ -2057,6 +2058,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   used: 0
+--- !u!135 &5828424218183561955
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5815171418841795642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6033130084691029242
 GameObject:
   m_ObjectHideFlags: 0

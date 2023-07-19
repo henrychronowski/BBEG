@@ -5,7 +5,7 @@ using UnityEngine;
 public class LowHPAttackBoost : ArtifactBehaviorBase
 {
     public float healthPercentageRequirement = .2f;
-    public float damageModifier = 4f;
+    public float damageModifier = 2f;
     void ApplyAttackBoost(HitData hit)
     {
         float healthPercentage = hit.mOwner.currHealth / hit.mOwner.GetMaxHealth();

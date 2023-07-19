@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 7733020529289202645}
   - component: {fileID: 7733020529289202646}
   - component: {fileID: 7733020529289202647}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CollectableArtifact
   m_TagString: Untagged
   m_Icon: {fileID: 0}

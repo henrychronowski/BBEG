@@ -467,13 +467,13 @@ public class PlayerCharacterManager : MonoBehaviour
         else
             instance = this;
 
-        EventManager.instance.onNodeStart += StartScriptedState;
 
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.instance.onNodeStart += StartScriptedState;
         EventManager.instance.onHitProcessed += HitCharacter;
         EventManager.instance.onGenerationComplete += TeleportParty;
         EventManager.instance.onStairsReached += StartScriptedState;

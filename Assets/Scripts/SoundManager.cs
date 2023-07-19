@@ -85,6 +85,11 @@ public class SoundManager : MonoBehaviour
         PlaySound(atk.soundName);
     }
 
+    void PlayTextSound(ArtifactBase a = null)
+    {
+        PlaySound("Text");
+    }
+
     private void Awake()
     {
         EventManager.instance.onAttackConnected += PlayAttackHitSound;
@@ -101,7 +106,7 @@ public class SoundManager : MonoBehaviour
     {
         EventManager.instance.onPlaySound += PlaySound;
         EventManager.instance.onCageBreakFail += PlaySound;
-
+        EventManager.instance.onArtifactAdded += PlayTextSound;
         EventManager.instance.onAttackStarted += PlayAttackStartSound;
         for (int i = 0; i < sounds.Length; i++)
         {
@@ -112,6 +117,7 @@ public class SoundManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        EventManager.instance.onArtifactAdded -= PlayTextSound;
         EventManager.instance.onAttackStarted -= PlayAttackStartSound;
         EventManager.instance.onAttackConnected -= PlayAttackHitSound;
         EventManager.instance.onPlaySound -= PlaySound;

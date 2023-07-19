@@ -47,6 +47,7 @@ public class MinionCage : Character
     void Start()
     {
         spawnedMinion = Instantiate(minionToSpawn, spawnPoint.transform.position, Quaternion.identity);
+        spawnedMinion.transform.parent = this.gameObject.transform;
         spawnedMinion.GetComponent<Rigidbody>().isKinematic = true;
         spawnedMinion.GetComponent<CapsuleCollider>().enabled = false;
         spawnedMinion.GetComponent<Minion>().enabled = false;

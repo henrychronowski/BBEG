@@ -71,6 +71,11 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     pitchRand: 0
+  - name: Text
+    clip: {fileID: 8300000, guid: b68ced5609fdb5e4da5df5f8cc34cab9, type: 3}
+    volume: 0.059
+    pitch: 1.273
+    pitchRand: 0.083
   clips:
   - {fileID: 8300000, guid: 3ff64544ca9231e448d42ff96c19fb85, type: 3}
   - {fileID: 8300000, guid: 324f64c55e0ad834681be5cee0c5d8f7, type: 3}

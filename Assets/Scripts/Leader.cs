@@ -11,6 +11,8 @@ public class Leader : Character
     // Passive ability, implement it like a unique artifact
     // Active ability
 
+    float timeSinceLastHit = 0f;
+    [SerializeField] float invulnTime = 0.5f;
     public override void Hit(int damage)
     {
         if (damage < 0)
@@ -27,7 +29,11 @@ public class Leader : Character
         }
     }
 
-    
+    void Update()
+    {
+        currentState = state.stateType;
+        state.Update();
+    }
 
     void SacrificeHeal(Minion m)
     {

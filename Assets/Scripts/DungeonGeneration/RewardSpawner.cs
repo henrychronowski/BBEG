@@ -41,13 +41,13 @@ public class RewardSpawner : MonoBehaviour
 
     public int[] rarityWeights;
 
-    int roomClearDropChance;
+    public int roomClearDropChance;
     public static List<RewardType> RewardTypes = new List<RewardType>(5);
     public Dictionary<RewardType, int> rewards = new Dictionary<RewardType, int>();
     void RollForReward(RoomInfo r)
     {
         int rng = Random.Range(0, 100);
-        if (roomClearDropChance < rng)
+        if (roomClearDropChance > rng)
         {
             int totalWeight = 0;
             foreach (int w in weights)
@@ -138,10 +138,7 @@ public class RewardSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            RollForReward(PlayerCharacterManager.instance.activeRoom);
-        }
+        
     }
 
     private void Awake()
