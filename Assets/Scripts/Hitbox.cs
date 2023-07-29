@@ -52,7 +52,7 @@ public class Hitbox : MonoBehaviour
                 continue;
             }
 
-            if(hit.GetComponent<Character>().invulnerable)
+            if(hit.GetComponent<Character>().GetInvulnerabilityState())
             {
                 continue;
             }

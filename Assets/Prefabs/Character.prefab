@@ -1095,6 +1095,7 @@ Transform:
   - {fileID: 1629071583404689543}
   - {fileID: 7915027897467785170}
   - {fileID: 277535705862896786}
+  - {fileID: 6434447802316545294}
   m_Father: {fileID: 6080025853874627412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2853,7 +2854,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6080025853874627412}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5070496036990368865
 GameObject:
@@ -3281,12 +3282,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5855682945249054299}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.33, z: 0.106}
+  m_LocalPosition: {x: 0, y: 1.195, z: 0.106}
   m_LocalScale: {x: 0.85858, y: 0.85858, z: 0.85858}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6080025853874627412}
-  m_RootOrder: 1
+  m_Father: {fileID: 3438904932146031928}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1392853840448466391
 MeshFilter:
@@ -3641,7 +3642,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3438904932146031928}
-  - {fileID: 6434447802316545294}
   - {fileID: 2744601260002139008}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3685,7 +3685,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6080025853874627435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8464c5ad69b58ea458ee503009bec154, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aaf5a1f374c309488f16fcbf94ee664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
@@ -3693,17 +3693,17 @@ MonoBehaviour:
   baseHealth: 5
   currHealth: 5
   baseDefense: 0
-  moveSpeed: 5
+  moveSpeed: 1
   baseMeleeAffinity: 0
   baseRangedAffinity: 0
   rgd: {fileID: 6080025853874627410}
   axis: {x: 0, y: 0}
-  turnSmoothVelocity: 1
+  turnSmoothVelocity: 0
   turnSmoothTime: 0
-  followPoint: {fileID: 2744601260002139008}
+  followPoint: {fileID: 0}
   moveSpeedModifier: 1
-  meleeAttack: {fileID: 0}
-  rangedAttack: {fileID: 0}
+  meleeAttack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
+  rangedAttack: {fileID: 11400000, guid: 92482cadcf16eea4c94f95f159b49880, type: 2}
   hitbox: {fileID: 0}
   overrider: {fileID: 5854317907104989949}
   animator: {fileID: 4698224255747457090}
@@ -3713,6 +3713,10 @@ MonoBehaviour:
   dodgeInvulDuration: 0
   invulnerable: 0
   stateRules: {fileID: 11400000, guid: 9ec95117da1ed9d45a34e67276da6f92, type: 2}
+  timeSinceLastHit: 0
+  iFrameDuration: 0
+  interactRadius: 2
+  yarnKey: 
 --- !u!1 &6189456268790923021
 GameObject:
   m_ObjectHideFlags: 0

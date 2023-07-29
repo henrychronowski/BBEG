@@ -15,11 +15,8 @@ public class Leader : Character
     [SerializeField] float invulnTime = 0.5f;
     public override void Hit(int damage)
     {
-        if (damage < 0)
-            damage = 0;
-        currHealth -= damage;
 
-        if (currHealth <= 0)
+        if (currHealth - damage <= 0)
         {
             currHealth = 0;
             if (PlayerCharacterManager.instance.minions.Count == 0)
@@ -27,12 +24,14 @@ public class Leader : Character
             else
                 EventManager.instance.LeaderDeath();
         }
+        else base.Hit(damage);
     }
 
     void Update()
     {
-        currentState = state.stateType;
-        state.Update();
+        base.Update();
+        //currentState = state.stateType;
+        //state.Update();
     }
 
     void SacrificeHeal(Minion m)

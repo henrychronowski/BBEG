@@ -52,6 +52,10 @@ public class Character : MonoBehaviour
     [SerializeField] public float dodgeInvulDuration;
     [SerializeField] public bool invulnerable = false;
     [SerializeField] CharacterStateTransitionRules stateRules;
+    [SerializeField] float timeSinceLastHit;
+    [SerializeField] float iFrameDuration;
+    [SerializeField] float iFrameFlickerRate;
+    float timeSinceLastFlicker;
 
     [SerializeField] public float interactRadius = 2f;
     [SerializeField] public string yarnKey;
@@ -122,14 +126,18 @@ public class Character : MonoBehaviour
     {
         if(damage < 0)
             damage = 0;
-        currHealth -= damage; 
-        
+        currHealth -= damage;
+
+        timeSinceLastHit = 0;
+
         if(currHealth <= 0)
         {
             // 
             EventManager.instance.CharacterDeath(this);
             Destroy(gameObject);
         }
+
+        
     }
 
     public void Heal(int healValue)
@@ -286,17 +294,44 @@ public class Character : MonoBehaviour
 
         }
     }
+
+    public bool GetInvulnerabilityState()
+    {
+        return timeSinceLastHit < iFrameDuration || invulnerable;
+    }
+
+    void InvulnerabilityFlicker()
+    {
+        timeSinceLastFlicker += Time.deltaTime;
+        if (!GetInvulnerabilityState())
+        {
+            animator.gameObject.SetActive(true);
+
+            return;
+        }
+
+        if(timeSinceLastFlicker >= iFrameFlickerRate)
+        {
+            animator.gameObject.SetActive(!animator.gameObject.activeInHierarchy);
+            timeSinceLastFlicker = 0;
+        }
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         state = new IdleState(this);
+        timeSinceLastHit = 999;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         currentState = state.stateType;
         state.Update();
+        timeSinceLastHit += Time.deltaTime;
+        InvulnerabilityFlicker();
     }
 
     // This is used for the sake of physics, if this becomes a problem later we can add FixedUpdate functions to State
@@ -347,7 +382,7 @@ public class Character : MonoBehaviour
         Gizmos.color = Color.red;
         //Gizmos.DrawLine(transform.position, transform.position + rgd.velocity);
         Gizmos.DrawLine(transform.position, transform.position + (transform.forward * .5f));
-        if(invulnerable)
+        if(GetInvulnerabilityState())
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, 3f);
