@@ -385,17 +385,6 @@
                 },
                 {
                     "name": "",
-                    "id": "abd044ed-1d0c-4575-bc6d-ef7d7899a042",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AdvanceDialogue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "83e35e3a-9fed-4206-afbb-ca4839681b4f",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
