@@ -4,5 +4,15 @@ tags:
 John: Well, hello there, traveler! Welcome to the test build for BBEG!
 John: Keep in mind, everything in here is subject to change.
 John: If you need me to repeat anything, just approach me, and press E (or A/Cross/B on Xbox/PS/Nintendo controllers respectively).
-John: Move around with the WASD keys on keyboard, or the left control stick on controller.
+John: Would you like to see a tutorial?
+-> Sure
+	John: Move around with the WASD keys on keyboard, or the left control stick on controller.
+	John: Left click (X/Square/Y) to do a physical attack, or right click (Y/Triangle/X) to do a ranged attack. Press Space (B/Circle/A) to dodge.
+	John: On your journey, you will be able to collect artifacts to give yourself boosts. Keep an eye out for them, and walk towards them to collect them.
+	John: If you see any keys, pick them up. You may be able to save creatures trapped in cages. They're quite loyal, and will help you out.
+-> No, thanks
+	John: Very well.
+
+
+John: Leave the tavern when you're ready. Good luck.
 ===
