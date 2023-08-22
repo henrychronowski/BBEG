@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528fb6c858cc85a478901f73e8a3e9a1, type: 3}
+  m_Name: BossOnly
+  m_EditorClassIdentifier: 
+  roomArray:
+  - {fileID: 2867269543180100596, guid: db5a00800f886e845b2878a9844884e5, type: 3}
+  roomWeight: 64000000
+  count: 1
+  exitRoom: {fileID: 0}

@@ -27,6 +27,7 @@ public class Boss : MonoBehaviour
     [SerializeField] List<bool> defeatInteractionKeys;
 
     [SerializeField] YarnProject bossYarnProject;
+    [SerializeField] bool roomEntered;
     public string GetInteractionKey()
     {
         if(encounters == 0)
@@ -55,15 +56,20 @@ public class Boss : MonoBehaviour
 
     public void StartEncounter()
     {
+        roomEntered = true;
         string key = GetInteractionKey();
         encounters++;
 
         if (key == "" || key == previousInteractionKey)
+        {
+            StartFightCheck(true);
             return;
+        }
 
         DialogueRunnerEventTranslator.instance.SetProject(bossYarnProject);
         DialogueRunnerEventTranslator.instance.StartDialogue(key);
-
+        RoomInfo roomInfo = transform.parent.GetComponentInParent<RoomInfo>();
+        roomInfo.FreezeEnemies();
     }
 
     void CheckForEncounter(RoomInfo room)
@@ -74,12 +80,31 @@ public class Boss : MonoBehaviour
         }
     }
 
+    void StartFightCheck()
+    {
+        if(roomEntered)
+            transform.parent.GetComponentInParent<RoomInfo>().UnfreezeEnemies();
+
+    }
+
+    void StartFightCheck(bool forceStart = false)
+    {
+        if (roomEntered || forceStart)
+            transform.parent.GetComponentInParent<RoomInfo>().UnfreezeEnemies();
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         EventManager.instance.onRoomEntered += CheckForEncounter;
+        EventManager.instance.onDialogueComplete += StartFightCheck;
     }
-
+    private void OnDestroy()
+    {
+        EventManager.instance.onRoomEntered -= CheckForEncounter;
+        EventManager.instance.onDialogueComplete -= StartFightCheck;
+    }
     // Update is called once per frame
     void Update()
     {

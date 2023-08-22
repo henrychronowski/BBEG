@@ -75,7 +75,7 @@ public class RoomInfo : MonoBehaviour
         return enemies.childCount > 0;
     }
 
-    void FreezeEnemies()
+    public void FreezeEnemies()
     {
         foreach(EnemyAI e in enemies.GetComponentsInChildren<EnemyAI>())
         {
@@ -83,7 +83,7 @@ public class RoomInfo : MonoBehaviour
         }
     }
 
-    void UnfreezeEnemies()
+    public void UnfreezeEnemies()
     {
         foreach (EnemyAI e in enemies.GetComponentsInChildren<EnemyAI>())
         {
