@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2688604086022218158, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688604086022218158, guid: bd1b1813175db904892631c2d6da04af, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4559
+      objectReference: {fileID: 0}
     - target: {fileID: 3389712818533600264, guid: bd1b1813175db904892631c2d6da04af, type: 3}
       propertyPath: m_Name
       value: RizzlerBossRoom

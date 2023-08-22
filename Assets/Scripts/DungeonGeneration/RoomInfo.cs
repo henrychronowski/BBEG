@@ -143,7 +143,7 @@ public class RoomInfo : MonoBehaviour
     void Start()
     {
         roomExtents = GetComponent<BoxCollider>().size;
-        EventManager.instance.roomEntered += PlayerEnteredRoom;
+        EventManager.instance.onRoomEntered += PlayerEnteredRoom;
         EventManager.instance.roomCleared += ClearRoom;
         if(!AreEnemiesAlive())
         {
@@ -154,7 +154,7 @@ public class RoomInfo : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.instance.roomEntered -= PlayerEnteredRoom;
+        EventManager.instance.onRoomEntered -= PlayerEnteredRoom;
         EventManager.instance.roomCleared -= ClearRoom;
     }
 

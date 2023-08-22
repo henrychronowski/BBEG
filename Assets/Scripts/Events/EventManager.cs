@@ -143,13 +143,13 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public event Action<RoomInfo> roomEntered;
+    public event Action<RoomInfo> onRoomEntered;
 
     public void RoomEntered(RoomInfo r)
     {
-        if (roomEntered != null)
+        if (onRoomEntered != null)
         {
-            roomEntered(r);
+            onRoomEntered(r);
         }
     }
 

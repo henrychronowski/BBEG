@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class Boss : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class Boss : MonoBehaviour
 
     // used to determine if the current victory count has an interaction
     [SerializeField] List<bool> victoryInteractionKeys;
+
+    [SerializeField] List<bool> defeatInteractionKeys;
+
+    [SerializeField] YarnProject bossYarnProject;
     public string GetInteractionKey()
     {
         if(encounters == 0)
@@ -33,24 +38,46 @@ public class Boss : MonoBehaviour
         {
             if (victoryInteractionKeys[victories])
             {
-
+                return "Victory" + victories.ToString();
             }
-        }        
+        }
 
-        return "Error";
+        if (defeats < defeatInteractionKeys.Count && !wonLastBattle)
+        {
+            if (victoryInteractionKeys[victories])
+            {
+                return "Defeat" + victories.ToString();
+            }
+        }
+
+        return "";
     }
 
     public void StartEncounter()
     {
         string key = GetInteractionKey();
-        encounters++; 
-        
+        encounters++;
+
+        if (key == "" || key == previousInteractionKey)
+            return;
+
+        DialogueRunnerEventTranslator.instance.SetProject(bossYarnProject);
+        DialogueRunnerEventTranslator.instance.StartDialogue(key);
+
+    }
+
+    void CheckForEncounter(RoomInfo room)
+    {
+        if(room.gameObject == transform.root.gameObject)
+        {
+            StartEncounter();
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-            
+        EventManager.instance.onRoomEntered += CheckForEncounter;
     }
 
     // Update is called once per frame
