@@ -11,6 +11,8 @@ public class Leader : Character
     // Passive ability, implement it like a unique artifact
     // Active ability
 
+    [SerializeField] Dictionary<string, Sprite> portraits;
+
     float timeSinceLastHit = 0f;
     [SerializeField] float invulnTime = 0.5f;
     public override void Hit(int damage)
