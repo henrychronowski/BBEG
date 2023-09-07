@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 public class TavernTransitionScript : MonoBehaviour
 {
     public string sceneName;
+    public LoadingScript loading;
+
+    private void Start()
+    {
+        loading = GameObject.Find("LoadingManager").GetComponent<LoadingScript>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            SceneManager.LoadScene(sceneName);
+            loading.LoadLevel(sceneName);
         }
     }
 }
