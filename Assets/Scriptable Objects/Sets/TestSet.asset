@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528fb6c858cc85a478901f73e8a3e9a1, type: 3}
+  m_Name: TestSet
+  m_EditorClassIdentifier: 
+  roomArray:
+  - {fileID: 841492278229086282, guid: 2f77d1ee2270f2d489f834f71a71cbd4, type: 3}
+  - {fileID: 1805308503212707709, guid: a7a6a645b28141c46ace96a377bac51b, type: 3}
+  - {fileID: 3037542067387827732, guid: 171f93a58b27fad4a8c20e6ea66d6d0e, type: 3}
+  - {fileID: 2317058305402577626, guid: 27b86b6740d0f974e83ef621f511c9f0, type: 3}
+  roomWeight: 0f0000001e000000280000000f000000
+  count: 4
+  exitRoom: {fileID: 0}

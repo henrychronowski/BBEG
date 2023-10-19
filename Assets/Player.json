@@ -1,1 +1,1 @@
-{"leader":{"instanceID":26724},"characterList":[{"instanceID":26724},{"instanceID":26756}],"party":1,"tempCurr":50,"permCurr":30}
+{"leader":{"instanceID":24568},"minions":[{"instanceID":24652},{"instanceID":24532},{"instanceID":24598}],"party":1,"tempCurr":75,"permCurr":40,"moveSpeed":[10.0,10.0,10.0,10.0],"health":[5,5,5,5]}

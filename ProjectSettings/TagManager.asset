@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlayerEyes
+  - Projectile
+  - Melee
+  - Minion
+  - Enemy
+  - Stairs
+  - Breakable
   layers:
   - Default
   - TransparentFX
@@ -11,16 +18,16 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Character
+  - Player
+  - Attack
+  - Interact
+  - RoomExtents
+  - Minion
+  - ExitBlocker
+  - Enemy
+  - Breakable
+  - Hitbox
   - 
   - 
   - 

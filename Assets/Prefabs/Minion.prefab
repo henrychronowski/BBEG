@@ -25,11 +25,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6080025853874627412, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6080025853874627412, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6080025853874627412, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64,12 +64,30 @@ PrefabInstance:
       value: Minion
       objectReference: {fileID: 0}
     - target: {fileID: 6080025853874627435, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080025853874627435, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080025853874627435, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+      propertyPath: m_TagString
+      value: Minion
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6559286634383029894, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+--- !u!4 &3027279317672202863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2744601260002139008, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+  m_PrefabInstance: {fileID: 870820690985044463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5559329649232365997 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4698224255747457090, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+  m_PrefabInstance: {fileID: 870820690985044463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6374090462111345284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6080025853874627435, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
@@ -87,18 +105,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f993770b797bc6f4ca8f27608af2b4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  currentState: 0
+  activeBuffs: []
+  baseHealth: 3
+  currHealth: 3
+  baseDefense: 0
   moveSpeed: 10
-  facing: {x: 0, y: 0, z: 0}
+  baseMeleeAffinity: 0
+  baseRangedAffinity: 0
   rgd: {fileID: 6374090462111345341}
   axis: {x: 0, y: 0}
   turnSmoothVelocity: 1
-  turnSmoothTime: 0.11
-  leader: {fileID: 0}
+  turnSmoothTime: 0
+  followPoint: {fileID: 3027279317672202863}
+  moveSpeedModifier: 1
+  meleeAttack: {fileID: 11400000, guid: 7d19d95daa793344da26e0c194b77c09, type: 2}
+  rangedAttack: {fileID: 11400000, guid: 92482cadcf16eea4c94f95f159b49880, type: 2}
+  hitbox: {fileID: 0}
+  overrider: {fileID: 6713584822893857554}
+  animator: {fileID: 5559329649232365997}
+  portrait: {fileID: 21300000, guid: 4211d2c4091af8945bb6a41d22f6b00c, type: 3}
+  dodgeDuration: 0
+  dodgeSpeedMultiplier: 0
+  dodgeInvulDuration: 0
+  invulnerable: 0
+  stateRules: {fileID: 11400000, guid: 9ec95117da1ed9d45a34e67276da6f92, type: 2}
+  tribe: 0
   followDistance: 1
-  stoppingDistance: 0
+  brakingDrag: 0.25
+  catchupDistance: 0
+  catchupSpeedModifier: 0
+  mimicFollowDistance: 0.1
+  mimicBrakingDrag: 0.25
+  mimicCatchupDistance: 3
+  mimicCatchupSpeedModifier: 1.5
+  isStray: 0
+  rarity: 0
 --- !u!54 &6374090462111345341 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6080025853874627410, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
   m_PrefabInstance: {fileID: 870820690985044463}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6713584822893857554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5854317907104989949, guid: f0791c0ac9891a244b0d1ddb56fb1463, type: 3}
+  m_PrefabInstance: {fileID: 870820690985044463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df3e0a6d61e1aa418ae03bcc7a72b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

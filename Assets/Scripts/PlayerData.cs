@@ -6,23 +6,37 @@ using UnityEngine;
 public class PlayerData
 {
     public Leader leader;
-    public Character[] characterList;
-    public PartyState party;
+    public List<Minion> minions;
+    public PartyMovementState party;
     public int tempCurr;
     public int permCurr;
 
+    public float[] moveSpeed;
+    public int[] maxHealth;
+    public int[] currHealth;
+
     public PlayerData(PlayerCharacterManager player)
     {
-        leader = player.leader;
         party = player.party;
 
-        characterList = new Character[player.characterList.Count];
-        for(int i = 0; i < player.characterList.Count; i++)
+        moveSpeed = new float[player.minions.Count + 1];
+        maxHealth = new int[player.minions.Count + 1];
+        currHealth = new int[player.minions.Count + 1];
+
+        moveSpeed[0] = player.leader.moveSpeed;
+        maxHealth[0] = player.leader.baseHealth;
+        currHealth[0] = player.leader.currHealth;
+        for (int i = 0; i < player.minions.Count; i++)
         {
-            characterList[i] = player.characterList[i];
+            moveSpeed[i + 1] = player.minions[i].moveSpeed;
+            maxHealth[i + 1] = player.minions[i].baseHealth;
+            currHealth[i + 1] = player.minions[i].currHealth;
         }
 
-        tempCurr = player.tempCurr;
+        leader = player.leader;
+        minions = new List<Minion>(player.minions);
+
+        tempCurr = player.keys;
         permCurr = player.permCurr;
     }
 }

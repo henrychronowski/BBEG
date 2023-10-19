@@ -21,39 +21,109 @@ public class Minion : Character
 
 
     // Contains a trait?
-
-    [SerializeField] Leader leader;
+    public Tribe tribe;
     [SerializeField] float followDistance;
-    [SerializeField] float stoppingDistance;
+    [SerializeField] float brakingDrag; //How much the minion's speed is reduced when in braking range but 
+    [SerializeField] float catchupDistance;
+    [SerializeField] float catchupSpeedModifier;
+
+    [SerializeField] float mimicFollowDistance;
+    [SerializeField] float mimicBrakingDrag;
+    [SerializeField] float mimicCatchupDistance;
+    [SerializeField] float mimicCatchupSpeedModifier;
+
+    [SerializeField] public bool isStray; // Hasn't joined party yet
+    [SerializeField] Rarity rarity;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
         state = new IdleState(this);
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        currentState = state.stateType;
         state.Update();
     }
 
     // Forcibly set the minion state to move no matter what they're doing
-    public void Follow(Character character)
+    public void Follow(Transform point)
     {
-        if (Vector3.Distance(transform.position, character.transform.position) > followDistance)
+        if(Vector3.Distance(transform.position, point.position) > followDistance)
         {
             if (state.stateType != CharacterState.Move)
                 state = new MoveState(this);
-            Vector3 dir = (character.transform.position - transform.position).normalized;
+            Vector3 dir = (point.position - transform.position).normalized;
             Move(new Vector2(dir.x, dir.z));
         }
         else
         {
-            if (state.stateType != CharacterState.Idle)
-                state = new IdleState(this);
-            Move(Vector2.zero);
+            if (state.stateType != CharacterState.Move)
+                state = new MoveState(this);
+            Vector3 dir = (point.position - transform.position).normalized;
+            Move(new Vector2(dir.x, dir.z));
         }
+        //else if (Vector3.Distance(transform.position, point.position) > stoppingDistance)
+        //{
+        //    moveSpeedModifier *= brakingDrag;
+        //    if (state.stateType != CharacterState.Move)
+        //        state = new MoveState(this);
+        //    Vector3 dir = (point.position - transform.position).normalized;
+        //    Move(new Vector2(dir.x, dir.z));
+        //}
+        //else
+        //{
+        //    moveSpeedModifier = 1;
+        //    if (state.stateType != CharacterState.Idle)
+        //        state = new IdleState(this);
+        //    Move(Vector2.zero);
+        //}
+    }
+
+    public void Stop()
+    {
+        //if (state.stateType != CharacterState.Idle && state.stateType != CharacterState.Attack)
+        //    state = new IdleState(this);
+        //else
+        rgd.velocity = Vector3.zero;
+        axis = Vector2.zero;
+    }
+
+    public override void Hit(int damage)
+    {
+        // Do nothing
+    }
+
+    public void NewMimic(Transform point)
+    {
+        if (Vector3.Distance(transform.position, point.position) > mimicFollowDistance)
+        {
+            if (state.stateType != CharacterState.Move)
+                state = new MoveState(this);
+            Vector3 dir = (point.position - transform.position).normalized;
+            if (PlayerCharacterManager.instance.leader.axis == Vector2.zero)
+            {
+                Move(new Vector2(dir.x, dir.z));
+            }
+            else
+            {
+                Move(new Vector2(dir.x, dir.z), mimicCatchupSpeedModifier);
+            }
+            Debug.Log(name + " lagging");
+
+        }
+        else
+        {
+            transform.position = point.position;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerCharacterManager.instance.minions.Remove(this);
+        Debug.Log(name + " has died");
     }
 }

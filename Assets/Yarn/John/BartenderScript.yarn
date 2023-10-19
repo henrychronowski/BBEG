@@ -1,0 +1,15 @@
+﻿title: BartenderScript
+tags:
+---
+John: Well, hello there, traveler! Welcome to the test build for BBEG!
+John: Keep in mind, everything in here is subject to change.
+John: If you need me to repeat anything, just approach me, and press E (or A/Cross/B on Xbox/PS/Nintendo controllers respectively).
+John: Would you like to see a tutorial?
+-> Sure
+	John: Alright. Behind me is a secret door leading to a training area.
+	John: Head in when you're ready.
+	<<rotate RotationPoint>>
+-> No, thanks
+	John: Very well. Leave the tavern when you're ready.
+	John: Good luck.
+===

@@ -15,7 +15,7 @@ public class SaveAndLoadData : MonoBehaviour
     private void Start()
     {
         manager = GameObject.Find("PlayerCharacterManager").GetComponent<PlayerCharacterManager>();
-        playerData = new PlayerData(manager);
+        
         SetDataPath();
     }
 
@@ -26,6 +26,7 @@ public class SaveAndLoadData : MonoBehaviour
     }
     public void SavePlayerData()
     {
+        playerData = new PlayerData(manager);
         string savePath = path;
         Debug.Log("Saving to " + savePath);
         string json = JsonUtility.ToJson(playerData);
@@ -40,7 +41,9 @@ public class SaveAndLoadData : MonoBehaviour
         using StreamReader reader = new StreamReader(path);
         string json = reader.ReadToEnd();
 
-        PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-        Debug.Log(data.ToString());
+        playerData = JsonUtility.FromJson<PlayerData>(json);
+        Debug.Log(playerData.ToString());
+
+        manager.LoadData(playerData);
     }
 }
